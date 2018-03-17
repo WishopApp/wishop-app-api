@@ -41,7 +41,7 @@ jobs:
           command: | 
             sudo apt-get update
             sudo apt-get install sshpass
-            sudo sshpass -p $PASS_SERVER ssh -o StrictHostKeyChecking=no $USER_SERVER@$SERVER_HOST "sudo docker stop wishop-app-api && sudo docker rm wishop-app-api && sudo docker rmi huag1234/wishop-app-api:$API_TAG && sudo docker pull huag1234/wishop-app-api:$API_TAG && sudo docker run --name wishop-app-api -p 3000:3000 -d huag1234/wishop-app-api:$API_TAG"
+            sudo sshpass -p $PASS_SERVER ssh -o StrictHostKeyChecking=no $USER_SERVER@$SERVER_HOST "sudo docker stop wishop-app-api && sudo docker rm wishop-app-api && sudo docker rmi huag1234/wishop-app-api:$API_TAG && sudo docker pull huag1234/wishop-app-api:$API_TAG && sudo docker run --name wishop-app-api -p 3000:3000 -d huag1234/wishop-app-api:$API_TAG && exit"
 workflows:
   version: 2
   build-test-deploy:
