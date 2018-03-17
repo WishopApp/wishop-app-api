@@ -7,7 +7,7 @@ const HOST = '0.0.0.0';
 // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send('Host New TEST CI world\n' +
+  res.send('TEST CI world\n' +
             'ENV : ' + process.env.DATABASE_URL);
 
 });
