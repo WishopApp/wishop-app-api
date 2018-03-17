@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build: .
+    image: huag1234/wishop-app-api
+    container_name: wishop-app-api
+    command: npm start  
+    #window path  /wishop/wishop-app-api/ 
+    #linux path /usr/share/wishop/wishop-app-api/ 
+    volumes:
+      - .:/usr/share/wishop/wishop-app-api/  
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "Mongo URL"
