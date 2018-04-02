@@ -1,7 +1,9 @@
 export default [`
   type Query {
-    user: String
-    users: String
+    user: User
+    users: [User]
+    category: Category
+    categories: [Category]
   }
 
   type Mutation {
@@ -9,6 +11,10 @@ export default [`
       email: String
       password: String
     ): User
+
+    createCategory (
+      name: String
+    ): Category
   }
 
   type Updated {
