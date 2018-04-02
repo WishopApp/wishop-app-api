@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 
 import schema from './schema'
 
-import { Users } from './user/model'
+import { User } from './user/model'
 import { Category } from './category/model'
 
 const router = express.Router()
@@ -12,7 +12,7 @@ const router = express.Router()
 router.use('/graphql', bodyParser.json(), graphqlExpress({
   schema,
   context: {
-    user: new Users(),
+    user: new User(),
     category: new Category()
   }
 }))

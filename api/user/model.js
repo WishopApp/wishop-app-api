@@ -100,20 +100,20 @@ const usersSchema = mongoose.Schema(
 
 const userModel = mongoose.model('UsersModel', usersSchema)
 
-export class Users {
-  async getUsers (args, limit = 10, skip = 0) {
+export class User {
+  async getMany (args, limit = 10, skip = 0) {
     const users = await userModel.find(args)
       .skip(skip)
       .limit(limit)
     return users
   }
 
-  async getUser (args) {
+  async getOne (args) {
     const user = userModel.findOne(args)
     return user
   }
 
-  async createUser (args) {
+  async create (args) {
     const createResult = await userModel.create(args)
     return createResult
   }

@@ -2,19 +2,19 @@ import { baseResolver } from '../root/resolver'
 
 const user = baseResolver.createResolver(
   async (root, args, context) => {
-    return context.user.getUser(args)
+    return context.user.getOne(args)
   }
 )
 
 const users = baseResolver.createResolver(
   async (root, args, context) => {
-    return context.user.getUsers(args, args.limit, args.skip)
+    return context.user.getMany(args, args.limit, args.skip)
   }
 )
 
 const createUser = baseResolver.createResolver(
   async (root, args, context) => {
-    return context.user.createUser(args)
+    return context.user.create(args)
   }
 )
 
