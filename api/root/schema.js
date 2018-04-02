@@ -5,6 +5,13 @@ export default [`
   }
 
   type Mutation {
-    createUser: User
+    createUser (
+      email: String
+      password: String
+    ): User
+  }
+
+  type Updated {
+    updated: Int
   }
 `]
