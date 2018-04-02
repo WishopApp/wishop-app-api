@@ -25,7 +25,7 @@ const categorySchema = mongoose.Schema(
   }
 )
 
-const categoryModel = mongoose.model('subCategoryIdModel', categorySchema)
+const categoryModel = mongoose.model('CategoryModel', categorySchema)
 
 export class Category {
   async getMany (args, limit = 10, skip = 0) {
