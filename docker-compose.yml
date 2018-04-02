@@ -5,11 +5,13 @@ services:
     image: huag1234/wishop-app-api
     container_name: wishop-app-api
     command: "tail -F anything"
+    env_file:
+      - .env
     #window path  /wishop/wishop-app-api/
     #linux path /usr/share/wishop/wishop-app-api/
     volumes:
       - .:/usr/share/wishop/wishop-app-api/
     ports:
-      - "3000:3000"
+      - "3001:3001"
     environment:
       DATABASE_URL: "Mongo URL"

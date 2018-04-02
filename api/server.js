@@ -1,19 +1,20 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
+import cookieParser from 'cookie-parser'
+import cors from 'cors'
 
-import schema from './schema'
+import router from './router'
+import mongoose from './libaries/mongoose'
 
 const app = express()
-const PORT = 3000
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(cookieParser())
+app.use(cors())
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({
-  schema
-}))
+app.use('/', router)
 
-app.get('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql'
-}))
+const PORT = process.env.APP_PORT
 
 app.listen(PORT, () => {
   console.log(`API RUNNING AT PORT: ${PORT}`)
