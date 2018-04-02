@@ -1,4 +1,3 @@
-import { merge } from 'lodash'
 import { makeExecutableSchema } from 'graphql-tools'
 import { combineResolvers } from 'apollo-resolvers'
 
