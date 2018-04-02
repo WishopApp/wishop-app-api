@@ -7,6 +7,8 @@ import schema from './schema'
 import { User } from './user/model'
 import { Category } from './category/model'
 import { SubCategory } from './subCategory/model'
+import { CategoryProp } from './categoryProperty/model'
+import { SubCategoryProp } from './SubCategoryProperty/model'
 
 const router = express.Router()
 
@@ -15,7 +17,9 @@ router.use('/graphql', bodyParser.json(), graphqlExpress({
   context: {
     user: new User(),
     category: new Category(),
-    subCategory: new SubCategory()
+    subCategory: new SubCategory(),
+    categoryProp: new CategoryProp(),
+    subCategoryProp: new SubCategoryProp()
   }
 }))
 

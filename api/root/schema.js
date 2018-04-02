@@ -6,6 +6,10 @@ export default [`
     categories: [Category]
     subCategory: SubCategory
     subCategories: [SubCategory]
+    categoryProp: CategoryProp
+    categoryProps: [CategoryProp]
+    subCategoryProp: SubCategoryProp
+    subCategoryProps: [SubCategoryProp]
   }
 
   type Mutation {
@@ -21,6 +25,18 @@ export default [`
     createSubCategory (
       name: String
     ): SubCategory
+
+    createCategoryProp (
+      categoryId: ID
+      name: String
+      values: [String]
+    ): CategoryProp
+
+    createSubCategoryProp (
+      subCategoryId: ID
+      name: String
+      values: [String]
+    ): SubCategoryProp
   }
 
   type Updated {
