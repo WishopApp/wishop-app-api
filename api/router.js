@@ -6,6 +6,7 @@ import schema from './schema'
 
 import { User } from './user/model'
 import { Category } from './category/model'
+import { SubCategory } from './subCategory/model'
 
 const router = express.Router()
 
@@ -13,7 +14,8 @@ router.use('/graphql', bodyParser.json(), graphqlExpress({
   schema,
   context: {
     user: new User(),
-    category: new Category()
+    category: new Category(),
+    subCategory: new SubCategory()
   }
 }))
 

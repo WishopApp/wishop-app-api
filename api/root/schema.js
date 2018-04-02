@@ -4,6 +4,8 @@ export default [`
     users: [User]
     category: Category
     categories: [Category]
+    subCategory: SubCategory
+    subCategories: [SubCategory]
   }
 
   type Mutation {
@@ -15,6 +17,10 @@ export default [`
     createCategory (
       name: String
     ): Category
+
+    createSubCategory (
+      name: String
+    ): SubCategory
   }
 
   type Updated {
