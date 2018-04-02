@@ -6,11 +6,11 @@ ENV workspace=/usr/share/wishop/wishop-app-api
 #ENV workspace=/e/wishop/wishop-app-api
 
 WORKDIR ${workspace}
- 
-COPY . ./ 
 
-RUN npm install
+COPY . ./
+
+RUN npm install -g yarn && yarn install && yarn build && rm -rf api
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]

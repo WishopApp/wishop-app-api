@@ -1,10 +1,11 @@
+import 'babel-polyfill'
 import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 
 import router from './router'
-import mongoose from './libaries/mongoose'
+import './libaries/mongoose'
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))

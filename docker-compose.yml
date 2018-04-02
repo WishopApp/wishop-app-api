@@ -12,6 +12,6 @@ services:
     volumes:
       - .:/usr/share/wishop/wishop-app-api/
     ports:
-      - "3001:3001"
+      - "3000:3000"
     environment:
       DATABASE_URL: "Mongo URL"
