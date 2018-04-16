@@ -20,6 +20,10 @@ router.use('/graphql', bodyParser.json(), graphqlExpress({
     subCategory: new SubCategory(),
     categoryProp: new CategoryProp(),
     subCategoryProp: new SubCategoryProp()
+  },
+  tracing: true,
+  cacheControl: {
+    defaultMaxAge: 30
   }
 }))
 
