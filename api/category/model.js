@@ -40,7 +40,7 @@ export class Category {
     return category
   }
 
-  async createCategory (args) {
+  async create (args) {
     const createResult = await categoryModel.create(args)
     return createResult
   }

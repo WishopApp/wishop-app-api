@@ -5,7 +5,9 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 const schema = mongoose.Schema(
   {
     categoryId: {
-      type: ObjectId,
+      type: [{
+        type: ObjectId
+      }],
       ref: 'cateogories',
       require: true
     },
@@ -40,7 +42,7 @@ export class CategoryProp {
     return categoryProp
   }
 
-  async createCategoryProp (args) {
+  async create (args) {
     const createResult = await categoryPropModel.create(args)
     return createResult
   }

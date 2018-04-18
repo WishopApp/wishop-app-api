@@ -5,7 +5,9 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 const schema = mongoose.Schema(
   {
     subCategoryId: {
-      type: ObjectId,
+      type: [{
+        type: ObjectId
+      }],
       ref: 'subCateogories',
       require: true
     },
@@ -40,7 +42,7 @@ export class SubCategoryProp {
     return subCategoryProp
   }
 
-  async createCategoryProp (args) {
+  async create (args) {
     const createResult = await subCategoryPropModel.create(args)
     return createResult
   }

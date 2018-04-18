@@ -14,29 +14,40 @@ export default [`
 
   type Mutation {
     createUser (
-      email: String
-      password: String
+      email: String!
+      password: String!
     ): User
 
     createCategory (
-      name: String
+      name: String!
     ): Category
 
     createSubCategory (
-      name: String
+      categoryId: ID!
+      name: String!
     ): SubCategory
 
     createCategoryProp (
-      categoryId: ID
-      name: String
+      categoryId: ID!
+      name: String!
       values: [String]
     ): CategoryProp
 
     createSubCategoryProp (
-      subCategoryId: ID
-      name: String
+      subCategoryId: ID!
+      name: String!
       values: [String]
     ): SubCategoryProp
+
+    createWishlist (
+      userId: ID!
+      wishlist: WishlistInput!
+    ): User
+
+    createWishlistSet (
+      userId: ID!
+      wishlistSet: WishlistSetInput!
+    ): User
   }
 
   type Updated {

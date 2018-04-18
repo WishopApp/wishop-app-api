@@ -37,6 +37,7 @@ const usersSchema = mongoose.Schema(
     },
     wishlistProducts: {
       type: [{
+        name: String,
         categoryId: {
           type: ObjectId,
           ref: 'categories'
