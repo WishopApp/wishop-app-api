@@ -14,7 +14,7 @@ const categoryProps = baseResolver.createResolver(
 
 const createCategoryProp = baseResolver.createResolver(
   async (root, args, context) => {
-    return context.categoryProp.createUser(args)
+    return context.categoryProp.create(args)
   }
 )
 

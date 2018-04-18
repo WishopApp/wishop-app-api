@@ -40,7 +40,7 @@ export class SubCategoryProp {
     return subCategoryProp
   }
 
-  async createCategoryProp (args) {
+  async create (args) {
     const createResult = await subCategoryPropModel.create(args)
     return createResult
   }

@@ -14,7 +14,7 @@ const categories = baseResolver.createResolver(
 
 const createCategory = baseResolver.createResolver(
   async (root, args, context) => {
-    return context.category.createUser(args)
+    return context.category.create(args)
   }
 )
 

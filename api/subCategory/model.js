@@ -35,7 +35,7 @@ export class SubCategory {
     return subCategory
   }
 
-  async createCategory (args) {
+  async create (args) {
     const createResult = await subCategoryModel.create(args)
     return createResult
   }
