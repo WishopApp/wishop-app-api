@@ -23,6 +23,7 @@ export default [`
     ): Category
 
     createSubCategory (
+      categoryId: ID!
       name: String!
     ): SubCategory
 

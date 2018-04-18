@@ -4,6 +4,11 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 
 const schema = mongoose.Schema(
   {
+    subCategoryId: {
+      type: ObjectId,
+      refs: 'categories',
+      require: true
+    },
     name: {
       type: String,
       require: true
