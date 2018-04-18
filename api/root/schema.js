@@ -29,13 +29,13 @@ export default [`
     createCategoryProp (
       categoryId: ID!
       name: String!
-      values: [String]!
+      values: [String]
     ): CategoryProp
 
     createSubCategoryProp (
       subCategoryId: ID!
       name: String!
-      values: [String]!
+      values: [String]
     ): SubCategoryProp
 
     createWishlist (

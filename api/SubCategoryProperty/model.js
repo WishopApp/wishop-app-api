@@ -5,7 +5,9 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 const schema = mongoose.Schema(
   {
     subCategoryId: {
-      type: ObjectId,
+      type: [{
+        type: ObjectId
+      }],
       ref: 'subCateogories',
       require: true
     },
