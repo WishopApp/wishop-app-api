@@ -7,6 +7,14 @@ type Address {
   detail: String
 }
 
+input AddressInput {
+  district: String
+  province: String
+  country: String
+  zipcode: String
+  detail: String
+}
+
 type Profile {
   name: String
   telNo: String
@@ -14,26 +22,11 @@ type Profile {
   address: Address
 }
 
-type CategoryProps {
-  categoryId: ID
-  value: String
-}
-
-type SubCategoryProps {
-  subCategoryId: ID
-  value: String
-}
-
-type Wishlist {
-  categoryId: ID
-  subCategoryId: ID
-  categoryProps: [CategoryProps]
-  subCategoryProps: [SubCategoryProps]
-}
-
-type WishlistSet {
+input ProfileInput {
   name: String
-  wishlists: [Wishlist]
+  telNo: String
+  avatarUrl: String
+  address: AddressInput
 }
 
 type User {

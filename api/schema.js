@@ -7,12 +7,14 @@ import categorySchema from './category/schema'
 import subCategorySchema from './subCategory/schema'
 import categoryPropsSchema from './categoryProperty/schema'
 import subCategoryPropSchema from './SubCategoryProperty/schema'
+import wishlistSchema from './Wishlist/schema'
 
 import userResolvers from './user/resolver'
 import categoryResolvers from './category/resolver'
 import subCategoryResolvers from './subCategory/resolver'
 import categoryPropResolvers from './categoryProperty/resolver'
 import subCategoryPropResolvers from './SubCategoryProperty/resolver'
+import wishlistResolvers from './Wishlist/resolver'
 
 const typeDefs = [
   ...rootSchema,
@@ -20,7 +22,8 @@ const typeDefs = [
   ...categorySchema,
   ...subCategorySchema,
   ...categoryPropsSchema,
-  ...subCategoryPropSchema
+  ...subCategoryPropSchema,
+  ...wishlistSchema
 ]
 
 const resolvers = combineResolvers([
@@ -28,7 +31,8 @@ const resolvers = combineResolvers([
   categoryResolvers,
   subCategoryResolvers,
   categoryPropResolvers,
-  subCategoryPropResolvers
+  subCategoryPropResolvers,
+  wishlistResolvers
 ])
 
 const executableSchema = makeExecutableSchema({
