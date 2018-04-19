@@ -8,7 +8,7 @@ import { User } from './user/model'
 import { Category } from './category/model'
 import { SubCategory } from './subCategory/model'
 import { CategoryProp } from './categoryProperty/model'
-import { SubCategoryProp } from './subCategoryProperty0/model'
+import { SubCategoryProp } from './subCategoryProperty/model'
 
 const router = express.Router()
 
