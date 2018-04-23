@@ -1,15 +1,47 @@
 export default [`
   type Query {
-    user: User
-    users: [User]
-    category: Category
-    categories: [Category]
-    subCategory: SubCategory
-    subCategories: [SubCategory]
-    categoryProp: CategoryProp
-    categoryProps: [CategoryProp]
-    subCategoryProp: SubCategoryProp
-    subCategoryProps: [SubCategoryProp]
+    user (
+      _id: ID!
+    ): User
+
+    users (
+      limit: Int
+      skip: Int
+    ): [User]
+
+    category (
+      _id: ID!
+    ): Category
+
+    categories (
+      limit: Int
+      skip: Int
+    ): [Category]
+
+    subCategory (
+      _id: ID!
+    ): SubCategory
+
+    subCategories (
+      limit: Int
+      skip: Int
+    ): [SubCategory]
+
+    categoryProp (
+      _id: ID!
+    ): CategoryProp
+
+    categoryProps (
+      categoryId: ID!
+    ): [CategoryProp]
+
+    subCategoryProp (
+      _id: ID!
+    ): SubCategoryProp
+
+    subCategoryProps (
+      subCategoryId: ID!
+    ): [SubCategoryProp]
   }
 
   type Mutation {
