@@ -42,6 +42,11 @@ export class SubCategoryProp {
     return subCategoryProp
   }
 
+  async getBySubCategoryId (subCategoryId) {
+    const subCategoryProps = await subCategoryPropModel.find(subCategoryId)
+    return subCategoryProps
+  }
+
   async create (args) {
     const createResult = await subCategoryPropModel.create(args)
     return createResult

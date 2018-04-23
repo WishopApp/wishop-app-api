@@ -18,6 +18,22 @@ const createCategory = baseResolver.createResolver(
   }
 )
 
+const properties = baseResolver.createResolver(
+  async (category, args, context) => {
+    return context.categoryProp.getByCategoryId(category._id)
+  }
+)
+
+const subCategories = baseResolver.createResolver(
+  async (category, args, context) => {
+    const subCategories = category.subCategoryIds.map(async id => {
+      const subCategory = await context.subCategory.getById(id)
+      return subCategory
+    })
+    return subCategories
+  }
+)
+
 export default {
   Query: {
     category,
@@ -25,5 +41,9 @@ export default {
   },
   Mutation: {
     createCategory
+  },
+  Category: {
+    properties,
+    subCategories
   }
 }

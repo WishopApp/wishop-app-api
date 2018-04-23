@@ -40,6 +40,11 @@ export class SubCategory {
     return subCategory
   }
 
+  async getById (id) {
+    const subCategories = await subCategoryModel.findOne({ _id: id })
+    return subCategories
+  }
+
   async create (args) {
     const createResult = await subCategoryModel.create(args)
     return createResult

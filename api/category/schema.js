@@ -4,5 +4,7 @@ type Category {
   name: String
   subCategoryIds: [ID]
   catePropIds: [ID]
+  properties: [CategoryProp]
+  subCategories: [SubCategory]
 }
 `]

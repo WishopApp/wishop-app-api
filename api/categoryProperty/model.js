@@ -42,6 +42,11 @@ export class CategoryProp {
     return categoryProp
   }
 
+  async getByCategoryId (categoryId) {
+    const categoryProps = await categoryPropModel.find({ categoryId })
+    return categoryProps
+  }
+
   async create (args) {
     const createResult = await categoryPropModel.create(args)
     return createResult

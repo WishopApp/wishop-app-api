@@ -18,6 +18,12 @@ const createSubCategory = baseResolver.createResolver(
   }
 )
 
+const properties = baseResolver.createResolver(
+  async (subCategory, args, context) => {
+    return context.subCategoryProp.getBySubCategoryId(subCategory._id)
+  }
+)
+
 export default {
   Query: {
     subCategory,
@@ -25,5 +31,8 @@ export default {
   },
   Mutation: {
     createSubCategory
+  },
+  SubCategory: {
+    properties
   }
 }
