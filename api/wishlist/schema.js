@@ -22,6 +22,7 @@ input SubCategoryPropsInput {
 
 type Wishlist {
   name: String
+  productName: String
   categoryId: ID
   subCategoryId: ID
   categoryProps: [CategoryProps]
@@ -30,6 +31,7 @@ type Wishlist {
 
 input WishlistInput {
   name: String
+  productName: String
   categoryId: ID
   subCategoryId: ID
   categoryProps: [CategoryPropsInput]

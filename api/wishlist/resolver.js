@@ -2,31 +2,15 @@ import { baseResolver } from '../root/resolver'
 
 const createWishlist = baseResolver.createResolver(
   async (root, args, context) => {
-    return context.user.update(
-      {
-        _id: args.userId
-      },
-      {
-        $set: {
-          wishlistProducts: args.wishlist
-        }
-      }
-    )
+    const { userId, wishlist } = args
+    return context.user.updateUserWishlist(userId, wishlist)
   }
 )
 
 const createWishlistSet = baseResolver.createResolver(
   async (root, args, context) => {
-    return context.user.update(
-      {
-        _id: args.userId
-      },
-      {
-        $set: {
-          wishlistSets: args.wishlistSet
-        }
-      }
-    )
+    const { userId, wishlistSet } = args
+    return context.user.updateUserById(userId, wishlistSet)
   }
 )
 
