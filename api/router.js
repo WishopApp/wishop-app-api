@@ -23,7 +23,7 @@ router.use('/graphql', bodyParser.json(), graphqlExpress({
   },
   tracing: true,
   cacheControl: {
-    defaultMaxAge: 30
+    defaultMaxAge: 5
   }
 }))
 
