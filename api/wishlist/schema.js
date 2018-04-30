@@ -30,10 +30,10 @@ type Wishlist {
 }
 
 input WishlistInput {
-  name: String
+  name: String!
   productName: String
-  categoryId: ID
-  subCategoryId: ID
+  categoryId: ID!
+  subCategoryId: ID!
   categoryProps: [CategoryPropsInput]
   subCategoryProps: [SubCategoryPropsInput]
 }

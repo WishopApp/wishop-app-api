@@ -3,7 +3,7 @@ import { baseResolver } from '../root/resolver'
 const createWishlist = baseResolver.createResolver(
   async (root, args, context) => {
     const { userId, wishlist } = args
-    return context.user.updateUserWishlist(userId, wishlist)
+    return context.user.createWishlist(userId, wishlist)
   }
 )
 

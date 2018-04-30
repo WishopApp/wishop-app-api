@@ -95,7 +95,7 @@ export class User {
     return updateResult.nModified
   }
 
-  async updateUserWishlist (_id, newWishlist) {
+  async createWishlist (_id, newWishlist) {
     const userBeforeCreated = await userModel.findOne({ _id })
     const oldWishlist = userBeforeCreated.wishlist
     oldWishlist.push(newWishlist)
