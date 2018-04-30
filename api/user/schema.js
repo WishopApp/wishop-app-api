@@ -36,7 +36,6 @@ type User {
   facebookId: String
   profile: Profile
   storeIds: [ID]
-  wishlistProducts: [Wishlist]
-  wishlistSets: [WishlistSet]
+  wishlist: [Wishlist]
 }
 `]

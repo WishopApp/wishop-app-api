@@ -35,7 +35,7 @@ const usersSchema = mongoose.Schema(
       type: ObjectId,
       ref: 'stores'
     },
-    wishlistProducts: {
+    wishlist: {
       type: [{
         name: String,
         productName: String,
@@ -56,46 +56,6 @@ const usersSchema = mongoose.Schema(
               ref: 'categoryProperties'
             },
             value: String
-          }]
-        }
-      }]
-    },
-    wishlistSets: {
-      type: [{
-        name: String,
-        products: {
-          type: [{
-            productName: {
-              type: String
-            },
-            categoryId: {
-              type: ObjectId,
-              ref: 'categories',
-              require: true
-            },
-            subCategoryId: {
-              type: ObjectId,
-              ref: 'subCategories',
-              require: true
-            },
-            categoryProps: {
-              type: [{
-                categoryId: {
-                  type: ObjectId,
-                  ref: 'categories'
-                },
-                value: String
-              }]
-            },
-            subCategoryProps: {
-              type: [{
-                subCategoryId: {
-                  type: ObjectId,
-                  ref: 'subCategories'
-                },
-                value: String
-              }]
-            }
           }]
         }
       }]
@@ -137,11 +97,11 @@ export class User {
 
   async updateUserWishlist (_id, newWishlist) {
     const userBeforeCreated = await userModel.findOne({ _id })
-    const oldWishlist = userBeforeCreated.wishlistProducts
+    const oldWishlist = userBeforeCreated.wishlist
     oldWishlist.push(newWishlist)
     await userModel.update(
       { _id },
-      { $set: { wishlistProducts: oldWishlist } }
+      { $set: { wishlist: oldWishlist } }
     )
     const userAfterCreated = await userModel.findOne({ _id })
     return userAfterCreated

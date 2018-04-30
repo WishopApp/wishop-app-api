@@ -37,15 +37,4 @@ input WishlistInput {
   categoryProps: [CategoryPropsInput]
   subCategoryProps: [SubCategoryPropsInput]
 }
-
-type WishlistSet {
-  name: String
-  wishlists: [Wishlist]
-}
-
-input WishlistSetInput {
-  name: String
-  wishlists: [WishlistInput]
-}
-
 `]

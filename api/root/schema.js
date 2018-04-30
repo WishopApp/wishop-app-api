@@ -75,11 +75,6 @@ export default [`
       userId: ID!
       wishlist: WishlistInput!
     ): User
-
-    createWishlistSet (
-      userId: ID!
-      wishlistSet: WishlistSetInput!
-    ): User
   }
 
   type Updated {

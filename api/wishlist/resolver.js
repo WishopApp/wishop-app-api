@@ -7,16 +7,8 @@ const createWishlist = baseResolver.createResolver(
   }
 )
 
-const createWishlistSet = baseResolver.createResolver(
-  async (root, args, context) => {
-    const { userId, wishlistSet } = args
-    return context.user.updateUserById(userId, wishlistSet)
-  }
-)
-
 export default {
   Mutation: {
-    createWishlist,
-    createWishlistSet
+    createWishlist
   }
 }
