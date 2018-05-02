@@ -1,4 +1,4 @@
-import { baseResolver } from '../root/resolver'
+import { baseResolver } from '../../root/resolver'
 
 const subCategoryProp = baseResolver.createResolver(
   async (root, args, context) => {

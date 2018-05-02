@@ -1,4 +1,4 @@
-import { baseResolver } from '../root/resolver'
+import { baseResolver } from '../../root/resolver'
 
 const user = baseResolver.createResolver(
   async (root, args, context) => {
