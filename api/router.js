@@ -4,11 +4,11 @@ import bodyParser from 'body-parser'
 
 import schema from './schema'
 
-import { User } from './user/model'
-import { Category } from './category/model'
-import { SubCategory } from './subCategory/model'
-import { CategoryProp } from './categoryProperty/model'
-import { SubCategoryProp } from './subCategoryProperty/model'
+import { User } from './repositories/user/model'
+import { Category } from './repositories/category/model'
+import { SubCategory } from './repositories/subCategory/model'
+import { CategoryProp } from './repositories/categoryProperty/model'
+import { SubCategoryProp } from './repositories/subCategoryProperty/model'
 
 const router = express.Router()
 
