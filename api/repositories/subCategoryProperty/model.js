@@ -42,6 +42,11 @@ export class SubCategoryProp {
     return subCategoryProp
   }
 
+  async getById (_id) {
+    const subCategoryProp = subCategoryPropModel.findOne({ _id })
+    return subCategoryProp
+  }
+
   async getBySubCategoryId (subCategoryId) {
     const subCategoryProps = await subCategoryPropModel.find(subCategoryId)
     return subCategoryProps
