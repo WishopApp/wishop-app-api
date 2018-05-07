@@ -1,32 +1,35 @@
 export default [`
 
-type CategoryProps {
-  categoryId: ID
+type WishlistCategoryProp {
+  name: String
   value: String
 }
 
-input CategoryPropsInput {
-  categoryId: ID
-  value: String
-}
-
-type SubCategoryProps {
-  subCategoryId: ID
-  value: String
-}
-
-input SubCategoryPropsInput {
-  subCategoryId: ID
+type WishlistSubCategoryProp {
+  name: String
   value: String
 }
 
 type Wishlist {
+  _id: ID
   name: String
   productName: String
   categoryId: ID
+  category: Category
   subCategoryId: ID
-  categoryProps: [CategoryProps]
-  subCategoryProps: [SubCategoryProps]
+  subCategory: SubCategory
+  categoryProps: [WishlistCategoryProp]
+  subCategoryProps: [WishlistSubCategoryProp]
+}
+
+input WishlistCategoryPropInput {
+  categoryPropId: ID
+  value: String
+}
+
+input WishlistSubCategoryPropInput {
+  subCategoryPropId: ID
+  value: String
 }
 
 input WishlistInput {
@@ -34,7 +37,7 @@ input WishlistInput {
   productName: String
   categoryId: ID!
   subCategoryId: ID!
-  categoryProps: [CategoryPropsInput]
-  subCategoryProps: [SubCategoryPropsInput]
+  categoryProps: [WishlistCategoryPropInput]
+  subCategoryProps: [WishlistSubCategoryPropInput]
 }
 `]

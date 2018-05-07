@@ -42,6 +42,11 @@ export class CategoryProp {
     return categoryProp
   }
 
+  async getById (_id) {
+    const categoryProp = categoryPropModel.findOne({ _id })
+    return categoryProp
+  }
+
   async getByCategoryId (categoryId) {
     const categoryProps = await categoryPropModel.find({ categoryId })
     return categoryProps

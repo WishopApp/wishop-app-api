@@ -1,7 +1,8 @@
 export default [`
   type Query {
     user (
-      _id: ID!
+      _id: ID
+      email: String!
     ): User
 
     users (
@@ -10,7 +11,8 @@ export default [`
     ): [User]
 
     category (
-      _id: ID!
+      _id: ID
+      name: String!
     ): Category
 
     categories (
@@ -19,16 +21,19 @@ export default [`
     ): [Category]
 
     subCategory (
-      _id: ID!
+      _id: ID
+      categoryId: ID!
     ): SubCategory
 
     subCategories (
       limit: Int
       skip: Int
+      categoryId: ID
     ): [SubCategory]
 
     categoryProp (
-      _id: ID!
+      _id: ID
+      categoryId: ID!
     ): CategoryProp
 
     categoryProps (
@@ -36,7 +41,8 @@ export default [`
     ): [CategoryProp]
 
     subCategoryProp (
-      _id: ID!
+      _id: ID
+      subCategoryId: ID!
     ): SubCategoryProp
 
     subCategoryProps (
