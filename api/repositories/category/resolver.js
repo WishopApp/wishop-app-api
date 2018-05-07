@@ -26,11 +26,7 @@ const properties = baseResolver.createResolver(
 
 const subCategories = baseResolver.createResolver(
   async (category, args, context) => {
-    const subCategories = category.subCategoryIds.map(async id => {
-      const subCategory = await context.subCategory.getById(id)
-      return subCategory
-    })
-    return subCategories
+    return context.subCategory.getByCategoryId(category._id)
   }
 )
 

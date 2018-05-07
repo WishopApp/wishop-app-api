@@ -4,7 +4,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 
 const schema = mongoose.Schema(
   {
-    subCategoryId: {
+    categoryId: {
       type: ObjectId,
       refs: 'categories',
       require: true
@@ -43,6 +43,11 @@ export class SubCategory {
   async getById (id) {
     const subCategories = await subCategoryModel.findOne({ _id: id })
     return subCategories
+  }
+
+  async getByCategoryId (categoryId) {
+    const subCategory = subCategoryModel.find({ categoryId })
+    return subCategory
   }
 
   async create (args) {
