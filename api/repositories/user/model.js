@@ -51,9 +51,18 @@ const usersSchema = mongoose.Schema(
         },
         categoryProps: {
           type: [{
-            categoryId: {
+            categoryPropId: {
               type: ObjectId,
-              ref: 'categoryProperties'
+              ref: 'categoryProps'
+            },
+            value: String
+          }]
+        },
+        subCategoryProps: {
+          type: [{
+            subCategoryPropId: {
+              type: ObjectId,
+              ref: 'subCategoryProps'
             },
             value: String
           }]
