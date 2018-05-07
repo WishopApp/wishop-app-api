@@ -48,7 +48,7 @@ export class SubCategoryProp {
   }
 
   async getBySubCategoryId (subCategoryId) {
-    const subCategoryProps = await subCategoryPropModel.find(subCategoryId)
+    const subCategoryProps = await subCategoryPropModel.find({ subCategoryId })
     return subCategoryProps
   }
 
