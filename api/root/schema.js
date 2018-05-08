@@ -81,6 +81,17 @@ export default [`
       userId: ID!
       wishlist: WishlistInput!
     ): User
+
+    updateWishlist (
+      userId: ID!
+      wishlistId: ID!
+      wishlist: UpdateWishlist!
+    ): User
+
+    removeWishlist (
+      userId: ID!
+      wishlistId: ID!
+    ): User
   }
 
   type Updated {

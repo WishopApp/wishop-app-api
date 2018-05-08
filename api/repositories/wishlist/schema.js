@@ -40,4 +40,13 @@ input WishlistInput {
   categoryProps: [WishlistCategoryPropInput]
   subCategoryProps: [WishlistSubCategoryPropInput]
 }
+
+input UpdateWishlist {
+  name: String
+  productName: String
+  categoryId: ID
+  subCategoryId: ID
+  categoryProps: [WishlistCategoryPropInput]
+  subCategoryProps: [WishlistSubCategoryPropInput]
+}
 `]

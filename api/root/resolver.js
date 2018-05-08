@@ -1,14 +1,17 @@
 import { createResolver } from 'apollo-resolvers'
 import { createError, isInstance } from 'apollo-errors'
 
-const ResolverErrorIntferface = createError('ResolverError', {
-  message: 'Error has been occured in resolver.',
-  data: { code: 2000 },
-  options: { showPath: true, showLocations: true }
-})
+const ResolverErrorIntferface = createError('ResolverError', { message: '' })
 
 export const ResolverError = (error) => new ResolverErrorIntferface({
-  data: { message: error }
+  message: 'Error has been occured in resolver.',
+  data: {
+    code: 2000,
+    message: error
+  },
+  options: {
+    showPath: true
+  }
 })
 
 export const baseResolver = createResolver(

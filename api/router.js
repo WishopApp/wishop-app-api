@@ -1,5 +1,6 @@
 import express from 'express'
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
+import { formatError } from 'apollo-errors'
 import bodyParser from 'body-parser'
 
 import schema from './schema'
@@ -13,6 +14,7 @@ import { SubCategoryProp } from './repositories/subCategoryProperty/model'
 const router = express.Router()
 
 router.use('/graphql', bodyParser.json(), graphqlExpress({
+  formatError,
   schema,
   context: {
     user: new User(),

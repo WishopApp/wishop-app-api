@@ -1,9 +1,31 @@
-import { baseResolver } from '../../root/resolver'
+import { baseResolver, ResolverError } from '../../root/resolver'
 
 const createWishlist = baseResolver.createResolver(
   async (root, args, context) => {
     const { userId, wishlist } = args
     return context.user.createWishlist(userId, wishlist)
+  }
+)
+
+const updateWishlist = baseResolver.createResolver(
+  async (root, args, context) => {
+    const { userId, wishlistId, wishlist } = args
+    try {
+      return context.user.updateWishlist(userId, wishlistId, wishlist)
+    } catch (error) {
+      return new ResolverError(error)
+    }
+  }
+)
+
+const removeWishlist = baseResolver.createResolver(
+  async (root, args, context) => {
+    const { userId, wishlistId } = args
+    try {
+      return context.user.removeWishlist(userId, wishlistId)
+    } catch (error) {
+      return new ResolverError(error)
+    }
   }
 )
 
@@ -55,7 +77,9 @@ const subCategoryProps = baseResolver.createResolver(
 
 export default {
   Mutation: {
-    createWishlist
+    createWishlist,
+    updateWishlist,
+    removeWishlist
   },
   Wishlist: {
     category,
