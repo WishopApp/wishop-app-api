@@ -1,9 +1,37 @@
-import { baseResolver } from '../../root/resolver'
+import { map } from 'lodash'
+
+import { baseResolver, ResolverError } from '../../root/resolver'
 
 const createWishlist = baseResolver.createResolver(
   async (root, args, context) => {
     const { userId, wishlist } = args
-    return context.user.createWishlist(userId, wishlist)
+    try {
+      return context.user.createWishlist(userId, wishlist)
+    } catch (error) {
+      return new ResolverError(error)
+    }
+  }
+)
+
+const updateWishlist = baseResolver.createResolver(
+  async (root, args, context) => {
+    const { userId, wishlistId, wishlist } = args
+    try {
+      return context.user.updateWishlist(userId, wishlistId, wishlist)
+    } catch (error) {
+      return new ResolverError(error)
+    }
+  }
+)
+
+const removeWishlist = baseResolver.createResolver(
+  async (root, args, context) => {
+    const { userId, wishlistId } = args
+    try {
+      return context.user.removeWishlist(userId, wishlistId)
+    } catch (error) {
+      return new ResolverError(error)
+    }
   }
 )
 
@@ -21,41 +49,55 @@ const subCategory = baseResolver.createResolver(
 
 const categoryProps = baseResolver.createResolver(
   async (wishlist, args, context) => {
-    if (wishlist.categoryProps.length !== 0) {
-      const categoryPropsWithName = wishlist.categoryProps.map(
-        async categoryProp => {
-          const { value, categoryPropId } = categoryProp
-          const { name } = await context.categoryProp.getById(categoryPropId)
-          return {
-            name: name,
-            value: value
-          }
-        })
-      return categoryPropsWithName
+    const { categoryProps } = wishlist
+
+    try {
+      if (categoryProps.length !== 0) {
+        const categoryPropsWithName = map(categoryProps,
+          async categoryProp => {
+            const { value, categoryPropId } = categoryProp
+            const { name } = await context.categoryProp.getById(categoryPropId)
+            return {
+              name: name,
+              value: value
+            }
+          })
+        return categoryPropsWithName
+      }
+    } catch (error) {
+      return new ResolverError(error)
     }
   }
 )
 
 const subCategoryProps = baseResolver.createResolver(
   async (wishlist, args, context) => {
-    if (wishlist.subCategoryProps.length !== 0) {
-      const subCategoryPropsWithName = wishlist.subCategoryProps.map(
-        async subCategoryProp => {
-          const { value, subCategoryPropId } = subCategoryProp
-          const { name } = await context.subCategoryProp.getById(subCategoryPropId)
-          return {
-            name: name,
-            value: value
-          }
-        })
-      return subCategoryPropsWithName
+    const { subCategoryProps } = wishlist
+
+    try {
+      if (subCategoryProps.length !== 0) {
+        const subCategoryPropsWithName = map(subCategoryProps,
+          async subCategoryProp => {
+            const { value, subCategoryPropId } = subCategoryProp
+            const { name } = await context.subCategoryProp.getById(subCategoryPropId)
+            return {
+              name: name,
+              value: value
+            }
+          })
+        return subCategoryPropsWithName
+      }
+    } catch (error) {
+      return new ResolverError(error)
     }
   }
 )
 
 export default {
   Mutation: {
-    createWishlist
+    createWishlist,
+    updateWishlist,
+    removeWishlist
   },
   Wishlist: {
     category,

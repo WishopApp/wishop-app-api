@@ -1,4 +1,6 @@
 import mongoose from 'mongoose'
+import { findIndex, assign } from 'lodash'
+import { ERROR_MESSAGE } from '../../config'
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -91,12 +93,17 @@ export class User {
     return user
   }
 
+  async getById (_id) {
+    const user = userModel.findOne({ _id })
+    return user
+  }
+
   async create (args) {
     const createResult = await userModel.create(args)
     return createResult
   }
 
-  async updateUserById (_id, args) {
+  async update (_id, args) {
     const updateResult = await userModel.update(
       { _id },
       { $set: args }
@@ -104,15 +111,53 @@ export class User {
     return updateResult.nModified
   }
 
-  async createWishlist (_id, newWishlist) {
-    const userBeforeCreated = await userModel.findOne({ _id })
+  async createWishlist (userId, newWishlist) {
+    const userBeforeCreated = await this.getById(userId)
+    if (!userBeforeCreated) {
+      throw ERROR_MESSAGE.USER_NOTFOUND
+    }
+
     const oldWishlist = userBeforeCreated.wishlist
     oldWishlist.push(newWishlist)
-    await userModel.update(
-      { _id },
-      { $set: { wishlist: oldWishlist } }
-    )
-    const userAfterCreated = await userModel.findOne({ _id })
+    await this.update(userId, { wishlist: oldWishlist })
+
+    const userAfterCreated = await this.getById(userId)
     return userAfterCreated
+  }
+
+  async updateWishlist (userId, wishlistId, newWishlistData) {
+    const userBeforeUpdate = await this.getById(userId)
+    if (!userBeforeUpdate) {
+      throw ERROR_MESSAGE.USER_NOTFOUND
+    }
+
+    const oldWishlist = userBeforeUpdate.wishlist
+    const indexToUpdate = findIndex(oldWishlist, ['id', wishlistId])
+    if (indexToUpdate === -1) {
+      throw ERROR_MESSAGE.WISHLIST_NOTFOUND
+    }
+
+    oldWishlist[indexToUpdate] = assign(oldWishlist[indexToUpdate], newWishlistData)
+    await this.update(userId, { wishlist: oldWishlist })
+    const userAfterUpdated = await this.getById(userId)
+    return userAfterUpdated
+  }
+
+  async removeWishlist (userId, wishlistId) {
+    const userBeforeUpdate = await this.getById(userId)
+    if (!userBeforeUpdate) {
+      throw ERROR_MESSAGE.USER_NOTFOUND
+    }
+
+    const oldWishlist = userBeforeUpdate.wishlist
+    const indexToRemove = findIndex(oldWishlist, ['id', wishlistId])
+    if (indexToRemove === -1) {
+      throw ERROR_MESSAGE.WISHLIST_NOTFOUND
+    }
+
+    oldWishlist[indexToRemove] = undefined
+    await this.update(userId, { wishlist: oldWishlist })
+    const userAfterRemoved = await this.getById(userId)
+    return userAfterRemoved
   }
 }
