@@ -3,7 +3,11 @@ import { baseResolver, ResolverError } from '../../root/resolver'
 const createWishlist = baseResolver.createResolver(
   async (root, args, context) => {
     const { userId, wishlist } = args
-    return context.user.createWishlist(userId, wishlist)
+    try {
+      return context.user.createWishlist(userId, wishlist)
+    } catch (error) {
+      return new ResolverError(error)
+    }
   }
 )
 

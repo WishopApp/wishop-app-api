@@ -111,15 +111,17 @@ export class User {
     return updateResult.nModified
   }
 
-  async createWishlist (_id, newWishlist) {
-    const userBeforeCreated = await userModel.findOne({ _id })
+  async createWishlist (userId, newWishlist) {
+    const userBeforeCreated = await this.getById(userId)
+    if (!userBeforeCreated) {
+      throw ERROR_MESSAGE.USER_NOTFOUND
+    }
+
     const oldWishlist = userBeforeCreated.wishlist
     oldWishlist.push(newWishlist)
-    await userModel.update(
-      { _id },
-      { $set: { wishlist: oldWishlist } }
-    )
-    const userAfterCreated = await userModel.findOne({ _id })
+    await this.update(userId, { wishlist: oldWishlist })
+
+    const userAfterCreated = await this.getById(userId)
     return userAfterCreated
   }
 
