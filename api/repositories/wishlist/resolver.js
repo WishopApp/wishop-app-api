@@ -1,3 +1,5 @@
+import { map } from 'lodash'
+
 import { baseResolver, ResolverError } from '../../root/resolver'
 
 const createWishlist = baseResolver.createResolver(
@@ -47,34 +49,46 @@ const subCategory = baseResolver.createResolver(
 
 const categoryProps = baseResolver.createResolver(
   async (wishlist, args, context) => {
-    if (wishlist.categoryProps.length !== 0) {
-      const categoryPropsWithName = wishlist.categoryProps.map(
-        async categoryProp => {
-          const { value, categoryPropId } = categoryProp
-          const { name } = await context.categoryProp.getById(categoryPropId)
-          return {
-            name: name,
-            value: value
-          }
-        })
-      return categoryPropsWithName
+    const { categoryProps } = wishlist
+
+    try {
+      if (categoryProps.length !== 0) {
+        const categoryPropsWithName = map(categoryProps,
+          async categoryProp => {
+            const { value, categoryPropId } = categoryProp
+            const { name } = await context.categoryProp.getById(categoryPropId)
+            return {
+              name: name,
+              value: value
+            }
+          })
+        return categoryPropsWithName
+      }
+    } catch (error) {
+      return new ResolverError(error)
     }
   }
 )
 
 const subCategoryProps = baseResolver.createResolver(
   async (wishlist, args, context) => {
-    if (wishlist.subCategoryProps.length !== 0) {
-      const subCategoryPropsWithName = wishlist.subCategoryProps.map(
-        async subCategoryProp => {
-          const { value, subCategoryPropId } = subCategoryProp
-          const { name } = await context.subCategoryProp.getById(subCategoryPropId)
-          return {
-            name: name,
-            value: value
-          }
-        })
-      return subCategoryPropsWithName
+    const { subCategoryProps } = wishlist
+
+    try {
+      if (subCategoryProps.length !== 0) {
+        const subCategoryPropsWithName = map(subCategoryProps,
+          async subCategoryProp => {
+            const { value, subCategoryPropId } = subCategoryProp
+            const { name } = await context.subCategoryProp.getById(subCategoryPropId)
+            return {
+              name: name,
+              value: value
+            }
+          })
+        return subCategoryPropsWithName
+      }
+    } catch (error) {
+      return new ResolverError(error)
     }
   }
 )
