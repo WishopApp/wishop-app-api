@@ -1,12 +1,12 @@
 import mongoose from 'mongoose'
 
-const ObjectId = mongoose.Schema.Types.ObjectId
+// const ObjectId = mongoose.Schema.Types.ObjectId
 
 const storeBranchesSchema = mongoose.Schema(
   {
     name: { type: String, require: true, unique: true },
-    telNo: { type: String, require: true },
-    staffId: { type: ObjectId, ref: 'store_staffs' }
+    telNo: { type: String, require: true }
+    // staffId: { type: ObjectId, ref: 'store_staffs' }
   },
   {
     timestamp: true,
