@@ -48,6 +48,36 @@ export default [`
     subCategoryProps (
       subCategoryId: ID!
     ): [SubCategoryProp]
+
+    beacon (
+      _id: ID
+      token: String
+    ): Beacon
+
+    beacons (
+      limit: Int
+      skip: Int
+    ): [Beacon]
+
+    store (
+      _id: ID
+      name: String
+    ): Store
+
+    stores (
+      limit: Int
+      skip: Int
+    ): [Store]
+
+    storeBranch (
+      _id: ID
+      beaconId: ID
+    ): StoreBranch
+
+    storeBranches (
+      limit: Int
+      skip: Int
+    ): [StoreBranch]
   }
 
   type Mutation {
@@ -92,6 +122,14 @@ export default [`
       userId: ID!
       wishlistId: ID!
     ): User
+
+    createStore (
+      ownerId: ID!
+      name: String!
+      coverUrl: String
+      avatarUrl: String
+      description: String
+    ): Store
   }
 
   type Updated {
