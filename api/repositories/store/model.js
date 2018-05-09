@@ -4,7 +4,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 
 const storesSchema = mongoose.Schema(
   {
-    ownerId: { type: ObjectId, ref: 'users' },
+    ownerId: { type: ObjectId, ref: 'users', require: true },
     name: { type: String, require: true, unique: true },
     coverUrl: String,
     avatarUrl: String,
@@ -27,5 +27,10 @@ export class Store {
       .skip(skip)
       .limit(limit)
     return stores
+  }
+
+  async getOne (args) {
+    const store = await storeModel.findOne(args)
+    return store
   }
 }
