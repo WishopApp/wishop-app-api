@@ -4,6 +4,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 
 const storeBranchesSchema = mongoose.Schema(
   {
+    storeId: { type: ObjectId, ref: 'stores', require: true },
     name: { type: String, require: true, unique: true },
     telNo: { type: String, require: true },
     beaconToken: { type: ObjectId, ref: 'beacons' }
