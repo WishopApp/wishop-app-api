@@ -6,7 +6,7 @@ const storeBranchesSchema = mongoose.Schema(
   {
     name: { type: String, require: true, unique: true },
     telNo: { type: String, require: true },
-    beaconId: { type: ObjectId, ref: 'beacons' }
+    beaconToken: { type: ObjectId, ref: 'beacons' }
   },
   {
     timestamp: true,
