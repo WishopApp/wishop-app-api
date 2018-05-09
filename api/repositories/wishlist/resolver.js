@@ -51,21 +51,17 @@ const categoryProps = baseResolver.createResolver(
   async (wishlist, args, context) => {
     const { categoryProps } = wishlist
 
-    try {
-      if (categoryProps.length !== 0) {
-        const categoryPropsWithName = map(categoryProps,
-          async categoryProp => {
-            const { value, categoryPropId } = categoryProp
-            const { name } = await context.categoryProp.getById(categoryPropId)
-            return {
-              name: name,
-              value: value
-            }
-          })
-        return categoryPropsWithName
-      }
-    } catch (error) {
-      return new ResolverError(error)
+    if (categoryProps.length !== 0) {
+      const categoryPropsWithName = map(categoryProps,
+        async categoryProp => {
+          const { value, categoryPropId } = categoryProp
+          const { name } = await context.categoryProp.getById(categoryPropId)
+          return {
+            name: name,
+            value: value
+          }
+        })
+      return categoryPropsWithName
     }
   }
 )
@@ -74,21 +70,17 @@ const subCategoryProps = baseResolver.createResolver(
   async (wishlist, args, context) => {
     const { subCategoryProps } = wishlist
 
-    try {
-      if (subCategoryProps.length !== 0) {
-        const subCategoryPropsWithName = map(subCategoryProps,
-          async subCategoryProp => {
-            const { value, subCategoryPropId } = subCategoryProp
-            const { name } = await context.subCategoryProp.getById(subCategoryPropId)
-            return {
-              name: name,
-              value: value
-            }
-          })
-        return subCategoryPropsWithName
-      }
-    } catch (error) {
-      return new ResolverError(error)
+    if (subCategoryProps.length !== 0) {
+      const subCategoryPropsWithName = map(subCategoryProps,
+        async subCategoryProp => {
+          const { value, subCategoryPropId } = subCategoryProp
+          const { name } = await context.subCategoryProp.getById(subCategoryPropId)
+          return {
+            name: name,
+            value: value
+          }
+        })
+      return subCategoryPropsWithName
     }
   }
 )
