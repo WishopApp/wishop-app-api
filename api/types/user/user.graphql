@@ -1,4 +1,3 @@
-module.exports = [`
 type Address {
   district: String
   province: String
@@ -38,4 +37,3 @@ type User {
   storeIds: [ID]
   wishlist: [Wishlist]
 }
-`]

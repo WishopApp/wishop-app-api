@@ -1,0 +1,12 @@
+type Query {
+  subCategory (
+    _id: ID
+    categoryId: ID!
+  ): SubCategory
+
+  subCategories (
+    limit: Int
+    skip: Int
+    categoryId: ID
+  ): [SubCategory]
+}

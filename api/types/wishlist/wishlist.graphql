@@ -1,5 +1,3 @@
-module.exports = [`
-
 type WishlistCategoryProp {
   name: String
   value: String
@@ -49,4 +47,3 @@ input UpdateWishlist {
   categoryProps: [WishlistCategoryPropInput]
   subCategoryProps: [WishlistSubCategoryPropInput]
 }
-`]

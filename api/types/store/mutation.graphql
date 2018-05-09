@@ -1,0 +1,9 @@
+type Mutation {
+  createStore (
+    ownerId: ID!
+    name: String!
+    coverUrl: String
+    avatarUrl: String
+    description: String
+  ): Store
+}

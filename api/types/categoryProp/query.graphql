@@ -1,0 +1,10 @@
+type Query {
+  categoryProp (
+    _id: ID
+    categoryId: ID!
+  ): CategoryProp
+
+  categoryProps (
+    categoryId: ID!
+  ): [CategoryProp]
+}
