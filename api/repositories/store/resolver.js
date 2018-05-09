@@ -1,4 +1,4 @@
-import { baseResolver } from '../../root/resolver'
+const { baseResolver } = require('../../root/resolver')
 
 const store = baseResolver.createResolver(
   async (root, args, context) => {
@@ -24,7 +24,7 @@ const owner = baseResolver.createResolver(
   }
 )
 
-export default {
+module.exports = {
   Query: {
     store,
     stores

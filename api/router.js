@@ -1,18 +1,18 @@
-import express from 'express'
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
-import { formatError } from 'apollo-errors'
-import bodyParser from 'body-parser'
+const express = require('express')
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express')
+const { formatError } = require('apollo-errors')
+const bodyParser = require('body-parser')
 
-import schema from './schema'
+const schema = require('./schema')
 
-import { User } from './repositories/user/model'
-import { Category } from './repositories/category/model'
-import { SubCategory } from './repositories/subCategory/model'
-import { CategoryProp } from './repositories/categoryProperty/model'
-import { SubCategoryProp } from './repositories/subCategoryProperty/model'
-import { Store } from './repositories/store/model'
-import { Beacon } from './repositories/beacon/model'
-import { StoreBranch } from './repositories/storeBranch/model'
+const { User } = require('./repositories/user/model')
+const { Category } = require('./repositories/category/model')
+const { SubCategory } = require('./repositories/subCategory/model')
+const { CategoryProp } = require('./repositories/categoryProperty/model')
+const { SubCategoryProp } = require('./repositories/subCategoryProperty/model')
+const { Store } = require('./repositories/store/model')
+const { Beacon } = require('./repositories/beacon/model')
+const { StoreBranch } = require('./repositories/storeBranch/model')
 
 const router = express.Router()
 
@@ -39,4 +39,4 @@ router.get('/graphiql', graphiqlExpress({
   endpointURL: '/graphql'
 }))
 
-export default router
+module.exports = router

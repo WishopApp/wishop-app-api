@@ -1,4 +1,4 @@
-export default [`
+module.exports = [`
 type Address {
   district: String
   province: String

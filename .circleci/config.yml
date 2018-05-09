@@ -7,13 +7,13 @@ jobs:
       - checkout
       # Download and cache dependencies
       - run:
-          name: Add Dependencies
+          name: Add APK Dependencies
           command: apk add --no-cache curl
       - run:
-          name: install and build project wishop-app-api
-          command: npm install -g yarn && yarn install && yarn build
+          name: Install Project dependencies
+          command: npm install -g yarn && yarn install -production
       - run:
-          name: init env
+          name: Init env
           command: |
             cp .env.example .env
             sed -i "s/PORT=/PORT=$PORT/g" .env

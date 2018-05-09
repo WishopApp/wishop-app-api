@@ -1,9 +1,9 @@
-import { createResolver } from 'apollo-resolvers'
-import { createError, isInstance } from 'apollo-errors'
+const { createResolver } = require('apollo-resolvers')
+const { createError, isInstance } = require('apollo-errors')
 
 const ResolverErrorIntferface = createError('ResolverError', { message: '' })
 
-export const ResolverError = (error) => new ResolverErrorIntferface({
+exports.ResolverError = (error) => new ResolverErrorIntferface({
   message: 'Error has been occured in resolver.',
   data: {
     code: 2000,
@@ -14,7 +14,7 @@ export const ResolverError = (error) => new ResolverErrorIntferface({
   }
 })
 
-export const baseResolver = createResolver(
+exports.baseResolver = createResolver(
   null,
   (root, args, context, error) => (
     isInstance(error) ? error : console.log(error)

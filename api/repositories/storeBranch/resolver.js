@@ -1,4 +1,4 @@
-import { baseResolver } from '../../root/resolver'
+const { baseResolver } = require('../../root/resolver')
 
 const storeBranch = baseResolver.createResolver(
   async (root, args, context) => {
@@ -30,7 +30,7 @@ const store = baseResolver.createResolver(
   }
 )
 
-export default {
+module.exports = {
   Query: {
     storeBranch,
     storeBranches,

@@ -1,4 +1,4 @@
-export default [`
+module.exports = [`
   type Store {
     _id: ID
     ownerId: ID

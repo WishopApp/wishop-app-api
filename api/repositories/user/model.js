@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
-import { findIndex, assign } from 'lodash'
-import { ERROR_MESSAGE } from '../../config'
+const mongoose = require('mongoose')
+const { findIndex, assign } = require('lodash')
+const { ERROR_MESSAGE } = require('../../config')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -80,7 +80,7 @@ const usersSchema = mongoose.Schema(
 
 const userModel = mongoose.model('UsersModel', usersSchema)
 
-export class User {
+class User {
   async getMany (args, limit = 10, skip = 0) {
     const users = await userModel.find(args)
       .skip(skip)
@@ -161,3 +161,5 @@ export class User {
     return userAfterRemoved
   }
 }
+
+exports.User = User

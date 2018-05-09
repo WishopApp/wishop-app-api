@@ -1,4 +1,4 @@
-import { baseResolver } from '../../root/resolver'
+const { baseResolver } = require('../../root/resolver')
 
 const subCategoryProp = baseResolver.createResolver(
   async (root, args, context) => {
@@ -18,7 +18,7 @@ const createSubCategoryProp = baseResolver.createResolver(
   }
 )
 
-export default {
+module.exports = {
   Query: {
     subCategoryProp,
     subCategoryProps

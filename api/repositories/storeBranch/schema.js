@@ -1,4 +1,4 @@
-export default [`
+module.exports = [`
   type StoreBranch {
     _id: ID
     storeId: ID

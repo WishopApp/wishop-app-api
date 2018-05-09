@@ -1,6 +1,6 @@
-import { map } from 'lodash'
+const { map } = require('lodash')
 
-import { baseResolver, ResolverError } from '../../root/resolver'
+const { baseResolver, ResolverError } = require('../../root/resolver')
 
 const createWishlist = baseResolver.createResolver(
   async (root, args, context) => {
@@ -85,7 +85,7 @@ const subCategoryProps = baseResolver.createResolver(
   }
 )
 
-export default {
+module.exports = {
   Mutation: {
     createWishlist,
     updateWishlist,

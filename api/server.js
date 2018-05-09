@@ -1,12 +1,11 @@
-import 'babel-polyfill'
-import express from 'express'
-import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
-import cors from 'cors'
-import { ApolloEngine } from 'apollo-engine'
+const express = require('express')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const cors = require('cors')
+const { ApolloEngine } = require('apollo-engine')
 
-import router from './router'
-import './libaries/mongoose'
+const router = require('./router')
+require('./libaries/mongoose')
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))

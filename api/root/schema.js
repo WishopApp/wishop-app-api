@@ -1,4 +1,4 @@
-export default [`
+module.exports = [`
   type Query {
     user (
       _id: ID

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const categorySchema = mongoose.Schema(
   {
@@ -15,7 +15,7 @@ const categorySchema = mongoose.Schema(
 
 const categoryModel = mongoose.model('CategoryModel', categorySchema)
 
-export class Category {
+class Category {
   async getMany (args, limit = 10, skip = 0) {
     const categories = await categoryModel.find(args)
       .skip(skip)
@@ -24,7 +24,12 @@ export class Category {
   }
 
   async getOne (args) {
-    const category = categoryModel.findOne(args)
+    const category = await categoryModel.findOne(args)
+    return category
+  }
+
+  async getById (_id) {
+    const category = await categoryModel.findOne({ _id })
     return category
   }
 
@@ -33,3 +38,5 @@ export class Category {
     return createResult
   }
 }
+
+exports.Category = Category

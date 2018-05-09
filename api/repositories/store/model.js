@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -21,7 +21,7 @@ const storesSchema = mongoose.Schema(
 
 const storeModel = mongoose.model('StoresModel', storesSchema)
 
-export class Store {
+class Store {
   async getMany (args, limit = 10, skip = 0) {
     const stores = await storeModel.find(args)
       .skip(skip)
@@ -44,3 +44,5 @@ export class Store {
     return store
   }
 }
+
+exports.Store = Store

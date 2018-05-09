@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -29,7 +29,7 @@ const schema = mongoose.Schema(
 
 const subCategoryPropModel = mongoose.model('SubCategoryPropModel', schema)
 
-export class SubCategoryProp {
+class SubCategoryProp {
   async getMany (args, limit = 10, skip = 0) {
     const subCategoryProps = await subCategoryPropModel.find(args)
       .skip(skip)
@@ -57,3 +57,5 @@ export class SubCategoryProp {
     return createResult
   }
 }
+
+exports.SubCategoryProp = SubCategoryProp

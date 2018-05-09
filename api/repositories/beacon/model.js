@@ -1,6 +1,4 @@
-import mongoose from 'mongoose'
-
-// const ObjectId = mongoose.Schema.Types.ObjectId
+const mongoose = require('mongoose')
 
 const BEACON_STATUSES = [
   'AVAILABLE',
@@ -22,7 +20,7 @@ const beaconsSchema = mongoose.Schema(
 
 const beaconModel = mongoose.model('BeaconsModel', beaconsSchema)
 
-export class Beacon {
+const Beacon = class Beacon {
   async getMany (args, limit = 10, skip = 0) {
     const beacons = await beaconModel.find(args)
       .skip(skip)
@@ -45,3 +43,5 @@ export class Beacon {
     return beacon
   }
 }
+
+exports.Beacon = Beacon

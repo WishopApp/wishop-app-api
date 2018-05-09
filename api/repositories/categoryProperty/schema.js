@@ -1,4 +1,4 @@
-export default [`
+module.exports = [`
 type CategoryProp {
   _id: ID
   categoryId: [ID]

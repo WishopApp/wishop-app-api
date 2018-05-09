@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -17,7 +17,7 @@ const storeBranchesSchema = mongoose.Schema(
 
 const storeBranchModel = mongoose.model('StoreBranchesModel', storeBranchesSchema)
 
-export class StoreBranch {
+class StoreBranch {
   async getMany (args, limit = 10, skip = 0) {
     const storeBranches = await storeBranchModel.find(args)
       .skip(skip)
@@ -45,3 +45,5 @@ export class StoreBranch {
     return storeBranch
   }
 }
+
+exports.StoreBranch = StoreBranch

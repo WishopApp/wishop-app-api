@@ -1,4 +1,4 @@
-export default [`
+module.exports = [`
 type SubCategory {
   _id: ID
   name: String

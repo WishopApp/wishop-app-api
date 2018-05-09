@@ -1,4 +1,4 @@
-import { baseResolver } from '../../root/resolver'
+const { baseResolver } = require('../../root/resolver')
 
 const beacon = baseResolver.createResolver(
   async (root, args, context) => {
@@ -18,7 +18,7 @@ const createBeacon = baseResolver.createResolver(
   }
 )
 
-export default {
+module.exports = {
   Query: {
     beacon,
     beacons
