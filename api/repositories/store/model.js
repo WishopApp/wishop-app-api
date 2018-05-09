@@ -33,4 +33,14 @@ export class Store {
     const store = await storeModel.findOne(args)
     return store
   }
+
+  async getById (_id) {
+    const store = await storeModel.findOne({ _id })
+    return store
+  }
+
+  async create (args) {
+    const store = await storeModel.create(args)
+    return store
+  }
 }

@@ -18,6 +18,12 @@ const createStore = baseResolver.createResolver(
   }
 )
 
+const owner = baseResolver.createResolver(
+  async (store, args, context) => {
+    return context.user.getById(store.ownerId)
+  }
+)
+
 export default {
   Query: {
     store,
@@ -25,5 +31,8 @@ export default {
   },
   Mutation: {
     createStore
+  },
+  Store: {
+    owner
   }
 }

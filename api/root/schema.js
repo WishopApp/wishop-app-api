@@ -71,13 +71,17 @@ export default [`
 
     storeBranch (
       _id: ID
-      beaconId: ID
+      beaconToken: ID
     ): StoreBranch
 
     storeBranches (
       limit: Int
       skip: Int
     ): [StoreBranch]
+
+    searchStoreBranch (
+      beaconToken: String
+    ): StoreBranch
   }
 
   type Mutation {
@@ -123,6 +127,11 @@ export default [`
       wishlistId: ID!
     ): User
 
+    createBeacon (
+      token: String
+      name: String
+    ): Beacon
+
     createStore (
       ownerId: ID!
       name: String!
@@ -130,6 +139,13 @@ export default [`
       avatarUrl: String
       description: String
     ): Store
+
+    createStoreBranch (
+      storeId: ID!
+      name: String!
+      telNo: String!
+      beaconToken: String
+    ): StoreBranch
   }
 
   type Updated {

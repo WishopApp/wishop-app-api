@@ -29,4 +29,19 @@ export class Beacon {
       .limit(limit)
     return beacons
   }
+
+  async getOne (args) {
+    const beacon = await beaconModel.findOne(args)
+    return beacon
+  }
+
+  async getById (_id) {
+    const beacon = await beaconModel.findOne({ _id })
+    return beacon
+  }
+
+  async create (args) {
+    const beacon = await beaconModel.create(args)
+    return beacon
+  }
 }

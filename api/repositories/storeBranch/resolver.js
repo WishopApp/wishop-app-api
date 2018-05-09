@@ -12,9 +12,34 @@ const storeBranches = baseResolver.createResolver(
   }
 )
 
+const searchStoreBranch = baseResolver.createResolver(
+  async (root, args, context) => {
+    return context.storeBranch.getByBeaconToken(args.beaconToken)
+  }
+)
+
+const createStoreBranch = baseResolver.createResolver(
+  async (root, args, context) => {
+    return context.storeBranch.create(args)
+  }
+)
+
+const store = baseResolver.createResolver(
+  async (storeBranch, args, context) => {
+    return context.store.getById(storeBranch.storeId)
+  }
+)
+
 export default {
   Query: {
     storeBranch,
-    storeBranches
+    storeBranches,
+    searchStoreBranch
+  },
+  Mutation: {
+    createStoreBranch
+  },
+  StoreBranch: {
+    store
   }
 }

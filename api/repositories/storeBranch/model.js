@@ -7,7 +7,7 @@ const storeBranchesSchema = mongoose.Schema(
     storeId: { type: ObjectId, ref: 'stores', require: true },
     name: { type: String, require: true, unique: true },
     telNo: { type: String, require: true },
-    beaconToken: { type: ObjectId, ref: 'beacons' }
+    beaconToken: String
   },
   {
     timestamp: true,
@@ -30,8 +30,18 @@ export class StoreBranch {
     return storeBranch
   }
 
-  async getByBeaconId (beaconId) {
-    const storeBranch = await storeBranchModel.fineOne({ beaconId })
+  async getById (_id) {
+    const storeBranch = await storeBranchModel.findOne({ _id })
+    return storeBranch
+  }
+
+  async getByBeaconToken (beaconToken) {
+    const storeBranch = await storeBranchModel.findOne({ beaconToken })
+    return storeBranch
+  }
+
+  async create (args) {
+    const storeBranch = await storeBranchModel.create(args)
     return storeBranch
   }
 }
