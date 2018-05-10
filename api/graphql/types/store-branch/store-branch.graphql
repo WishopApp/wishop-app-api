@@ -5,4 +5,5 @@ type StoreBranch {
   telNo: String
   beaconToken: String
   store: Store
+  shouldCheck: Boolean
 }

@@ -1,9 +1,11 @@
 type WishlistCategoryProp {
+  _id: ID
   name: String
   value: String
 }
 
 type WishlistSubCategoryProp {
+  _id: ID
   name: String
   value: String
 }
