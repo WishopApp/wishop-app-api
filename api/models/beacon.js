@@ -1,16 +1,12 @@
 const mongoose = require('mongoose')
 
-const BEACON_STATUSES = [
-  'AVAILABLE',
-  'INUSED',
-  'CLOSED'
-]
+const { statusObject, statusArray } = require('../config/beacon-status')
 
 const beaconsSchema = mongoose.Schema(
   {
     token: { type: String, require: true, unique: true },
     name: { type: String, require: true, unique: true },
-    status: { type: String, require: true, enum: BEACON_STATUSES, default: BEACON_STATUSES[0] }
+    status: { type: String, require: true, enum: statusArray, default: statusObject.default }
   },
   {
     timestamp: true,
