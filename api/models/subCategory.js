@@ -56,4 +56,4 @@ class SubCategory {
   }
 }
 
-exports.SubCategory = SubCategory
+module.exports = SubCategory

@@ -39,4 +39,4 @@ class Category {
   }
 }
 
-exports.Category = Category
+module.exports = Category

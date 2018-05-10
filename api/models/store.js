@@ -45,4 +45,4 @@ class Store {
   }
 }
 
-exports.Store = Store
+module.exports = Store

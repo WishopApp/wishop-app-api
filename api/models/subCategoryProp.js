@@ -58,4 +58,4 @@ class SubCategoryProp {
   }
 }
 
-exports.SubCategoryProp = SubCategoryProp
+module.exports = SubCategoryProp

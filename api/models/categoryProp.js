@@ -58,4 +58,4 @@ class CategoryProp {
   }
 }
 
-exports.CategoryProp = CategoryProp
+module.exports = CategoryProp

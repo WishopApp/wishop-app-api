@@ -46,4 +46,4 @@ class StoreBranch {
   }
 }
 
-exports.StoreBranch = StoreBranch
+module.exports = StoreBranch

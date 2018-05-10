@@ -44,4 +44,4 @@ const Beacon = class Beacon {
   }
 }
 
-exports.Beacon = Beacon
+module.exports = Beacon
