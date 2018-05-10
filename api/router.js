@@ -5,14 +5,14 @@ const bodyParser = require('body-parser')
 
 const schema = require('./schema')
 
-const { User } = require('./repositories/user/model')
-const { Category } = require('./repositories/category/model')
-const { SubCategory } = require('./repositories/subCategory/model')
-const { CategoryProp } = require('./repositories/categoryProperty/model')
-const { SubCategoryProp } = require('./repositories/subCategoryProperty/model')
-const { Store } = require('./repositories/store/model')
-const { Beacon } = require('./repositories/beacon/model')
-const { StoreBranch } = require('./repositories/storeBranch/model')
+const { User } = require('./models/user')
+const { Category } = require('./models/category')
+const { SubCategory } = require('./models/subCategory')
+const { CategoryProp } = require('./models/categoryProp')
+const { SubCategoryProp } = require('./models/subCategoryProp')
+const { Store } = require('./models/store')
+const { Beacon } = require('./models/beacon')
+const { StoreBranch } = require('./models/storeBranch')
 
 const router = express.Router()
 
