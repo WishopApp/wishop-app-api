@@ -48,14 +48,14 @@ const usersSchema = mongoose.Schema(
         },
         subCategoryId: {
           type: ObjectId,
-          ref: 'subCategories',
+          ref: 'sub_categories',
           require: true
         },
         categoryProps: {
           type: [{
             categoryPropId: {
               type: ObjectId,
-              ref: 'categoryProps'
+              ref: 'category_props'
             },
             value: String
           }]
@@ -64,7 +64,7 @@ const usersSchema = mongoose.Schema(
           type: [{
             subCategoryPropId: {
               type: ObjectId,
-              ref: 'subCategoryProps'
+              ref: 'subCategory_props'
             },
             value: String
           }]

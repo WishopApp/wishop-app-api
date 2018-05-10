@@ -15,13 +15,14 @@ const schema = mongoose.Schema(
     },
     subCatePropIds: {
       type: [{
-        type: ObjectId
+        type: ObjectId,
+        ref: 'sub_category_props'
       }]
     }
   },
   {
     timestamp: true,
-    collection: 'subCategories'
+    collection: 'sub_categories'
   }
 )
 

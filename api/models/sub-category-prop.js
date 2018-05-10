@@ -8,7 +8,7 @@ const schema = mongoose.Schema(
       type: [{
         type: ObjectId
       }],
-      ref: 'subCateogories',
+      ref: 'sub_cateogories',
       require: true
     },
     name: {
@@ -23,7 +23,7 @@ const schema = mongoose.Schema(
   },
   {
     timestamp: true,
-    collection: 'subCategoryProps'
+    collection: 'sub_category_props'
   }
 )
 

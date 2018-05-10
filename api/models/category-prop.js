@@ -23,7 +23,7 @@ const schema = mongoose.Schema(
   },
   {
     timestamp: true,
-    collection: 'categoryProps'
+    collection: 'category_props'
   }
 )
 
