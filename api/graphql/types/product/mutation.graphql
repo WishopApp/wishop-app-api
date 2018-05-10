@@ -1,0 +1,11 @@
+type Mutation {
+  createProduct (
+    storeId: ID!
+    storeBranchId: [ID]!
+    categoryId: ID!
+    subCategoryId: ID!
+    categoryProps: [ProductCategoryPropInput],
+    subCategoryProps: [ProductSubCategoryPropInput],
+    name: String
+  ): Product
+}
