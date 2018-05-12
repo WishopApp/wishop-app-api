@@ -37,7 +37,7 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker build -t huag1234/wishop-app-api:$API_TAG .
             docker run -d --env-file=.env --name my-app huag1234/wishop-app-api:$API_TAG
-            docker exec my-app apk --no-cache curl
+            docker exec my-app sh -c "apk add --no-cache curl"
             docker exec my-app curl --retry 10 --retry-connrefused -I http://localhost:3000/graphiql
       - run:
           name: Push Docker Image
