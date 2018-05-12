@@ -37,7 +37,7 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker build -t huag1234/wishop-app-api:$API_TAG .
             docker run -d --env-file=.env -p 3000:3000 huag1234/wishop-app-api:$API_TAG; sleep 5
-            curl --retry 10 --retry-delay 5 -v -I http://127.0.0.1:3000/graphiql
+            curl --retry 10 --retry-delay 5 -v -I http://0.0.0.0:3000/graphiql
       - run:
           name: Push Docker Image
           command: |
