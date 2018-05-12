@@ -1,0 +1,11 @@
+type Query {
+  beacon (
+    _id: ID
+    token: String
+  ): Beacon
+
+  beacons (
+    limit: Int
+    skip: Int
+  ): [Beacon]
+}

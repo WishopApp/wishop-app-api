@@ -1,0 +1,8 @@
+type Mutation {
+  createStoreBranch (
+    storeId: ID!
+    name: String!
+    telNo: String!
+    beaconToken: String
+  ): StoreBranch
+}

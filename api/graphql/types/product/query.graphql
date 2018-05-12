@@ -1,0 +1,11 @@
+type Query {
+  product (
+    _id: ID
+    name: String!
+  ): Product
+
+  products (
+    limit: Int
+    skip: Int
+  ): [Product]
+}

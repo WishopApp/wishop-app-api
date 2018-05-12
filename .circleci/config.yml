@@ -7,13 +7,13 @@ jobs:
       - checkout
       # Download and cache dependencies
       - run:
-          name: Add Dependencies
+          name: Add APK Dependencies
           command: apk add --no-cache curl
       - run:
-          name: install and build project wishop-app-api
-          command: npm install -g yarn && yarn install && yarn build
+          name: Install Project dependencies
+          command: npm install -g yarn && yarn install
       - run:
-          name: init env
+          name: Init env
           command: |
             cp .env.example .env
             sed -i "s/PORT=/PORT=$PORT/g" .env
@@ -32,10 +32,15 @@ jobs:
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
       - run:
-          name: Build and Push Docker image
+          name: Build and Test Docker image
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker build -t huag1234/wishop-app-api:$API_TAG .
+            docker run -d --env-file=.env -p 3000:3000 huag1234/wishop-app-api:$API_TAG; sleep 5
+            curl --retry 10 --retry-delay 5 -v http://localhost:3000/graphiql
+      - run:
+          name: Push Docker Image
+          command: |
             docker push huag1234/wishop-app-api:$API_TAG
   deploy-to-dev:
     machine: true

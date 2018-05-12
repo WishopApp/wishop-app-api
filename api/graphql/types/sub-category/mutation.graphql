@@ -1,0 +1,6 @@
+type Mutation {
+  createSubCategory (
+    categoryId: ID!
+    name: String!
+  ): SubCategory
+}

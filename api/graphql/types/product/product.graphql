@@ -1,0 +1,31 @@
+type ProductCategoryProp {
+  _id: ID
+  propId: ID
+  value: String
+}
+
+type ProductSubCategoryProp {
+  _id: ID
+  propId: ID
+  value: String
+}
+
+type Product {
+  storeId: ID
+  storeBranchId: ID
+  categoryId: ID
+  subCategoryId: ID
+  categoryProps: [ProductCategoryProp]
+  subCategoryProps: [ProductSubCategoryProp]
+  name: String
+}
+
+input ProductCategoryPropInput {
+  propId: ID
+  value: String
+}
+
+input ProductSubCategoryPropInput {
+  propId: ID
+  value: String
+}

@@ -1,28 +1,17 @@
-import express from 'express'
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
-import { formatError } from 'apollo-errors'
-import bodyParser from 'body-parser'
+const express = require('express')
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express')
+const { formatError } = require('apollo-errors')
+const bodyParser = require('body-parser')
 
-import schema from './schema'
-
-import { User } from './repositories/user/model'
-import { Category } from './repositories/category/model'
-import { SubCategory } from './repositories/subCategory/model'
-import { CategoryProp } from './repositories/categoryProperty/model'
-import { SubCategoryProp } from './repositories/subCategoryProperty/model'
+const schema = require('./schema')
+const models = require('./libaries/model-loader')
 
 const router = express.Router()
 
 router.use('/graphql', bodyParser.json(), graphqlExpress({
   formatError,
   schema,
-  context: {
-    user: new User(),
-    category: new Category(),
-    subCategory: new SubCategory(),
-    categoryProp: new CategoryProp(),
-    subCategoryProp: new SubCategoryProp()
-  },
+  context: models,
   tracing: true,
   cacheControl: {
     defaultMaxAge: 5
@@ -33,4 +22,4 @@ router.get('/graphiql', graphiqlExpress({
   endpointURL: '/graphql'
 }))
 
-export default router
+module.exports = router

@@ -1,0 +1,6 @@
+type Mutation {
+  createBeacon (
+    token: String
+    name: String
+  ): Beacon
+}
