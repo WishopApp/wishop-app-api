@@ -9,7 +9,7 @@ WORKDIR ${workspace}
 
 COPY . ./
 
-RUN npm install -g yarn && yarn install
+RUN npm install -g yarn && yarn install 
 
 EXPOSE 3000
 
