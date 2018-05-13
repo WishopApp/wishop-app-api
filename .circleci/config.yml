@@ -15,9 +15,9 @@ jobs:
           name: Init env
           command: |
             cp .env.example .env
-            sed -i "s/PORT=/PORT=$PORT/g" .env
-            sed -i "s/MONGO_URI=/MONGO_URI=$MONGO_URI/g" .env
-            sed -i "s/APOLLO_ENGINE_APIKEY=/APOLLO_ENGINE_APIKEY=$APOLLO_ENGINE_APIKEY/g" .env
+            sed -i "s~PORT=~PORT=$PORT~g" .env
+            sed -i "s~MONGO_URI=~MONGO_URI=$MONGO_URI~g" .env
+            sed -i "s~APOLLO_ENGINE_APIKEY=~APOLLO_ENGINE_APIKEY=$APOLLO_ENGINE_APIKEY~g" .env
       - run:
           name: Test Project
           command: |
