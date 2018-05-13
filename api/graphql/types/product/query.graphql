@@ -8,4 +8,12 @@ type Query {
     limit: Int
     skip: Int
   ): [Product]
+  
+  searchByKeyword (
+    keyword: String!
+  ): [Product]
+
+  searchByWishlist (
+    wishlist: WishlistInput!
+  ): [ProductFromSearch]
 }

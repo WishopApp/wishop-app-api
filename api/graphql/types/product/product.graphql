@@ -29,3 +29,15 @@ input ProductSubCategoryPropInput {
   propId: ID
   value: String
 }
+
+type ProductFromSearch {
+  storeId: ID
+  storeBranchId: ID
+  categoryId: ID
+  subCategoryId: ID
+  categoryProps: [ProductCategoryProp]
+  subCategoryProps: [ProductSubCategoryProp]
+  name: String
+  matchedPercentage: Float
+  recommended: Boolean
+}
