@@ -1,4 +1,5 @@
 const { baseResolver } = require('../../../libaries/apollo-resolver-creator')
+// const { productWithRecommendation } = require('../../../libaries/wishlist-matched-percentage')
 
 const product = baseResolver.createResolver(
   async (root, args, context) => {
@@ -12,9 +13,17 @@ const products = baseResolver.createResolver(
   }
 )
 
+const searchByKeyword = baseResolver.createResolver(
+  async (root, args, context) => {
+    const products = await context.product.getByNameLike(args.keyword)
+    return products
+  }
+)
+
 module.exports = {
   Query: {
     product,
-    products
+    products,
+    searchByKeyword
   }
 }

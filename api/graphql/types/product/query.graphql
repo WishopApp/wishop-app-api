@@ -8,4 +8,8 @@ type Query {
     limit: Int
     skip: Int
   ): [Product]
+  
+  searchByKeyword (
+    keyword: String!
+  ): [Product]
 }

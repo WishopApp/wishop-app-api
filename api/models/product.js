@@ -49,6 +49,18 @@ class Product {
     return product
   }
 
+  async getBySubCategoryId (subCategoryId) {
+    const products = await productModel.find({ subCategoryId })
+    return products
+  }
+
+  async getByNameLike (keyword) {
+    const products = await productModel.find({
+      name: new RegExp(keyword, 'i')
+    })
+    return products
+  }
+
   async create (args) {
     const createResult = await productModel.create(args)
     return createResult
