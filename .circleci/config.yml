@@ -17,6 +17,11 @@ jobs:
             cp .env.example .env
             sed -i "s/PORT=/PORT=$PORT/g" .env
             sed -i "s/MONGO_URI=/MONGO_URI=$MONGO_URI/g" .env
+            sed -i "s/APOLLO_ENGINE_APIKEY=/APOLLO_ENGINE_APIKEY=$APOLLO_ENGINE_APIKEY/g" .env
+      - run:
+          name: Test Project
+          command: |
+            yarn test
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
@@ -32,11 +37,6 @@ jobs:
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker build -t huag1234/wishop-app-api:$API_TAG .
-      - run:
-          name: Test Project
-          command: |
-            docker run -d -p 3000:3000 --env-file .env --name app huag1234/wishop-app-api:$API_TAG
-            docker exec app yarn test
       - run:
           name: Push Image
           command: |

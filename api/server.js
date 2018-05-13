@@ -4,6 +4,8 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const { ApolloEngine } = require('apollo-engine')
 
+require('dotenv').config()
+
 const router = require('./router')
 require('./libaries/mongoose')
 
@@ -23,3 +25,5 @@ engine.listen({
   port: process.env.APP_PORT,
   expressApp: app
 })
+
+module.exports = app

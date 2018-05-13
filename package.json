@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon ./api/server.js",
     "start": "node ./api/server.js",
-    "test": "jest ./test/app.test.js --runInBand"
+    "test": "jest --forceExit"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "graphql": "^0.13.2",
     "graphql-tools": "^2.23.1",
