@@ -5,7 +5,6 @@ jobs:
       - image: node:8.9.4-alpine
     steps:
       - checkout
-      # Download and cache dependencies
       - run:
           name: Add APK Dependencies
           command: apk add --no-cache curl
@@ -20,30 +19,24 @@ jobs:
             sed -i "s/MONGO_URI=/MONGO_URI=$MONGO_URI/g" .env
       - run:
           name: Test Project
-          command: echo "This Test Space"
+          command: yarn test
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
           name: Install Docker client
           command: |
             set -x
-            VER="17.12.0-ce"
+            VER="17.03.0-ce"
             curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
       - run:
-          name: Build and Test Docker image
+          name: Build and Push Docker image
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker build -t huag1234/wishop-app-api:$API_TAG .
-            docker run -d --env-file .env --name my-app -p 3000:3000 huag1234/wishop-app-api:$API_TAG
-            docker ps
-            # docker exec my-app apk add --no-cache curl
-            # docker exec my-app curl --retry 10 --retry-connrefused http://localhost:3000/graphiql
-      - run:
-          name: Push Docker Image
-          command: |
             docker push huag1234/wishop-app-api:$API_TAG
+            
   deploy-to-dev:
     machine: true
     steps:

@@ -6,7 +6,6 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon ./api/server.js",
-    "build": "babel api -d dist",
     "start": "node ./api/server.js",
     "test": "jest ./test/app.test.js --runInBand"
   },
