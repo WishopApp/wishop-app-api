@@ -3,7 +3,9 @@ const { isThisStoreShouldCheck } = require('../../../libaries/wishlist-matched-p
 
 const storeBranch = baseResolver.createResolver(
   async (root, args, context) => {
-    return context.storeBranch.getOne(args)
+    const store = await context.storeBranch.getOne(args)
+    store.shouldCheck = false // WAITING FOR NEXT FEATURE
+    return store
   }
 )
 
