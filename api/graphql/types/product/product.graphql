@@ -12,9 +12,13 @@ type ProductSubCategoryProp {
 
 type Product {
   storeId: ID
+  store: Store
   storeBranchId: ID
+  storeBranch: StoreBranch
   categoryId: ID
+  category: Category
   subCategoryId: ID
+  subCategory: SubCategory
   categoryProps: [ProductCategoryProp]
   subCategoryProps: [ProductSubCategoryProp]
   name: String
@@ -32,9 +36,13 @@ input ProductSubCategoryPropInput {
 
 type ProductFromSearch {
   storeId: ID
+  store: Store
   storeBranchId: ID
+  storeBranch: StoreBranch
   categoryId: ID
+  category: Category
   subCategoryId: ID
+  subCategory: SubCategory
   categoryProps: [ProductCategoryProp]
   subCategoryProps: [ProductSubCategoryProp]
   name: String
