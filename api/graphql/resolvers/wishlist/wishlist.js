@@ -4,13 +4,13 @@ const { baseResolver } = require('../../../libaries/apollo-resolver-creator')
 
 const category = baseResolver.createResolver(
   async (wishlist, args, context) => {
-    return context.category.getOne({ _id: wishlist.categoryId })
+    return context.models.category.getOne({ _id: wishlist.categoryId })
   }
 )
 
 const subCategory = baseResolver.createResolver(
   async (wishlist, args, context) => {
-    return context.subCategory.getById(wishlist.subCategoryId)
+    return context.models.subCategory.getById(wishlist.subCategoryId)
   }
 )
 
@@ -19,15 +19,16 @@ const categoryProps = baseResolver.createResolver(
     const { categoryProps } = wishlist
 
     if (categoryProps.length !== 0) {
-      const categoryPropsWithName = map(categoryProps,
-        async categoryProp => {
-          const { value, categoryPropId } = categoryProp
-          const { name } = await context.categoryProp.getById(categoryPropId)
-          return {
-            name: name,
-            value: value
-          }
-        })
+      const categoryPropsWithName = map(categoryProps, async categoryProp => {
+        const { value, categoryPropId } = categoryProp
+        const { name } = await context.models.categoryProp.getById(
+          categoryPropId
+        )
+        return {
+          name: name,
+          value: value,
+        }
+      })
       return categoryPropsWithName
     }
   }
@@ -38,15 +39,19 @@ const subCategoryProps = baseResolver.createResolver(
     const { subCategoryProps } = wishlist
 
     if (subCategoryProps.length !== 0) {
-      const subCategoryPropsWithName = map(subCategoryProps,
+      const subCategoryPropsWithName = map(
+        subCategoryProps,
         async subCategoryProp => {
           const { value, subCategoryPropId } = subCategoryProp
-          const { name } = await context.subCategoryProp.getById(subCategoryPropId)
+          const { name } = await context.models.subCategoryProp.getById(
+            subCategoryPropId
+          )
           return {
             name: name,
-            value: value
+            value: value,
           }
-        })
+        }
+      )
       return subCategoryPropsWithName
     }
   }
@@ -57,6 +62,6 @@ module.exports = {
     category,
     subCategory,
     categoryProps,
-    subCategoryProps
-  }
+    subCategoryProps,
+  },
 }

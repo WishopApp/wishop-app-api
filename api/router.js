@@ -5,21 +5,44 @@ const bodyParser = require('body-parser')
 
 const schema = require('./schema')
 const models = require('./libaries/model-loader')
+const { getUserFromToken } = require('./libaries/token-manager')
 
 const router = express.Router()
 
-router.use('/graphql', bodyParser.json(), graphqlExpress({
-  formatError,
-  schema,
-  context: models,
-  tracing: true,
-  cacheControl: {
-    defaultMaxAge: 5
-  }
-}))
+router.use(
+  '/graphql',
+  bodyParser.json(),
+  graphqlExpress(async (req, res) => {
+    let user = null
 
-router.get('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql'
-}))
+    if (req.headers.authorization) {
+      try {
+        user = getUserFromToken(req.headers.authorization)
+      } catch (err) {
+        res.clearCookie(process.env.AUTH_TOKEN_NAME)
+      }
+    }
+
+    return {
+      formatError,
+      schema,
+      context: {
+        models,
+        user,
+      },
+      tracing: true,
+      cacheControl: {
+        defaultMaxAge: 5,
+      },
+    }
+  })
+)
+
+router.get(
+  '/graphiql',
+  graphiqlExpress({
+    endpointURL: '/graphql',
+  })
+)
 
 module.exports = router
