@@ -18,12 +18,12 @@ app.use(cors())
 app.use('/', router)
 
 const engine = new ApolloEngine({
-  apiKey: process.env.APOLLO_ENGINE_APIKEY
+  apiKey: process.env.APOLLO_ENGINE_APIKEY,
 })
 
 engine.listen({
   port: process.env.APP_PORT,
-  expressApp: app
+  expressApp: app,
 })
 
 module.exports = app
