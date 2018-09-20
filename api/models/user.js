@@ -16,69 +16,31 @@ const usersSchema = mongoose.Schema(
       type: String,
       require: true,
     },
-    facebookId: {
-      type: String,
-    },
+    facebookId: String,
     profile: {
-      type: {
-        name: String,
-        telNo: String,
-        avatarUrl: String,
-        address: {
-          type: {
-            district: String,
-            province: String,
-            country: String,
-            zipcode: String,
-            detail: String,
-          },
-        },
+      name: String,
+      telNo: String,
+      avatarUrl: String,
+      address: {
+        district: String,
+        province: String,
+        countryCode: String,
+        zipcode: String,
+        detail: String,
       },
     },
-    storeIds: {
-      type: ObjectId,
-      ref: 'stores',
-    },
-    wishlist: {
-      type: [
-        {
-          name: String,
-          productName: String,
-          categoryId: {
-            type: ObjectId,
-            ref: 'categories',
-            require: true,
-          },
-          subCategoryId: {
-            type: ObjectId,
-            ref: 'sub_categories',
-            require: true,
-          },
-          categoryProps: {
-            type: [
-              {
-                categoryPropId: {
-                  type: ObjectId,
-                  ref: 'category_props',
-                },
-                value: String,
-              },
-            ],
-          },
-          subCategoryProps: {
-            type: [
-              {
-                subCategoryPropId: {
-                  type: ObjectId,
-                  ref: 'subCategory_props',
-                },
-                value: String,
-              },
-            ],
-          },
-        },
-      ],
-    },
+    wishlistIds: [
+      {
+        type: ObjectId,
+        ref: 'wishlists',
+      },
+    ],
+    storeIds: [
+      {
+        type: ObjectId,
+        ref: 'stores',
+      },
+    ],
   },
   {
     timestamp: true,

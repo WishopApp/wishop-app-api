@@ -8,60 +8,65 @@ const productSchema = mongoose.Schema(
     storeBranchId: [{ type: ObjectId, ref: 'store_branches', require: true }],
     categoryId: { type: ObjectId, ref: 'categories', require: true },
     subCategoryId: { type: ObjectId, ref: 'sub_categories', require: true },
-    categoryProps: [{
-      propId: { type: ObjectId, ref: 'category_props' },
-      value: String
-    }],
-    subCategoryProps: [{
-      propId: { type: ObjectId, ref: 'sub_category_props' },
-      value: String
-    }],
-    name: { type: String, require: true }
+    categoryProps: [
+      {
+        propId: { type: ObjectId, ref: 'category_props' },
+        value: String,
+      },
+    ],
+    subCategoryProps: [
+      {
+        propId: { type: ObjectId, ref: 'sub_category_props' },
+        value: String,
+      },
+    ],
+    name: { type: String, require: true },
   },
   {
     timestamp: true,
-    collection: 'products'
+    collection: 'products',
   }
 )
 
 const productModel = mongoose.model('ProductModel', productSchema)
 
 class Product {
-  async getMany (args, limit = 10, skip = 0) {
-    const products = await productModel.find(args)
+  async getMany(args, limit = 10, skip = 0) {
+    const products = await productModel
+      .find(args)
       .skip(skip)
       .limit(limit)
     return products
   }
 
-  async getStoreProducts (storeId) {
+  async getStoreProducts(storeId) {
     const products = await productModel.find({ storeId })
     return products
   }
 
-  async getOne (args) {
+  async getOne(args) {
     const product = await productModel.findOne(args)
     return product
   }
 
-  async getById (_id) {
+  async getById(_id) {
     const product = await productModel.findOne({ _id })
     return product
   }
 
-  async getBySubCategoryId (subCategoryId) {
+  async getBySubCategoryId(subCategoryId) {
     const products = await productModel.find({ subCategoryId })
     return products
   }
 
-  async getByNameLike (keyword) {
+  async getByNameLike(keyword) {
     const products = await productModel.find({
-      name: new RegExp(keyword, 'i')
+      name: new RegExp(keyword, 'i'),
     })
     return products
   }
 
-  async create (args) {
+  async create(args) {
     const createResult = await productModel.create(args)
     return createResult
   }
