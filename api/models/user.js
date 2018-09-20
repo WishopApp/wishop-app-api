@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const { findIndex, assign } = require('lodash')
 const { ERROR_MESSAGE } = require('../config/error-message')
+const { createBcryptData, compareBcrypt } = require('../libaries/encryption')
+const { createUserToken } = require('../libaries/token-manager')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -8,14 +10,14 @@ const usersSchema = mongoose.Schema(
   {
     email: {
       type: String,
-      require: true
+      require: true,
     },
     password: {
       type: String,
-      require: true
+      require: true,
     },
     facebookId: {
-      type: String
+      type: String,
     },
     profile: {
       type: {
@@ -28,90 +30,95 @@ const usersSchema = mongoose.Schema(
             province: String,
             country: String,
             zipcode: String,
-            detail: String
-          }
-        }
-      }
+            detail: String,
+          },
+        },
+      },
     },
     storeIds: {
       type: ObjectId,
-      ref: 'stores'
+      ref: 'stores',
     },
     wishlist: {
-      type: [{
-        name: String,
-        productName: String,
-        categoryId: {
-          type: ObjectId,
-          ref: 'categories',
-          require: true
+      type: [
+        {
+          name: String,
+          productName: String,
+          categoryId: {
+            type: ObjectId,
+            ref: 'categories',
+            require: true,
+          },
+          subCategoryId: {
+            type: ObjectId,
+            ref: 'sub_categories',
+            require: true,
+          },
+          categoryProps: {
+            type: [
+              {
+                categoryPropId: {
+                  type: ObjectId,
+                  ref: 'category_props',
+                },
+                value: String,
+              },
+            ],
+          },
+          subCategoryProps: {
+            type: [
+              {
+                subCategoryPropId: {
+                  type: ObjectId,
+                  ref: 'subCategory_props',
+                },
+                value: String,
+              },
+            ],
+          },
         },
-        subCategoryId: {
-          type: ObjectId,
-          ref: 'sub_categories',
-          require: true
-        },
-        categoryProps: {
-          type: [{
-            categoryPropId: {
-              type: ObjectId,
-              ref: 'category_props'
-            },
-            value: String
-          }]
-        },
-        subCategoryProps: {
-          type: [{
-            subCategoryPropId: {
-              type: ObjectId,
-              ref: 'subCategory_props'
-            },
-            value: String
-          }]
-        }
-      }]
-    }
+      ],
+    },
   },
   {
     timestamp: true,
-    collection: 'users'
+    collection: 'users',
   }
 )
 
 const userModel = mongoose.model('UsersModel', usersSchema)
 
 class User {
-  async getMany (args, limit = 10, skip = 0) {
-    const users = await userModel.find(args)
+  async getMany(args, limit = 10, skip = 0) {
+    const users = await userModel
+      .find(args)
       .skip(skip)
       .limit(limit)
     return users
   }
 
-  async getOne (args) {
+  async getOne(args) {
     const user = userModel.findOne(args)
     return user
   }
 
-  async getById (_id) {
+  async getById(_id) {
     const user = userModel.findOne({ _id })
     return user
   }
 
-  async create (args) {
+  async create(args) {
+    args.password = await createBcryptData(args.password)
     const createResult = await userModel.create(args)
     return createResult
   }
 
-  async update (_id, args) {
-    const updateResult = await userModel.update(
-      { _id },
-      { $set: args }
-    )
+  async update(_id, args) {
+    const updateResult = await userModel.update({ _id }, { $set: args })
     return updateResult.nModified
   }
 
-  async createWishlist (userId, newWishlist) {
+  async createWishlist(userId, newWishlist) {
     const userBeforeCreated = await this.getById(userId)
     if (!userBeforeCreated) {
       throw ERROR_MESSAGE.USER_NOTFOUND
@@ -125,7 +132,7 @@ class User {
     return userAfterCreated
   }
 
-  async updateWishlist (userId, wishlistId, newWishlistData) {
+  async updateWishlist(userId, wishlistId, newWishlistData) {
     const userBeforeUpdate = await this.getById(userId)
     if (!userBeforeUpdate) {
       throw ERROR_MESSAGE.USER_NOTFOUND
@@ -137,13 +144,16 @@ class User {
       throw ERROR_MESSAGE.WISHLIST_NOTFOUND
     }
 
-    oldWishlist[indexToUpdate] = assign(oldWishlist[indexToUpdate], newWishlistData)
+    oldWishlist[indexToUpdate] = assign(
+      oldWishlist[indexToUpdate],
+      newWishlistData
+    )
     await this.update(userId, { wishlist: oldWishlist })
     const userAfterUpdated = await this.getById(userId)
     return userAfterUpdated
   }
 
-  async removeWishlist (userId, wishlistId) {
+  async removeWishlist(userId, wishlistId) {
     const userBeforeUpdate = await this.getById(userId)
     if (!userBeforeUpdate) {
       throw ERROR_MESSAGE.USER_NOTFOUND
@@ -159,6 +169,20 @@ class User {
     await this.update(userId, { wishlist: oldWishlist })
     const userAfterRemoved = await this.getById(userId)
     return userAfterRemoved
+  }
+
+  // AUTH
+  async login({ email, password }) {
+    const user = await this.getOne({ email })
+
+    const pass = compareBcrypt(password, user.password)
+
+    if (!pass) {
+      throw new Error('Authorization failed.')
+    }
+
+    const token = createUserToken(user)
+    return token
   }
 }
 

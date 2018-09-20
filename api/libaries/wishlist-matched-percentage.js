@@ -3,15 +3,18 @@ const { map, isEqual, includes } = require('lodash')
 exports.isThisStoreShouldCheck = (wishlist, products) => {
   let isThisStoreShouldCheck = false
 
-  map(wishlist, (item) => {
+  map(wishlist, item => {
     const itemCatePropArray = item.categoryProps || []
     let itemSubCatePropArray = item.subCategoryProps || []
 
     const pointForNameMatched = 1
-    const maxPoint = itemCatePropArray.length + itemSubCatePropArray.length + pointForNameMatched
+    const maxPoint =
+      itemCatePropArray.length +
+      itemSubCatePropArray.length +
+      pointForNameMatched
     let point = 0
 
-    map(products, (prod) => {
+    map(products, prod => {
       const prodCatePropArray = prod.categoryProps
       const prodSubCatePropArray = prod.subCategoryProps
 
@@ -38,10 +41,10 @@ exports.isThisStoreShouldCheck = (wishlist, products) => {
       }
 
       // CATEGORY PROPS CHECKING
-      map(itemCatePropArray, (itemCateProp) => {
+      map(itemCatePropArray, itemCateProp => {
         const itemCatePropId = itemCateProp.categoryPropId
         const itemCatePropValue = itemCateProp.value
-        map(prodCatePropArray, (prodCateProp) => {
+        map(prodCatePropArray, prodCateProp => {
           const prodCatePropId = prodCateProp.categoryPropId
           const prodCatePropValue = prodCateProp.value
           if (isEqual(itemCatePropId, prodCatePropId)) {
@@ -53,10 +56,10 @@ exports.isThisStoreShouldCheck = (wishlist, products) => {
       })
 
       // SUB CATEGORY PROPS CHECKING
-      map(itemSubCatePropArray, (itemSubCateProp) => {
+      map(itemSubCatePropArray, itemSubCateProp => {
         const itemSubCatePropId = itemSubCateProp.subCategoryPropId
         const itemSubCatePropValue = itemSubCateProp.value
-        map(prodSubCatePropArray, (prodSubCateProp) => {
+        map(prodSubCatePropArray, prodSubCateProp => {
           const prodSubCatePropId = prodSubCateProp.subCategoryPropId
           const prodSubCatePropValue = prodSubCateProp.value
           if (isEqual(itemSubCatePropId, prodSubCatePropId)) {
@@ -86,9 +89,10 @@ exports.productWithRecommendation = (wishlist, products) => {
   let itemSubCatePropArray = wishlist.subCategoryProps || []
 
   const pointForNameMatched = 1
-  const maxPoint = itemCatePropArray.length + itemSubCatePropArray.length + pointForNameMatched
+  const maxPoint =
+    itemCatePropArray.length + itemSubCatePropArray.length + pointForNameMatched
 
-  map(products, (prod) => {
+  map(products, prod => {
     let point = 0
     const prodCatePropArray = prod.categoryProps
     const prodSubCatePropArray = prod.subCategoryProps
@@ -115,10 +119,10 @@ exports.productWithRecommendation = (wishlist, products) => {
     }
 
     // CATEGORY PROPS CHECKING
-    map(itemCatePropArray, (itemCateProp) => {
+    map(itemCatePropArray, itemCateProp => {
       const itemCatePropId = itemCateProp.categoryPropId
       const itemCatePropValue = itemCateProp.value
-      map(prodCatePropArray, (prodCateProp) => {
+      map(prodCatePropArray, prodCateProp => {
         const prodCatePropId = prodCateProp.propId.toString()
         const prodCatePropValue = prodCateProp.value
         if (isEqual(itemCatePropId, prodCatePropId)) {
@@ -130,10 +134,10 @@ exports.productWithRecommendation = (wishlist, products) => {
     })
 
     // SUB CATEGORY PROPS CHECKING
-    map(itemSubCatePropArray, (itemSubCateProp) => {
+    map(itemSubCatePropArray, itemSubCateProp => {
       const itemSubCatePropId = itemSubCateProp.subCategoryPropId
       const itemSubCatePropValue = itemSubCateProp.value
-      map(prodSubCatePropArray, (prodSubCateProp) => {
+      map(prodSubCatePropArray, prodSubCateProp => {
         const prodSubCatePropId = prodSubCateProp.propId.toString()
         const prodSubCatePropValue = prodSubCateProp.value
         if (isEqual(itemSubCatePropId, prodSubCatePropId)) {

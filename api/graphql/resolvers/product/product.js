@@ -1,26 +1,22 @@
 const { baseResolver } = require('../../../libaries/apollo-resolver-creator')
 
-const store = baseResolver.createResolver(
-  async (product, args, context) => {
-    return context.store.getById(product.storeId)
-  }
-)
+const store = baseResolver.createResolver(async (product, args, context) => {
+  return context.models.store.getById(product.storeId)
+})
 
 const storeBranch = baseResolver.createResolver(
   async (product, args, context) => {
-    return context.storeBranch.getById(product.storeBranchId)
+    return context.models.storeBranch.getById(product.storeBranchId)
   }
 )
 
-const category = baseResolver.createResolver(
-  async (product, args, context) => {
-    return context.category.getById(product.categoryId)
-  }
-)
+const category = baseResolver.createResolver(async (product, args, context) => {
+  return context.models.category.getById(product.categoryId)
+})
 
 const subCategory = baseResolver.createResolver(
   async (product, args, context) => {
-    return context.subCategory.getById(product.subCategoryId)
+    return context.models.subCategory.getById(product.subCategoryId)
   }
 )
 
@@ -29,6 +25,6 @@ module.exports = {
     store,
     storeBranch,
     category,
-    subCategory
-  }
+    subCategory,
+  },
 }
