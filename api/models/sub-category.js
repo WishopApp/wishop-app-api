@@ -7,51 +7,52 @@ const schema = mongoose.Schema(
     categoryId: {
       type: ObjectId,
       refs: 'categories',
-      require: true
+      require: true,
     },
     name: {
       type: String,
-      require: true
+      require: true,
     },
-    subCatePropIds: {
-      type: [{
+    subCateProps: [
+      {
         type: ObjectId,
-        ref: 'sub_category_props'
-      }]
-    }
+        ref: 'sub_category_props',
+      },
+    ],
   },
   {
     timestamp: true,
-    collection: 'sub_categories'
+    collection: 'sub_categories',
   }
 )
 
 const subCategoryModel = mongoose.model('subCategoryModel', schema)
 
 class SubCategory {
-  async getMany (args, limit = 10, skip = 0) {
-    const subCategories = await subCategoryModel.find(args)
+  async getMany(args, limit = 10, skip = 0) {
+    const subCategories = await subCategoryModel
+      .find(args)
       .skip(skip)
       .limit(limit)
     return subCategories
   }
 
-  async getOne (args) {
+  async getOne(args) {
     const subCategory = subCategoryModel.findOne(args)
     return subCategory
   }
 
-  async getById (id) {
+  async getById(id) {
     const subCategories = await subCategoryModel.findOne({ _id: id })
     return subCategories
   }
 
-  async getByCategoryId (categoryId) {
+  async getByCategoryId(categoryId) {
     const subCategory = subCategoryModel.find({ categoryId })
     return subCategory
   }
 
-  async create (args) {
+  async create(args) {
     const createResult = await subCategoryModel.create(args)
     return createResult
   }
