@@ -1,4 +1,4 @@
-FROM node:8.12.0
+FROM node:8.4.0
 
 # linux path
 ENV workspace=/usr/share/wishop/wishop-app-api
