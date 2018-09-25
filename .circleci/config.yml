@@ -15,10 +15,10 @@ jobs:
                       sed -i "s~PORT=~PORT=$PORT~g" .env
                       sed -i "s~MONGO_URI=~MONGO_URI=$MONGO_URI~g" .env
                       sed -i "s~APOLLO_ENGINE_APIKEY=~APOLLO_ENGINE_APIKEY=$APOLLO_ENGINE_APIKEY~g" .env
-            - run:
-                  name: Test Project
-                  command: |
-                      yarn test
+            # - run:
+            #       name: Test Project
+            #       command: |
+            #           yarn test
             - setup_remote_docker:
                   docker_layer_caching: true
             - run:
