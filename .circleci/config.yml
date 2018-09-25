@@ -6,9 +6,6 @@ jobs:
         steps:
             - checkout
             - run:
-                  name: Add APK Dependencies
-                  command: apk add --no-cache curl
-            - run:
                   name: Install Project dependencies
                   command: npm install -g yarn && yarn install
             - run:
