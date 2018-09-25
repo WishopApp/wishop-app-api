@@ -18,17 +18,14 @@ const categorySchema = mongoose.Schema(
   {
     timestamp: true,
     collection: 'categories',
-  }
+  },
 )
 
 const categoryModel = mongoose.model('CategoryModel', categorySchema)
 
 class Category {
-  async getMany(args, limit = 10, skip = 0) {
-    const categories = await categoryModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const categories = await categoryModel.find(args)
     return categories
   }
 
