@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { omit } = require('lodash')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -55,6 +56,14 @@ class SubCategory {
   async create(args) {
     const createResult = await subCategoryModel.create(args)
     return createResult
+  }
+
+  async update(args) {
+    const newdata = omit(args, ['_id'])
+    const updateResult = await subCategoryModel.findByIdAndUpdate(args._id, {
+      $set: newdata,
+    })
+    return updateResult
   }
 }
 

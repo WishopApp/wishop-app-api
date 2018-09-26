@@ -6,8 +6,15 @@ const createCategory = baseResolver.createResolver(
   }
 )
 
+const updateCategory = baseResolver.createResolver(
+  async (root, args, context) => {
+    return context.models.category.update(args)
+  }
+)
+
 module.exports = {
   Mutation: {
     createCategory,
+    updateCategory,
   },
 }

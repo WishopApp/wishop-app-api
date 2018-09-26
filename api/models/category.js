@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { omit } = require('lodash')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -18,7 +19,7 @@ const categorySchema = mongoose.Schema(
   {
     timestamp: true,
     collection: 'categories',
-  },
+  }
 )
 
 const categoryModel = mongoose.model('CategoryModel', categorySchema)
@@ -42,6 +43,14 @@ class Category {
   async create(args) {
     const createResult = await categoryModel.create(args)
     return createResult
+  }
+
+  async update(args) {
+    const newdata = omit(args, ['_id'])
+    const updateResult = await categoryModel.findByIdAndUpdate(args._id, {
+      $set: newdata,
+    })
+    return updateResult
   }
 }
 

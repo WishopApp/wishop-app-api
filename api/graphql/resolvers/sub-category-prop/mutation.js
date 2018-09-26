@@ -6,8 +6,15 @@ const createSubCategoryProp = baseResolver.createResolver(
   }
 )
 
+const updateSubCategoryProp = baseResolver.createResolver(
+  async (root, args, context) => {
+    return context.models.subCategoryProp.update(args)
+  }
+)
+
 module.exports = {
   Mutation: {
     createSubCategoryProp,
+    updateSubCategoryProp,
   },
 }

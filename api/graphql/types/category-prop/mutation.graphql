@@ -1,7 +1,9 @@
 type Mutation {
-  createCategoryProp (
+  createCategoryProp(
     categoryId: ID!
     name: String!
     values: [String]
   ): CategoryProp
+
+  updateCategoryProp(_id: ID!, name: String!, values: [String]!): CategoryProp
 }

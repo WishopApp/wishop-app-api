@@ -6,8 +6,15 @@ const properties = baseResolver.createResolver(
   }
 )
 
+const category = baseResolver.createResolver(
+  async (subCategory, args, context) => {
+    return context.models.category.getOne({ _id: subCategory.categoryId })
+  }
+)
+
 module.exports = {
   SubCategory: {
+    category,
     properties,
   },
 }
