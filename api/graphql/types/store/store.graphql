@@ -6,4 +6,5 @@ type Store {
   avatarUrl: String
   description: String
   owner: User
+  beacons: [Beacon]
 }

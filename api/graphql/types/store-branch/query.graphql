@@ -1,16 +1,7 @@
 type Query {
-  storeBranch (
-    _id: ID
-    beaconToken: ID
-  ): StoreBranch
+  storeBranch(_id: ID, beaconToken: ID): StoreBranch
 
-  storeBranches (
-    limit: Int
-    skip: Int
-  ): [StoreBranch]
+  storeBranches(limit: Int, skip: Int): [StoreBranch]
 
-  searchStoreBranch (
-    beaconToken: String
-    userId: ID
-  ): StoreBranch
+  searchStoreBranchFromBeacon(beaconId: ID): StoreBranch
 }

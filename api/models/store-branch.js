@@ -48,11 +48,6 @@ class StoreBranch {
     return storeBranch
   }
 
-  async getByBeaconToken(beaconToken) {
-    const storeBranch = await storeBranchModel.findOne({ beaconToken })
-    return storeBranch
-  }
-
   async create(args) {
     const storeBranch = await storeBranchModel.create(args)
     return storeBranch

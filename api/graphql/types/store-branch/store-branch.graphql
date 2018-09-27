@@ -1,9 +1,21 @@
+type StaffAccount {
+  username: String
+  password: String
+}
+
+enum STORE_BRANCH_STATUSES {
+  OPEN
+  CLOSED
+  BANNED
+}
+
 type StoreBranch {
   _id: ID
   storeId: ID
   name: String
   telNo: String
-  beaconToken: String
+  productIds: [ID]
+  staffAccount: StaffAccount
+  status: STORE_BRANCH_STATUSES
   store: Store
-  shouldCheck: Boolean
 }

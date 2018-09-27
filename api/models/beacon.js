@@ -1,15 +1,24 @@
 const mongoose = require('mongoose')
-
-const ObjectId = mongoose.Schema.Types.ObjectId
+const { omit } = require('lodash')
 
 const beaconsSchema = mongoose.Schema(
   {
     name: { type: String, require: true, unique: true },
     token: { type: String, require: true, unique: true },
-    storeId: { type: ObjectId, ref: 'stores', require: true },
+    assignId: { type: String },
+    locationX: { type: Number, default: 0 },
+    locationY: { type: Number, default: 0 },
+    identifier: { type: String, require: true, default: 'Estimotes' },
+    uuid: { type: String, require: true },
+    major: { type: Number, require: true },
+    minot: { type: Number, require: true },
+    type: {
+      type: String,
+      enum: ['INDOOR', 'STICKER'],
+    },
     status: {
       type: String,
-      enum: ['IDLE', 'INUSE', 'EXPIRED'],
+      enum: ['IDLE', 'INUSE', 'EXPIRE'],
       default: 'IDLE',
       require: true,
     },
@@ -41,8 +50,21 @@ const Beacon = class Beacon {
     return beacon
   }
 
+  async getAllByStoreId(storeId) {
+    const beacons = await beaconModel.find({ storeId })
+    return beacons
+  }
+
   async create(args) {
     const beacon = await beaconModel.create(args)
+    return beacon
+  }
+
+  async update(args) {
+    const newData = omit(args, ['_id'])
+    const beacon = await beaconModel.findByIdAndUpdate(args._id, {
+      $set: newData,
+    })
     return beacon
   }
 }

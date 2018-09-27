@@ -1,11 +1,11 @@
 type Query {
-  beacon (
+  beacon(
     _id: ID
-    token: String
+    assignId: ID
+    uuid: String
+    status: BEACON_STATUSES
+    type: BEACON_TYPES
   ): Beacon
 
-  beacons (
-    limit: Int
-    skip: Int
-  ): [Beacon]
+  beacons(assignId: ID, type: BEACON_TYPES, status: BEACON_STATUSES): [Beacon]
 }

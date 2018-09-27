@@ -1,12 +1,24 @@
 enum BEACON_STATUSES {
-  AVAILABLE
-  INUSED
-  CLOSED
+  IDLE
+  INUSE
+  EXPIRE
+}
+
+enum BEACON_TYPES {
+  INDOOR
+  STICKER
 }
 
 type Beacon {
   _id: ID
-  token: String
   name: String
+  type: BEACON_TYPES
   status: BEACON_STATUSES
+  locationX: Int
+  locationY: Int
+  identifier: String
+  uuid: String
+  major: Int
+  minot: Int
+  assignId: ID
 }

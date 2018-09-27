@@ -15,17 +15,15 @@ const storeBranches = baseResolver.createResolver(
   }
 )
 
-const searchStoreBranch = baseResolver.createResolver(
+const searchStoreBranchFromBeacon = baseResolver.createResolver(
   async (root, args, context) => {
-    const storeBranch = await context.models.storeBranch.getByBeaconToken(
-      args.beaconToken
-    )
-    const { wishlist } = await context.models.user.getById(args.userId)
-    const products = await context.models.product.getStoreProducts(
-      storeBranch.storeId
-    )
+    const beaconAssignThisBranch = context.models.beacon.getOne({
+      _id: args.beaconId,
+    })
 
-    storeBranch.shouldCheck = isThisStoreShouldCheck(wishlist, products)
+    const storeBranch = context.models.storeBranch.getOne({
+      _id: beaconAssignThisBranch.assignId,
+    })
     return storeBranch
   }
 )
@@ -34,6 +32,6 @@ module.exports = {
   Query: {
     storeBranch,
     storeBranches,
-    searchStoreBranch,
+    searchStoreBranchFromBeacon,
   },
 }
