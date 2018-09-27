@@ -3,5 +3,5 @@ type Query {
 
   storeBranches(limit: Int, skip: Int): [StoreBranch]
 
-  searchStoreBranchFromBeacon(beaconId: ID): StoreBranch
+  searchStoreBranchFromBeacon(uuid: String): StoreBranch
 }
