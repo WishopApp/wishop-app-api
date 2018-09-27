@@ -5,7 +5,6 @@ const {
 
 const storeBranch = baseResolver.createResolver(async (root, args, context) => {
   const store = await context.models.storeBranch.getOne(args)
-  store.shouldCheck = false // WAITING FOR NEXT FEATURE
   return store
 })
 
@@ -18,7 +17,7 @@ const storeBranches = baseResolver.createResolver(
 const searchStoreBranchFromBeacon = baseResolver.createResolver(
   async (root, args, context) => {
     const beaconAssignThisBranch = context.models.beacon.getOne({
-      _id: args.beaconId,
+      uuid: args.uuid,
     })
 
     const storeBranch = context.models.storeBranch.getOne({
