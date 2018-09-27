@@ -5,9 +5,8 @@ const {
 
 const createWishlist = baseResolver.createResolver(
   async (root, args, context) => {
-    const { userId, wishlist } = args
     try {
-      return context.models.user.createWishlist(userId, wishlist)
+      return context.models.wishlist.create(args)
     } catch (error) {
       return new ResolverError(error)
     }
@@ -16,9 +15,8 @@ const createWishlist = baseResolver.createResolver(
 
 const updateWishlist = baseResolver.createResolver(
   async (root, args, context) => {
-    const { userId, wishlistId, wishlist } = args
     try {
-      return context.models.user.updateWishlist(userId, wishlistId, wishlist)
+      return context.models.wishlist.update(args)
     } catch (error) {
       return new ResolverError(error)
     }
@@ -27,9 +25,8 @@ const updateWishlist = baseResolver.createResolver(
 
 const removeWishlist = baseResolver.createResolver(
   async (root, args, context) => {
-    const { userId, wishlistId } = args
     try {
-      return context.models.user.removeWishlist(userId, wishlistId)
+      return context.models.wishlist.remove(args)
     } catch (error) {
       return new ResolverError(error)
     }

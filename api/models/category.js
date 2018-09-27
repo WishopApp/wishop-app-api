@@ -30,6 +30,11 @@ class Category {
     return categories
   }
 
+  async getAllByUserId(userId) {
+    const categories = await categoryModel.find({ userId })
+    return categories
+  }
+
   async getOne(args) {
     const category = await categoryModel.findOne(args)
     return category

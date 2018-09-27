@@ -1,17 +1,7 @@
 type Mutation {
-  createWishlist (
-    userId: ID!
-    wishlist: WishlistInput!
-  ): User
+  createWishlist(userId: ID!, wishlist: WishlistInput!): Wishlist
 
-  updateWishlist (
-    userId: ID!
-    wishlistId: ID!
-    wishlist: UpdateWishlist!
-  ): User
+  updateWishlist(_id: ID!, wishlist: UpdateWishlist!): Wishlist
 
-  removeWishlist (
-    userId: ID!
-    wishlistId: ID!
-  ): User
+  removeWishlist(_id: ID!): Wishlist
 }

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { omit } = require('lodash')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -48,29 +49,41 @@ const wishlistsSchema = mongoose.Schema(
 
 const wishlistModel = mongoose.model('WishlistModel', wishlistsSchema)
 
-class Store {
+class Wishlist {
+  async create(args) {
+    const wishlist = await wishlistModel.create(args)
+    return wishlist
+  }
+
   async getMany(args, limit = 10, skip = 0) {
-    const stores = await wishlistModel
+    const wishlists = await wishlistModel
       .find(args)
       .skip(skip)
       .limit(limit)
-    return stores
+    return wishlists
   }
 
   async getOne(args) {
-    const store = await wishlistModel.findOne(args)
-    return store
+    const wishlist = await wishlistModel.findOne(args)
+    return wishlist
   }
 
   async getById(_id) {
-    const store = await wishlistModel.findOne({ _id })
-    return store
+    const wishlist = await wishlistModel.findOne({ _id })
+    return wishlist
   }
 
-  async create(args) {
-    const store = await wishlistModel.create(args)
-    return store
+  async update(args) {
+    const id = omit(args, ['_id'])
+    const wishlist = await wishlistModel.findByIdAndUpdate(id, { $set: args })
+    return wishlist
+  }
+
+  async remove(args) {
+    const id = omit(args, ['_id'])
+    const wishlist = await wishlistModel.findByIdAndRemove(id)
+    return wishlist
   }
 }
 
-module.exports = Store
+module.exports = Wishlist
