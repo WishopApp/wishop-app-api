@@ -20,6 +20,10 @@ const searchStoreBranchFromBeacon = baseResolver.createResolver(
       uuid: args.uuid,
     })
 
+    if (!beaconAssignThisBranch) {
+      return null
+    }
+
     const storeBranch = await context.models.storeBranch.getOne({
       _id: beaconAssignThisBranch.assignId,
     })
