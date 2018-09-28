@@ -10,7 +10,7 @@ const beaconsSchema = mongoose.Schema(
     identifier: { type: String, require: true, default: 'Estimotes' },
     uuid: { type: String, require: true },
     major: { type: Number, require: true },
-    minot: { type: Number, require: true },
+    minor: { type: Number, require: true },
     type: {
       type: String,
       enum: ['INDOOR', 'STICKER'],

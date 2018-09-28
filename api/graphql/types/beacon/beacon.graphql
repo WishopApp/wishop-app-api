@@ -19,6 +19,6 @@ type Beacon {
   identifier: String
   uuid: String
   major: Int
-  minot: Int
+  minor: Int
   assignId: ID
 }

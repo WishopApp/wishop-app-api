@@ -8,7 +8,7 @@ type Mutation {
     identifier: String
     uuid: String!
     major: Int!
-    minot: Int!
+    minor: Int!
     assignId: ID
   ): Beacon
 }

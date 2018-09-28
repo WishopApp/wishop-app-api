@@ -35,12 +35,10 @@ const usersSchema = mongoose.Schema(
         ref: 'wishlists',
       },
     ],
-    storeIds: [
-      {
-        type: ObjectId,
-        ref: 'stores',
-      },
-    ],
+    storeId: {
+      type: ObjectId,
+      ref: 'stores',
+    },
   },
   {
     timestamp: true,
