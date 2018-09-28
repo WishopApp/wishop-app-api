@@ -4,7 +4,6 @@ const { omit } = require('lodash')
 const beaconsSchema = mongoose.Schema(
   {
     name: { type: String, require: true, unique: true },
-    token: { type: String, require: true, unique: true },
     assignId: { type: String },
     locationX: { type: Number, default: 0 },
     locationY: { type: Number, default: 0 },
