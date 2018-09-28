@@ -30,11 +30,8 @@ const schema = mongoose.Schema(
 const subCategoryModel = mongoose.model('subCategoryModel', schema)
 
 class SubCategory {
-  async getMany(args, limit = 10, skip = 0) {
-    const subCategories = await subCategoryModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const subCategories = await subCategoryModel.find(args)
     return subCategories
   }
 

@@ -36,11 +36,8 @@ const storesStatisticModel = mongoose.model(
 )
 
 class Store {
-  async getMany(args, limit = 10, skip = 0) {
-    const stores = await storesStatisticModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const stores = await storesStatisticModel.find(args)
     return stores
   }
 

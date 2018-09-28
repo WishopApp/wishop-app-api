@@ -49,11 +49,8 @@ const usersSchema = mongoose.Schema(
 const userModel = mongoose.model('UsersModel', usersSchema)
 
 class User {
-  async getMany(args, limit = 10, skip = 0) {
-    const users = await userModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const users = await userModel.find(args)
     return users
   }
 

@@ -31,11 +31,8 @@ const productSchema = mongoose.Schema(
 const productModel = mongoose.model('ProductModel', productSchema)
 
 class Product {
-  async getMany(args, limit = 10, skip = 0) {
-    const products = await productModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const products = await productModel.find(args)
     return products
   }
 

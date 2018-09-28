@@ -18,11 +18,9 @@ const promotionSchema = mongoose.Schema(
 const promotionModel = mongoose.model('PromotionModel', promotionSchema)
 
 const Promotion = class Promotion {
-  async getMany(args, limit = 10, skip = 0) {
-    const promotions = await promotionModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const promotions = await promotionModel.find(args)
+
     return promotions
   }
 

@@ -29,11 +29,8 @@ const schema = mongoose.Schema(
 const subCategoryPropModel = mongoose.model('SubCategoryPropModel', schema)
 
 class SubCategoryProp {
-  async getMany(args, limit = 10, skip = 0) {
-    const subCategoryProps = await subCategoryPropModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const subCategoryProps = await subCategoryPropModel.find(args)
     return subCategoryProps
   }
 

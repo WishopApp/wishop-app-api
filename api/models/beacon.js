@@ -31,11 +31,8 @@ const beaconsSchema = mongoose.Schema(
 const beaconModel = mongoose.model('BeaconsModel', beaconsSchema)
 
 const Beacon = class Beacon {
-  async getMany(args, limit = 10, skip = 0) {
-    const beacons = await beaconModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const beacons = await beaconModel.find(args)
     return beacons
   }
 

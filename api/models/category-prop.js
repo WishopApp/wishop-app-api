@@ -29,11 +29,9 @@ const schema = mongoose.Schema(
 const categoryPropModel = mongoose.model('CategoryPropModel', schema)
 
 class CategoryProp {
-  async getMany(args, limit = 10, skip = 0) {
-    const categoryProps = await categoryPropModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const categoryProps = await categoryPropModel.find(args)
+
     return categoryProps
   }
 

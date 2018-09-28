@@ -31,11 +31,8 @@ const beaconRequestTicketModel = mongoose.model(
 )
 
 const BeaconRequest = class BeaconRequest {
-  async getMany(args, limit = 10, skip = 0) {
-    const beacons = await beaconRequestTicketModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const beacons = await beaconRequestTicketModel.find(args)
     return beacons
   }
 

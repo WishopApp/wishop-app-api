@@ -19,11 +19,9 @@ const beaconHistoryModel = mongoose.model(
 )
 
 const BeaconHistory = class BeaconHistory {
-  async getMany(args, limit = 10, skip = 0) {
-    const beacons = await beaconHistoryModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const beacons = await beaconHistoryModel.find(args)
+
     return beacons
   }
 

@@ -55,11 +55,8 @@ class Wishlist {
     return wishlist
   }
 
-  async getMany(args, limit = 10, skip = 0) {
-    const wishlists = await wishlistModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const wishlists = await wishlistModel.find(args)
     return wishlists
   }
 
