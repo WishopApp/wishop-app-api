@@ -11,6 +11,7 @@ type ProductSubCategoryProp {
 }
 
 type Product {
+  _id: ID
   storeId: ID
   store: Store
   storeBranchId: ID
@@ -35,6 +36,7 @@ input ProductSubCategoryPropInput {
 }
 
 type ProductFromSearch {
+  _id: ID
   storeId: ID
   store: Store
   storeBranchId: ID

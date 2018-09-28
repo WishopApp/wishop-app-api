@@ -66,6 +66,11 @@ class Product {
     return products
   }
 
+  async getBranchProduct(storeBranchId) {
+    const products = await productModel.find({ storeBranchId })
+    return products
+  }
+
   async create(args) {
     const createResult = await productModel.create(args)
     return createResult

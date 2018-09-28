@@ -6,8 +6,15 @@ const store = baseResolver.createResolver(
   }
 )
 
+const products = baseResolver.createResolver(
+  async (storeBranch, args, context) => {
+    return context.models.product.getBranchProduct(storeBranch._id)
+  }
+)
+
 module.exports = {
   StoreBranch: {
     store,
+    products,
   },
 }
