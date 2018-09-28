@@ -30,11 +30,8 @@ const storeBranchModel = mongoose.model(
 )
 
 class StoreBranch {
-  async getMany(args, limit = 10, skip = 0) {
-    const storeBranches = await storeBranchModel
-      .find(args)
-      .skip(skip)
-      .limit(limit)
+  async getMany(args) {
+    const storeBranches = await storeBranchModel.find(args)
     return storeBranches
   }
 

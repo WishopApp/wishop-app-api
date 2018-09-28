@@ -10,7 +10,7 @@ const storeBranch = baseResolver.createResolver(async (root, args, context) => {
 
 const storeBranches = baseResolver.createResolver(
   async (root, args, context) => {
-    return context.models.storeBranch.getMany(args, args.limit, args.skip)
+    return context.models.storeBranch.getMany(args)
   }
 )
 
