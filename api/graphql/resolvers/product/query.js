@@ -8,7 +8,7 @@ const product = baseResolver.createResolver(async (root, args, context) => {
 })
 
 const products = baseResolver.createResolver(async (root, args, context) => {
-  return context.models.product.getMany(args.limit, args.skip)
+  return context.models.product.getMany(args)
 })
 
 const searchByKeyword = baseResolver.createResolver(
@@ -28,11 +28,21 @@ const searchByWishlist = baseResolver.createResolver(
   }
 )
 
+const productStatistic = baseResolver.createResolver(
+  async (root, args, context) => {
+    const products = await context.models.product.getStatisTicByStoreId(
+      args.storeId
+    )
+    return products
+  }
+)
+
 module.exports = {
   Query: {
     product,
     products,
     searchByKeyword,
     searchByWishlist,
+    productStatistic,
   },
 }

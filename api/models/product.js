@@ -21,6 +21,12 @@ const productSchema = mongoose.Schema(
       },
     ],
     name: { type: String, require: true },
+    status: {
+      type: String,
+      enum: ['AVAILABLE', 'OUT_OF_STOCK'],
+      default: 'AVAILABLE',
+      require: true,
+    },
   },
   {
     timestamp: true,
@@ -71,6 +77,23 @@ class Product {
   async create(args) {
     const createResult = await productModel.create(args)
     return createResult
+  }
+
+  async getStatisTicByStoreId(storeId) {
+    const available = await productModel
+      .find({ storeId, status: 'AVAILABLE' })
+      .count()
+    const outOfStock = await productModel
+      .find({ storeId, status: 'OUT_OF_STOCK' })
+      .count()
+
+    console.log(available)
+
+    return {
+      available,
+      outOfStock,
+      total: available + outOfStock,
+    }
   }
 }
 

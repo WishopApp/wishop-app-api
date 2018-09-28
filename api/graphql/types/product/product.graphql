@@ -10,6 +10,11 @@ type ProductSubCategoryProp {
   value: String
 }
 
+enum PRODUCT_STATUSES {
+  AVAILABLE
+  OUT_OF_STOCK
+}
+
 type Product {
   _id: ID
   storeId: ID
@@ -23,6 +28,7 @@ type Product {
   categoryProps: [ProductCategoryProp]
   subCategoryProps: [ProductSubCategoryProp]
   name: String
+  status: PRODUCT_STATUSES
 }
 
 input ProductCategoryPropInput {
@@ -50,4 +56,10 @@ type ProductFromSearch {
   name: String
   matchedPercentage: Float
   recommended: Boolean
+}
+
+type ProductStatistic {
+  available: Int
+  outOfStock: Int
+  total: Int
 }

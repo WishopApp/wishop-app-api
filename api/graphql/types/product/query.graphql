@@ -1,19 +1,11 @@
 type Query {
-  product (
-    _id: ID
-    name: String!
-  ): Product
+  product(_id: ID, name: String!): Product
 
-  products (
-    limit: Int
-    skip: Int
-  ): [Product]
-  
-  searchByKeyword (
-    keyword: String!
-  ): [Product]
+  products(storeId: ID, storeBranchId: ID): [Product]
 
-  searchByWishlist (
-    wishlist: WishlistInput!
-  ): [ProductFromSearch]
+  searchByKeyword(keyword: String!): [Product]
+
+  searchByWishlist(wishlist: WishlistInput!): [ProductFromSearch]
+
+  productStatistic(storeId: ID!): ProductStatistic
 }

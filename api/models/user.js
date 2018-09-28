@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-const { findIndex, assign, omit } = require('lodash')
-const { ERROR_MESSAGE } = require('../config/error-message')
+const { omit } = require('lodash')
 const { createBcryptData, compareBcrypt } = require('../libaries/encryption')
 const { createUserToken } = require('../libaries/token-manager')
 
