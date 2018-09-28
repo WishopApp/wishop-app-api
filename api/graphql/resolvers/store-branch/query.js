@@ -16,13 +16,14 @@ const storeBranches = baseResolver.createResolver(
 
 const searchStoreBranchFromBeacon = baseResolver.createResolver(
   async (root, args, context) => {
-    const beaconAssignThisBranch = context.models.beacon.getOne({
+    const beaconAssignThisBranch = await context.models.beacon.getOne({
       uuid: args.uuid,
     })
 
-    const storeBranch = context.models.storeBranch.getOne({
+    const storeBranch = await context.models.storeBranch.getOne({
       _id: beaconAssignThisBranch.assignId,
     })
+
     return storeBranch
   }
 )
