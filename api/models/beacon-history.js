@@ -8,7 +8,7 @@ const beaconHistorySchema = mongoose.Schema(
     title: String,
   },
   {
-    timestamp: true,
+    timestamps: true,
     collection: 'beacons_history',
   }
 )

@@ -22,7 +22,7 @@ const schema = mongoose.Schema(
     ],
   },
   {
-    timestamp: true,
+    timestamps: true,
     collection: 'sub_categories',
   }
 )

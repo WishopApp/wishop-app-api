@@ -10,7 +10,7 @@ const promotionSchema = mongoose.Schema(
     },
   },
   {
-    timestamp: true,
+    timestamps: true,
     collection: 'promotions',
   }
 )

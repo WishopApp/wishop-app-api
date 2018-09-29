@@ -25,7 +25,7 @@ const storesStatisticSchema = mongoose.Schema(
     ],
   },
   {
-    timestamp: true,
+    timestamps: true,
     collection: 'stores_statistic',
   }
 )

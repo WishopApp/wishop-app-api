@@ -12,7 +12,7 @@ const storesSchema = mongoose.Schema(
     storeBranchIds: [{ type: ObjectId, ref: 'store_branches', require: true }],
   },
   {
-    timestamp: true,
+    timestamps: true,
     collection: 'stores',
   }
 )

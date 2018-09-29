@@ -20,7 +20,7 @@ const beaconRequestTicketSchema = mongoose.Schema(
     },
   },
   {
-    timestamp: true,
+    timestamps: true,
     collection: 'beacon_request_tickets',
   }
 )

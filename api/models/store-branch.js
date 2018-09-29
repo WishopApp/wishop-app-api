@@ -19,7 +19,7 @@ const storeBranchesSchema = mongoose.Schema(
     },
   },
   {
-    timestamp: true,
+    timestamps: true,
     collection: 'store_branches',
   }
 )
