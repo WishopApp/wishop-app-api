@@ -7,4 +7,5 @@ type Store {
   description: String
   owner: User
   beacons: [Beacon]
+  createdAt: String
 }

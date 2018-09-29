@@ -19,4 +19,5 @@ type StoreBranch {
   staffAccount: StaffAccount
   status: STORE_BRANCH_STATUSES
   store: Store
+  createdAt: String
 }

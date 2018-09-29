@@ -21,4 +21,5 @@ type Beacon {
   major: Int
   minor: Int
   assignId: ID
+  createdAt: String
 }

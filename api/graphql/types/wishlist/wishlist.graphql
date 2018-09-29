@@ -20,6 +20,7 @@ type Wishlist {
   subCategory: SubCategory
   categoryProps: [WishlistCategoryProp]
   subCategoryProps: [WishlistSubCategoryProp]
+  createdAt: String
 }
 
 input WishlistCategoryPropInput {

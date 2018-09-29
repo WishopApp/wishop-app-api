@@ -3,4 +3,5 @@ type CategoryProp {
   categoryId: ID
   name: String
   values: [String]
+  createdAt: String
 }

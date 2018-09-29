@@ -36,4 +36,5 @@ type User {
   profile: Profile
   storeId: ID
   wishlist: [Wishlist]
+  createdAt: String
 }

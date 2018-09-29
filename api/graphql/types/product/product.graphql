@@ -29,6 +29,7 @@ type Product {
   subCategoryProps: [ProductSubCategoryProp]
   name: String
   status: PRODUCT_STATUSES
+  createdAt: String
 }
 
 input ProductCategoryPropInput {

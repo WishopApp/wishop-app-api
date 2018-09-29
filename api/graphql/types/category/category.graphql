@@ -3,4 +3,5 @@ type Category {
   name: String
   properties: [CategoryProp]
   subCategories: [SubCategory]
+  createdAt: String
 }
