@@ -8,9 +8,16 @@ const stores = baseResolver.createResolver(async (root, args, context) => {
   return context.models.store.getMany(args, args.limit, args.skip)
 })
 
+const storeStatistic = baseResolver.createResolver(
+  async (root, args, context) => {
+    return context.models.store.getStoreStatistic(args)
+  }
+)
+
 module.exports = {
   Query: {
     store,
     stores,
+    storeStatistic,
   },
 }

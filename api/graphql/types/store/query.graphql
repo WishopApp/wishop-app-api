@@ -1,11 +1,7 @@
 type Query {
-  store (
-    _id: ID
-    name: String
-  ): Store
+  store(_id: ID, name: String): Store
 
-  stores (
-    limit: Int
-    skip: Int
-  ): [Store]
+  stores(limit: Int, skip: Int): [Store]
+
+  storeStatistic(storeId: ID): StoreStatistic
 }

@@ -1,7 +1,7 @@
 const { baseResolver } = require('../../../libaries/apollo-resolver-creator')
 
 const owner = baseResolver.createResolver(async (store, args, context) => {
-  return context.models.user.getById(store.ownerId)
+  return context.models.user.getOne({ storeId: store._id })
 })
 
 const beacons = baseResolver.createResolver(async (store, args, context) => {
