@@ -7,5 +7,5 @@ type Query {
 
   searchByWishlist(wishlist: WishlistInput!): [ProductFromSearch]
 
-  productStatistic(storeId: ID!): ProductStatistic
+  productStatistic(storeId: ID): ProductStatistic
 }

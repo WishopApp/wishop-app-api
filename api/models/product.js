@@ -79,15 +79,17 @@ class Product {
     return createResult
   }
 
-  async getStatisTicByStoreId(storeId) {
-    const available = await productModel
-      .find({ storeId, status: 'AVAILABLE' })
-      .count()
-    const outOfStock = await productModel
-      .find({ storeId, status: 'OUT_OF_STOCK' })
-      .count()
+  async getProductStatistic(args) {
+    let filterAvaialble = { status: 'AVAILABLE' }
+    let filterOutOfStock = { status: 'OUT_OF_STOCK' }
 
-    console.log(available)
+    if (args.storeId) {
+      filterAvaialble._id = args.storeId
+      filterOutOfStock._id = args.storeId
+    }
+
+    const available = await productModel.find(filterAvaialble).count()
+    const outOfStock = await productModel.find(filterOutOfStock).count()
 
     return {
       available,

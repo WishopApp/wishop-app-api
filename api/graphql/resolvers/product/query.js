@@ -30,9 +30,7 @@ const searchByWishlist = baseResolver.createResolver(
 
 const productStatistic = baseResolver.createResolver(
   async (root, args, context) => {
-    const products = await context.models.product.getStatisTicByStoreId(
-      args.storeId
-    )
+    const products = await context.models.product.getProductStatistic(args)
     return products
   }
 )
