@@ -38,6 +38,12 @@ const usersSchema = mongoose.Schema(
       type: ObjectId,
       ref: 'stores',
     },
+    status: {
+      type: String,
+      enum: ['CUSTOMER', 'SHOP_OWNER', 'BANNED'],
+      require: true,
+      default: 'CUSTOMER',
+    },
   },
   {
     timestamps: true,
@@ -61,6 +67,29 @@ class User {
   async getById(_id) {
     const user = userModel.findOne({ _id })
     return user
+  }
+
+  async getUserStatistic(args) {
+    let filterCustomer = { status: 'CUSTOMER' }
+    let filterShopOwner = { status: 'SHOP_OWNER' }
+    let filterBanned = { status: 'BANNED' }
+
+    if (args.userId) {
+      filterCustomer._id = args.userId
+      filterShopOwner._id = args.userId
+      filterBanned._id = args.userId
+    }
+
+    const customer = await userModel.find(filterCustomer).count()
+    const shopOwner = await userModel.find(filterShopOwner).count()
+    const banned = await userModel.find(filterBanned).count()
+
+    return {
+      customer,
+      shopOwner,
+      banned,
+      total: customer + shopOwner + banned,
+    }
   }
 
   async create(args) {

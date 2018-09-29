@@ -28,6 +28,12 @@ input ProfileInput {
   address: AddressInput
 }
 
+enum UserStatuses {
+  CUSTOMER
+  SHOP_OWNER
+  BANNED
+}
+
 type User {
   _id: ID
   email: String
@@ -36,5 +42,13 @@ type User {
   profile: Profile
   storeId: ID
   wishlist: [Wishlist]
+  status: UserStatuses
   createdAt: String
+}
+
+type UserStatistic {
+  customer: Int
+  shopOwner: Int
+  banned: Int
+  total: Int
 }

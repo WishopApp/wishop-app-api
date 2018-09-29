@@ -1,5 +1,7 @@
 type Query {
   user(_id: ID, email: String!): User
 
-  users(limit: Int, skip: Int): [User]
+  users(staus: UserStatuses): [User]
+
+  userStatistic(userId: ID): UserStatistic
 }
