@@ -1,20 +1,4 @@
-// const cryptoJS = require('crypto-js')
 const bcrypt = require('bcrypt')
-
-// const encryptDataBySalt = data => {
-//   if (!data) {
-//     throw new Error('Data for encrypt is required.')
-//   }
-
-//   return cryptoJS.AES.encrypt(data, process.env.WISHOP_SECRET_SALT).toString()
-// }
-
-// const decryptDataBySalt = (encryptedData = '') => {
-//   return cryptoJS.AES.decrypt(
-//     encryptedData,
-//     process.env.WISHOP_SECRET_SALT
-//   ).toString(cryptoJS.enc.Utf8)
-// }
 
 /**
  * COMPARE BCRYPT DATA
@@ -43,8 +27,6 @@ const createBcryptData = data => {
 }
 
 module.exports = {
-  // encryptDataBySalt,
-  // decryptDataBySalt,
   compareBcrypt,
   createBcryptData,
 }
