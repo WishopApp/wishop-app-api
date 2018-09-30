@@ -57,9 +57,13 @@ class CategoryProp {
 
   async update(args) {
     const newdata = omit(args, ['_id'])
-    const updateResult = await categoryPropModel.findByIdAndUpdate(args._id, {
-      $set: newdata,
-    })
+    const updateResult = await categoryPropModel.findByIdAndUpdate(
+      args._id,
+      {
+        $set: newdata,
+      },
+      { new: true }
+    )
     return updateResult
   }
 }

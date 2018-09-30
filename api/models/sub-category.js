@@ -57,9 +57,13 @@ class SubCategory {
 
   async update(args) {
     const newdata = omit(args, ['_id'])
-    const updateResult = await subCategoryModel.findByIdAndUpdate(args._id, {
-      $set: newdata,
-    })
+    const updateResult = await subCategoryModel.findByIdAndUpdate(
+      args._id,
+      {
+        $set: newdata,
+      },
+      { new: true }
+    )
     return updateResult
   }
 }

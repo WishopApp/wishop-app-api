@@ -100,9 +100,13 @@ class User {
 
   async update(args) {
     const newData = omit(args, ['_id'])
-    const updateResult = await userModel.findByIdAndUpdate(args._id, {
-      $set: newData,
-    })
+    const updateResult = await userModel.findByIdAndUpdate(
+      args._id,
+      {
+        $set: newData,
+      },
+      { new: true }
+    )
     return updateResult
   }
 

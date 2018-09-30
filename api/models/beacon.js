@@ -58,9 +58,13 @@ const Beacon = class Beacon {
 
   async update(args) {
     const newData = omit(args, ['_id'])
-    const beacon = await beaconModel.findByIdAndUpdate(args._id, {
-      $set: newData,
-    })
+    const beacon = await beaconModel.findByIdAndUpdate(
+      args._id,
+      {
+        $set: newData,
+      },
+      { new: true }
+    )
     return beacon
   }
 }

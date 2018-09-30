@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { omit } = require('lodash')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -77,6 +78,19 @@ class Product {
   async create(args) {
     const createResult = await productModel.create(args)
     return createResult
+  }
+
+  async update(args) {
+    const newData = omit(args, ['_id'])
+    const updateResult = await productModel.findByIdAndUpdate(
+      args._id,
+      {
+        $set: newData,
+      },
+      { new: true }
+    )
+
+    return updateResult
   }
 
   async getProductStatistic(args) {

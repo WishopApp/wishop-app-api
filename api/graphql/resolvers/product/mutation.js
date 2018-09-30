@@ -6,8 +6,15 @@ const createProduct = baseResolver.createResolver(
   }
 )
 
+const updateProduct = baseResolver.createResolver(
+  async (root, args, context) => {
+    return context.models.product.update(args)
+  }
+)
+
 module.exports = {
   Mutation: {
     createProduct,
+    updateProduct,
   },
 }

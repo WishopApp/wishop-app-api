@@ -60,7 +60,8 @@ class SubCategoryProp {
       args._id,
       {
         $set: newdata,
-      }
+      },
+      { new: true }
     )
     return updateResult
   }
