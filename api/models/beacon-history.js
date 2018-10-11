@@ -21,7 +21,6 @@ const beaconHistoryModel = mongoose.model(
 const BeaconHistory = class BeaconHistory {
   async getMany(args) {
     const beacons = await beaconHistoryModel.find(args)
-
     return beacons
   }
 

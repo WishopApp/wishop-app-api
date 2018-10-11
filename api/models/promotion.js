@@ -20,7 +20,6 @@ const promotionModel = mongoose.model('PromotionModel', promotionSchema)
 const Promotion = class Promotion {
   async getMany(args) {
     const promotions = await promotionModel.find(args)
-
     return promotions
   }
 

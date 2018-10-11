@@ -31,7 +31,6 @@ const categoryPropModel = mongoose.model('CategoryPropModel', schema)
 class CategoryProp {
   async getMany(args) {
     const categoryProps = await categoryPropModel.find(args)
-
     return categoryProps
   }
 
