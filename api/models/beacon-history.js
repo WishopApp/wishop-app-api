@@ -6,6 +6,12 @@ const beaconHistorySchema = mongoose.Schema(
   {
     beaconId: { type: ObjectId, ref: 'beacons', require: true },
     title: String,
+    type: {
+      type: String,
+      enum: ['IDLE', 'ASSIGN', 'EXPIRE'],
+      default: 'IDLE',
+      require: true,
+    },
   },
   {
     timestamps: true,
@@ -19,19 +25,9 @@ const beaconHistoryModel = mongoose.model(
 )
 
 const BeaconHistory = class BeaconHistory {
-  async getMany(args) {
+  async getAll(args) {
     const beacons = await beaconHistoryModel.find(args)
     return beacons
-  }
-
-  async getOne(args) {
-    const beacon = await beaconHistoryModel.findOne(args)
-    return beacon
-  }
-
-  async getById(_id) {
-    const beacon = await beaconHistoryModel.findOne({ _id })
-    return beacon
   }
 
   async create(args) {

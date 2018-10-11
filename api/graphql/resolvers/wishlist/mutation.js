@@ -6,7 +6,7 @@ const {
 const createWishlist = baseResolver.createResolver(
   async (root, args, context) => {
     try {
-      return context.models.wishlist.create(args)
+      return await context.models.wishlist.create(args)
     } catch (error) {
       return new ResolverError(error)
     }

@@ -4,9 +4,21 @@ enum BEACON_STATUSES {
   EXPIRE
 }
 
+enum BEACON_HISTORY_STATUSES {
+  IDLE
+  ASSIGN
+  EXPIRE
+}
+
 enum BEACON_TYPES {
   INDOOR
   STICKER
+}
+
+type BeaconHistory {
+  title: String
+  type: BEACON_HISTORY_STATUSES
+  createdAt: String
 }
 
 type Beacon {
@@ -21,5 +33,6 @@ type Beacon {
   major: Int
   minor: Int
   assignId: ID
+  history: [BeaconHistory]
   createdAt: String
 }
