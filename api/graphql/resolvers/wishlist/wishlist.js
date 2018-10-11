@@ -10,7 +10,7 @@ const category = baseResolver.createResolver(
 
 const subCategory = baseResolver.createResolver(
   async (wishlist, args, context) => {
-    return context.models.subCategory.getById(wishlist.subCategoryId)
+    return context.models.subCategory.getOne({ _id: wishlist.subCategoryId })
   }
 )
 
@@ -18,19 +18,19 @@ const categoryProps = baseResolver.createResolver(
   async (wishlist, args, context) => {
     const { categoryProps } = wishlist
 
-    if (categoryProps.length !== 0) {
-      const categoryPropsWithName = map(categoryProps, async categoryProp => {
-        const { value, categoryPropId } = categoryProp
-        const { name } = await context.models.categoryProp.getById(
-          categoryPropId
-        )
-        return {
-          name: name,
-          value: value,
-        }
-      })
-      return categoryPropsWithName
+    if (categoryProps.length === 0) {
+      return []
     }
+
+    const categoryPropsWithName = map(categoryProps, async categoryProp => {
+      const { value, categoryPropId } = categoryProp
+      const { name } = await context.models.categoryProp.getById(categoryPropId)
+      return {
+        name: name,
+        value: value,
+      }
+    })
+    return categoryPropsWithName
   }
 )
 
@@ -38,22 +38,24 @@ const subCategoryProps = baseResolver.createResolver(
   async (wishlist, args, context) => {
     const { subCategoryProps } = wishlist
 
-    if (subCategoryProps.length !== 0) {
-      const subCategoryPropsWithName = map(
-        subCategoryProps,
-        async subCategoryProp => {
-          const { value, subCategoryPropId } = subCategoryProp
-          const { name } = await context.models.subCategoryProp.getById(
-            subCategoryPropId
-          )
-          return {
-            name: name,
-            value: value,
-          }
-        }
-      )
-      return subCategoryPropsWithName
+    if (subCategoryProps.length === 0) {
+      return []
     }
+
+    const subCategoryPropsWithName = map(
+      subCategoryProps,
+      async subCategoryProp => {
+        const { value, subCategoryPropId } = subCategoryProp
+        const { name } = await context.models.subCategoryProp.getById(
+          subCategoryPropId
+        )
+        return {
+          name: name,
+          value: value,
+        }
+      }
+    )
+    return subCategoryPropsWithName
   }
 )
 
