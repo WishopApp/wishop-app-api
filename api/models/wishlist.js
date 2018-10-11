@@ -51,7 +51,12 @@ const wishlistModel = mongoose.model('WishlistModel', wishlistsSchema)
 
 class Wishlist {
   async create(args) {
-    const wishlist = await wishlistModel.create(args)
+    const wishlistDataFromArgs = args.wishlist
+    const dataForCreateWishlist = {
+      userId: args.userId,
+      ...wishlistDataFromArgs,
+    }
+    const wishlist = await wishlistModel.create(dataForCreateWishlist)
     return wishlist
   }
 
@@ -72,10 +77,11 @@ class Wishlist {
 
   async update(args) {
     const newData = omit(args, ['_id'])
+    const dataForUpdate = { ...newData.wishlish }
     const wishlist = await wishlistModel.findByIdAndUpdate(
       args._id,
       {
-        $set: newData,
+        $set: dataForUpdate,
       },
       { new: true }
     )
