@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { omit } = require('lodash')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -32,23 +33,54 @@ const beaconRequestTicketModel = mongoose.model(
 
 const BeaconRequest = class BeaconRequest {
   async getMany(args) {
-    const beacons = await beaconRequestTicketModel.find(args)
-    return beacons
+    const beaconTickets = await beaconRequestTicketModel.find(args)
+    return beaconTickets
   }
 
   async getOne(args) {
-    const beacon = await beaconRequestTicketModel.findOne(args)
-    return beacon
+    const beaconTicket = await beaconRequestTicketModel.findOne(args)
+    return beaconTicket
   }
 
   async getById(_id) {
-    const beacon = await beaconRequestTicketModel.findOne({ _id })
-    return beacon
+    const beaconTicket = await beaconRequestTicketModel.findOne({ _id })
+    return beaconTicket
   }
 
   async create(args) {
-    const beacon = await beaconRequestTicketModel.create(args)
-    return beacon
+    const beaconTicket = await beaconRequestTicketModel.create(args)
+    return beaconTicket
+  }
+
+  async update(args) {
+    const newData = omit(args, ['_id'])
+    const beaconTicket = await beaconRequestTicketModel.findByIdAndUpdate(
+      args._id,
+      {
+        $set: newData,
+      },
+      { new: true }
+    )
+    return beaconTicket
+  }
+
+  async getStatistic() {
+    const newTicket = await beaconRequestTicketModel
+      .find({ status: 'NEW' })
+      .count()
+    const complete = await beaconRequestTicketModel
+      .find({ status: 'COMPLETE' })
+      .count()
+    const reject = await beaconRequestTicketModel
+      .find({ status: 'REJECTED' })
+      .count()
+
+    return {
+      new: newTicket,
+      complete,
+      reject,
+      total: newTicket + complete + reject,
+    }
   }
 }
 

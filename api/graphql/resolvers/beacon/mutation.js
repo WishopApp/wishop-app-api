@@ -71,11 +71,25 @@ const updateBeacon = baseResolver.createResolver(
   }
 )
 
+const createBeaconTicket = baseResolver.createResolver(
+  async (root, args, context) => {
+    return context.models.beaconRequestTickets.create(args)
+  }
+)
+
+const updateBeaconTicket = baseResolver.createResolver(
+  async (root, args, context) => {
+    return context.models.beaconRequestTickets.update(args)
+  }
+)
+
 module.exports = {
   Mutation: {
     createBeacon,
     assignBeaconToStore,
     assignBeaconToProduct,
     updateBeacon,
+    createBeaconTicket,
+    updateBeaconTicket,
   },
 }

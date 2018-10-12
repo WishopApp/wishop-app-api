@@ -14,10 +14,24 @@ const beaconStatistic = baseResolver.createResolver(
   }
 )
 
+const beaconRequestTickets = baseResolver.createResolver(
+  async (root, args, context) => {
+    return context.models.beaconRequestTickets.getMany(args)
+  }
+)
+
+const beaconTicketStatistic = baseResolver.createResolver(
+  async (root, args, context) => {
+    return context.models.beaconRequestTickets.getStatistic()
+  }
+)
+
 module.exports = {
   Query: {
     beacon,
     beacons,
     beaconStatistic,
+    beaconRequestTickets,
+    beaconTicketStatistic,
   },
 }

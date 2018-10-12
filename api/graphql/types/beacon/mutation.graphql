@@ -29,4 +29,12 @@ type Mutation {
     minor: Int
     assignId: ID
   ): Beacon
+
+  createBeaconTicket(
+    storeId: ID!
+    telNo: String!
+    type: BEACON_TICKET_TYPES
+  ): BeaconTicket
+
+  updateBeaconTicket(_id: ID!, status: BEACON_TICKET_STATUSES): BeaconTicket
 }

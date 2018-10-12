@@ -43,3 +43,32 @@ type BeaconStatistic {
   expire: Int
   total: Int
 }
+
+enum BEACON_TICKET_TYPES {
+  NEW
+  MORE
+}
+
+enum BEACON_TICKET_STATUSES {
+  NEW
+  COMPLETE
+  REJECTED
+}
+
+type BeaconTicket {
+  _id: ID
+  storeId: ID
+  telNo: String
+  type: BEACON_TICKET_TYPES
+  status: BEACON_TICKET_STATUSES
+  createdAt: String
+
+  store: Store
+}
+
+type BeaconTicketStatistic {
+  new: Int
+  complete: Int
+  reject: Int
+  total: Int
+}

@@ -10,4 +10,12 @@ type Query {
   beacons(assignId: ID, type: BEACON_TYPES, status: BEACON_STATUSES): [Beacon]
 
   beaconStatistic: BeaconStatistic
+
+  beaconRequestTickets(
+    storeId: ID
+    type: BEACON_TICKET_TYPES
+    status: BEACON_TICKET_STATUSES
+  ): [BeaconTicket]
+
+  beaconTicketStatistic: BeaconTicketStatistic
 }
