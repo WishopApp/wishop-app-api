@@ -1,5 +1,5 @@
 type Query {
-  product(_id: ID, name: String!): Product
+  product(_id: ID!, name: String): Product
 
   products(storeId: ID, storeBranchId: ID): [Product]
 

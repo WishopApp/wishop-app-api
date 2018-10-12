@@ -20,11 +20,53 @@ const subCategory = baseResolver.createResolver(
   }
 )
 
+const categoryProps = baseResolver.createResolver(
+  async (product, args, context) => {
+    if (product.categoryProps.length === 0) {
+      console.log('zero')
+      return []
+    }
+
+    return product.categoryProps.map(async cp => {
+      const cateProp = await context.models.categoryProp.getOne({
+        _id: cp.propId,
+      })
+      return {
+        _id: cp._id,
+        name: cateProp.name,
+        value: cp.value,
+      }
+    })
+  }
+)
+
+const subCategoryProps = baseResolver.createResolver(
+  async (product, args, context) => {
+    if (product.subCategoryProps.length === 0) {
+      console.log('zero sub')
+      return []
+    }
+
+    return product.subCategoryProps.map(async cp => {
+      const subCateProp = await context.models.subCategoryProp.getOne({
+        _id: cp.propId,
+      })
+      return {
+        _id: cp._id,
+        name: subCateProp.name,
+        value: cp.value,
+      }
+    })
+  }
+)
+
 module.exports = {
   Product: {
     store,
     storeBranch,
     category,
     subCategory,
+    categoryProps,
+    subCategoryProps,
   },
 }

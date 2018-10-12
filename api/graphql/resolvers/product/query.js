@@ -4,7 +4,8 @@ const {
 } = require('../../../libaries/wishlist-matched-percentage')
 
 const product = baseResolver.createResolver(async (root, args, context) => {
-  return context.models.product.getOne(args)
+  let product = await context.models.product.getOne(args)
+  return product
 })
 
 const products = baseResolver.createResolver(async (root, args, context) => {
