@@ -36,3 +36,10 @@ type Beacon {
   history: [BeaconHistory]
   createdAt: String
 }
+
+type BeaconStatistic {
+  idle: Int
+  inuse: Int
+  expire: Int
+  total: Int
+}

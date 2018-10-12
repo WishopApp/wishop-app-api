@@ -8,4 +8,6 @@ type Query {
   ): Beacon
 
   beacons(assignId: ID, type: BEACON_TYPES, status: BEACON_STATUSES): [Beacon]
+
+  beaconStatistic: BeaconStatistic
 }

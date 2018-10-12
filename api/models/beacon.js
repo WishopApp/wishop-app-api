@@ -67,6 +67,19 @@ const Beacon = class Beacon {
     )
     return beacon
   }
+
+  async getStatistic() {
+    const idle = await beaconModel.find({ status: 'IDLE' }).count()
+    const inuse = await beaconModel.find({ status: 'INUSE' }).count()
+    const expire = await beaconModel.find({ status: 'EXPIRE' }).count()
+
+    return {
+      idle,
+      inuse,
+      expire,
+      total: idle + inuse + expire,
+    }
+  }
 }
 
 module.exports = Beacon
