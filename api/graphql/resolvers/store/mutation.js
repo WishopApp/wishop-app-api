@@ -1,7 +1,9 @@
 const { baseResolver } = require('../../../libaries/apollo-resolver-creator')
 
 const createStore = baseResolver.createResolver(async (root, args, context) => {
-  return context.models.store.create(args)
+  const store = await context.models.store.create(args)
+  context.models.user.update({ _id: args.ownerId, storeId: store._id })
+  return store
 })
 
 module.exports = {
