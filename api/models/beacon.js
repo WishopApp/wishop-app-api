@@ -46,11 +46,6 @@ const Beacon = class Beacon {
     return beacon
   }
 
-  async getAllByStoreId(storeId) {
-    const beacons = await beaconModel.find({ storeId })
-    return beacons
-  }
-
   async create(args) {
     const beacon = await beaconModel.create(args)
     return beacon

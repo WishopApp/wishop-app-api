@@ -5,12 +5,22 @@ const owner = baseResolver.createResolver(async (store, args, context) => {
 })
 
 const beacons = baseResolver.createResolver(async (store, args, context) => {
-  return context.models.beacon.getAllByStoreId(store._id)
+  return context.models.beacon.getMany({ assignId: store._id })
+})
+
+const products = baseResolver.createResolver(async (store, args, context) => {
+  return context.models.product.getMany({ storeId: store._id })
+})
+
+const branchs = baseResolver.createResolver(async (store, args, context) => {
+  return context.models.storeBranch.getMany({ storeId: store._id })
 })
 
 module.exports = {
   Store: {
     owner,
     beacons,
+    products,
+    branchs,
   },
 }
