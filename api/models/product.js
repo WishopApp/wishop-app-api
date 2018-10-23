@@ -22,6 +22,7 @@ const productSchema = mongoose.Schema(
       },
     ],
     name: { type: String, require: true },
+    photoUrlList: [{ type: String, require: true }],
     status: {
       type: String,
       enum: ['AVAILABLE', 'OUT_OF_STOCK'],

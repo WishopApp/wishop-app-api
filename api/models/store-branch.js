@@ -6,11 +6,11 @@ const storeBranchesSchema = mongoose.Schema(
   {
     storeId: { type: ObjectId, ref: 'stores', require: true },
     name: { type: String, require: true, unique: true },
-    telNo: { type: String, require: true },
-    productIds: [{ type: ObjectId, ref: 'products', require: true }],
+    telNo: { type: String },
+    productIds: [{ type: ObjectId, ref: 'products' }],
     staffAccount: {
-      username: { type: String, require: true },
-      password: { type: String, require: true },
+      username: { type: String },
+      password: { type: String },
     },
     status: {
       type: String,

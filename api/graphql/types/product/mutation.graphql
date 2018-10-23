@@ -7,6 +7,7 @@ type Mutation {
     categoryProps: [ProductCategoryPropInput]
     subCategoryProps: [ProductSubCategoryPropInput]
     name: String
+    photoUrlList: [String]
   ): Product
 
   updateProduct(_id: ID!, status: PRODUCT_STATUSES!): Product
