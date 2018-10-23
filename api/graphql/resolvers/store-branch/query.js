@@ -1,7 +1,6 @@
 const { baseResolver } = require('../../../libaries/apollo-resolver-creator')
-const {
-  isThisStoreShouldCheck,
-} = require('../../../libaries/wishlist-matched-percentage')
+
+const pubsub = require('../../../libaries/pubsub')
 
 const storeBranch = baseResolver.createResolver(async (root, args, context) => {
   const store = await context.models.storeBranch.getOne(args)
@@ -27,6 +26,13 @@ const searchStoreBranchFromBeacon = baseResolver.createResolver(
     const storeBranch = await context.models.storeBranch.getOne({
       _id: beaconAssignThisBranch.assignId,
     })
+
+    console.log(storeBranch)
+
+    if (storeBranch) {
+      // return user wishlist
+      pubsub.publish('storeDetected', storeBranch)
+    }
 
     return storeBranch
   }

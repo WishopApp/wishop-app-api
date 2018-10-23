@@ -45,6 +45,9 @@ router.get(
   '/graphiql',
   graphiqlExpress({
     endpointURL: '/graphql',
+    subscriptionsEndpoint: `ws://localhost:${
+      process.env.APP_PORT
+    }/subscriptions`,
   })
 )
 
