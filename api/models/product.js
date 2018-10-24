@@ -99,8 +99,8 @@ class Product {
     let filterOutOfStock = { status: 'OUT_OF_STOCK' }
 
     if (args.storeId) {
-      filterAvaialble._id = args.storeId
-      filterOutOfStock._id = args.storeId
+      filterAvaialble.storeId = args.storeId
+      filterOutOfStock.storeId = args.storeId
     }
 
     const available = await productModel.find(filterAvaialble).count()
