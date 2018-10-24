@@ -1,6 +1,7 @@
 type Category {
   _id: ID
   name: String
+  logo: String
   properties: [CategoryProp]
   subCategories: [SubCategory]
   createdAt: String

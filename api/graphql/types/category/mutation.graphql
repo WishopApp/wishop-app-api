@@ -1,5 +1,5 @@
 type Mutation {
-  createCategory(name: String!): Category
+  createCategory(name: String!, logo: String!): Category
 
-  updateCategory(_id: ID!, name: String!): Category
+  updateCategory(_id: ID!, name: String!, logo: String): Category
 }

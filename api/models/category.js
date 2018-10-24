@@ -9,6 +9,7 @@ const categorySchema = mongoose.Schema(
       type: String,
       require: true,
     },
+    logo: { type: String, require: true },
     cateProps: [
       {
         type: ObjectId,
