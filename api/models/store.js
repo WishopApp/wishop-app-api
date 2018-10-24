@@ -4,7 +4,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 
 const storesSchema = mongoose.Schema(
   {
-    userId: { type: ObjectId, ref: 'users', require: true },
+    ownerId: { type: ObjectId, ref: 'users', require: true },
     name: { type: String, require: true, unique: true },
     coverUrl: String,
     avatarUrl: String,
