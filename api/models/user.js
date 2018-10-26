@@ -28,12 +28,6 @@ const usersSchema = mongoose.Schema(
         detail: String,
       },
     },
-    wishlistIds: [
-      {
-        type: ObjectId,
-        ref: 'wishlists',
-      },
-    ],
     storeId: {
       type: ObjectId,
       ref: 'stores',
