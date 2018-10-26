@@ -1,6 +1,5 @@
 type Mutation {
-  createUser (
-    email: String!
-    password: String!
-  ): User
+  createUser(email: String!, password: String!): User
+
+  updateUser(_id: ID!, profile: ProfileInput, status: UserStatuses): User
 }
