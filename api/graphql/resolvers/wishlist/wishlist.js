@@ -18,6 +18,10 @@ const categoryProps = baseResolver.createResolver(
   async (wishlist, args, context) => {
     const { categoryProps } = wishlist
 
+    if (!categoryProps) {
+      return []
+    }
+
     if (categoryProps.length === 0) {
       return []
     }
@@ -26,6 +30,7 @@ const categoryProps = baseResolver.createResolver(
       const { value, categoryPropId } = categoryProp
       const { name } = await context.models.categoryProp.getById(categoryPropId)
       return {
+        _id: categoryPropId,
         name: name,
         value: value,
       }
@@ -37,6 +42,10 @@ const categoryProps = baseResolver.createResolver(
 const subCategoryProps = baseResolver.createResolver(
   async (wishlist, args, context) => {
     const { subCategoryProps } = wishlist
+
+    if (!subCategoryProps) {
+      return []
+    }
 
     if (subCategoryProps.length === 0) {
       return []
@@ -50,6 +59,7 @@ const subCategoryProps = baseResolver.createResolver(
           subCategoryPropId
         )
         return {
+          _id: subCategoryPropId,
           name: name,
           value: value,
         }
