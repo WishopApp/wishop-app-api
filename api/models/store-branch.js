@@ -5,7 +5,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 const storeBranchesSchema = mongoose.Schema(
   {
     storeId: { type: ObjectId, ref: 'stores', require: true },
-    name: { type: String, require: true, unique: true },
+    name: { type: String, require: true },
     telNo: { type: String },
     productIds: [{ type: ObjectId, ref: 'products' }],
     staffAccount: {
