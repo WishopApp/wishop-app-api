@@ -7,10 +7,7 @@ module.exports = {
       subscribe: withFilter(
         () => pubsub.asyncIterator('storeDetected'),
         (payload, args) => {
-          console.log('payload', typeof payload._id)
-          console.log('args', typeof args.storeId)
-
-          return payload._id.toString() === args.storeId
+          return payload.storeBranchId === args.storeBranchId
         }
       ),
     },

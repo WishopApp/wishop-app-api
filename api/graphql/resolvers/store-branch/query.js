@@ -1,5 +1,4 @@
 const { baseResolver } = require('../../../libaries/apollo-resolver-creator')
-
 const pubsub = require('../../../libaries/pubsub')
 
 const storeBranch = baseResolver.createResolver(async (root, args, context) => {
@@ -27,11 +26,17 @@ const searchStoreBranchFromBeacon = baseResolver.createResolver(
       _id: beaconAssignThisBranch.assignId,
     })
 
-    console.log(storeBranch)
+    const wishlist = await context.models.wishlist.getMany({
+      userId: args.userId,
+    })
 
     if (storeBranch) {
-      // return user wishlist
-      pubsub.publish('storeDetected', storeBranch)
+      const payload = {
+        storeDetected: wishlist,
+        storeBranchId: storeBranch._id.toString(),
+      }
+
+      pubsub.publish('storeDetected', payload)
     }
 
     return storeBranch
