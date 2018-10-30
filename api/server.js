@@ -14,11 +14,13 @@ require('dotenv').config()
 const router = require('./router')
 require('./libaries/mongoose')
 
+require('./libaries/pubsub')
+
 const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cookieParser())
-app.use('*', cors({ origin: `http://localhost:${process.env.PORT}` }))
+app.use(cors())
 
 app.use('/', router)
 
