@@ -17,40 +17,42 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cookieParser())
-app.use(cors())
+app.use(
+  '*',
+  cors({ origin: `https://dev-api-wishopapp.tk:${process.env.APP_PORT}` })
+)
 
 app.use('/', router)
 
-const WS_PORT = 5000
-
 // Create WebSocket listener server
-const websocketServer = createServer((request, response) => {
-  response.writeHead(404)
-  response.end()
-})
+const websocketServer = createServer(app)
 
 // Bind it to port and start listening
-websocketServer.listen(WS_PORT, () =>
-  console.log(`Websocket Server is now running on http://localhost:${WS_PORT}`)
-)
+websocketServer.listen(process.env.APP_PORT, () => {
+  console.log(
+    `Websocket Server is now running on http://localhost:${
+      process.env.APP_PORT
+    }`
+  )
 
-SubscriptionServer.create(
-  {
-    schema,
-    execute,
-    subscribe,
-  },
-  {
-    server: websocketServer,
-    path: '/subscriptions',
-  }
-)
-
-const engine = new ApolloEngine({
-  apiKey: process.env.APOLLO_ENGINE_APIKEY,
+  new SubscriptionServer(
+    {
+      execute,
+      subscribe,
+      schema,
+    },
+    {
+      server: websocketServer,
+      path: '/subscriptions',
+    }
+  )
 })
 
-engine.listen({
-  port: process.env.APP_PORT,
-  expressApp: app,
-})
+// const engine = new ApolloEngine({
+//   apiKey: process.env.APOLLO_ENGINE_APIKEY,
+// })
+
+// engine.listen({
+//   port: process.env.APP_PORT,
+//   expressApp: app,
+// })
