@@ -30,6 +30,7 @@ type Product {
   categoryProps: [ProductCategoryProp]
   subCategoryProps: [ProductSubCategoryProp]
   name: String
+  price: Float
   photoUrlList: [String]
   status: PRODUCT_STATUSES
   createdAt: String
@@ -58,6 +59,7 @@ type ProductFromSearch {
   categoryProps: [ProductCategoryProp]
   subCategoryProps: [ProductSubCategoryProp]
   name: String
+  price: Float
   matchedPercentage: Float
   recommended: Boolean
 }
