@@ -33,6 +33,7 @@ const categoryProps = baseResolver.createResolver(
       })
       return {
         _id: cp._id,
+        propId: cp.propId,
         name: cateProp.name,
         value: cp.value,
       }
@@ -53,6 +54,7 @@ const subCategoryProps = baseResolver.createResolver(
       })
       return {
         _id: cp._id,
+        propId: cp.propId,
         name: subCateProp.name,
         value: cp.value,
       }
