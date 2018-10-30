@@ -6,15 +6,12 @@ const { ApolloEngine } = require('apollo-engine')
 const { createServer } = require('http')
 const { execute, subscribe } = require('graphql')
 const { SubscriptionServer } = require('subscriptions-transport-ws')
-
-const schema = require('./schema')
-
 require('dotenv').config()
 
-const router = require('./router')
 require('./libaries/mongoose')
-
 require('./libaries/pubsub')
+const schema = require('./schema')
+const router = require('./router')
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -24,32 +21,36 @@ app.use(cors())
 
 app.use('/', router)
 
-const ws = createServer(app)
-ws.listen(process.env.APP_PORT, () => {
-  console.log(
-    `GraphQL Server is now running on http://localhost:${process.env.APP_PORT}`
-  )
-  // Set up the WebSocket for handling GraphQL subscriptions
-  new SubscriptionServer(
-    {
-      execute,
-      subscribe,
-      schema,
-    },
-    {
-      server: ws,
-      path: '/subscriptions',
-    }
-  )
+const WS_PORT = 5000
+
+// Create WebSocket listener server
+const websocketServer = createServer((request, response) => {
+  response.writeHead(404)
+  response.end()
 })
 
-// const engine = new ApolloEngine({
-//   apiKey: process.env.APOLLO_ENGINE_APIKEY,
-// })
+// Bind it to port and start listening
+websocketServer.listen(WS_PORT, () =>
+  console.log(`Websocket Server is now running on http://localhost:${WS_PORT}`)
+)
 
-// engine.listen({
-//   port: process.env.APP_PORT,
-//   expressApp: ws,
-// })
+SubscriptionServer.create(
+  {
+    schema,
+    execute,
+    subscribe,
+  },
+  {
+    server: websocketServer,
+    path: '/subscriptions',
+  }
+)
 
-module.exports = ws
+const engine = new ApolloEngine({
+  apiKey: process.env.APOLLO_ENGINE_APIKEY,
+})
+
+engine.listen({
+  port: process.env.APP_PORT,
+  expressApp: app,
+})
