@@ -69,4 +69,8 @@ module.exports = {
     categoryProps,
     subCategoryProps,
   },
+  ProductFromSearch: {
+    category,
+    subCategory,
+  },
 }
