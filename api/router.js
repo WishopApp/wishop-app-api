@@ -45,9 +45,7 @@ router.get(
   '/graphiql',
   graphiqlExpress({
     endpointURL: '/graphql',
-    subscriptionsEndpoint: `wss://dev-api-wishopapp.tk:${
-      process.env.APP_PORT
-    }/subscriptions`,
+    subscriptionsEndpoint: `ws://dev-api-wishopapp.tk/subscriptions`,
   })
 )
 

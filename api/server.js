@@ -17,10 +17,7 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cookieParser())
-app.use(
-  '*',
-  cors({ origin: `https://dev-api-wishopapp.tk:${process.env.APP_PORT}` })
-)
+app.use(cors())
 
 app.use('/', router)
 
