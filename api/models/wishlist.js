@@ -77,7 +77,7 @@ class Wishlist {
 
   async update(args) {
     const newData = omit(args, ['_id'])
-    const dataForUpdate = { ...newData.wishlish }
+    const dataForUpdate = { ...newData.wishlist }
     const wishlist = await wishlistModel.findByIdAndUpdate(
       args._id,
       {
