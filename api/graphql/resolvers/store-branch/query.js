@@ -26,13 +26,25 @@ const searchStoreBranchFromBeacon = baseResolver.createResolver(
       _id: beaconAssignThisBranch.assignId,
     })
 
-    const wishlist = await context.models.wishlist.getMany({
+    const wishlists = await context.models.wishlist.getMany({
       userId: args.userId,
     })
 
     if (storeBranch) {
+      await Promise.all(
+        wishlists.map(async wishlist => {
+          wishlist.category = await context.models.category.getOne({
+            _id: wishlist.categoryId,
+          })
+
+          wishlist.subCategory = await context.models.subCategory.getOne({
+            _id: wishlist.subCategoryId,
+          })
+        })
+      )
+
       const payload = {
-        storeDetected: wishlist,
+        storeDetected: wishlists,
         storeBranchId: storeBranch._id.toString(),
       }
 

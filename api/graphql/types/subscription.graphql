@@ -1,3 +1,10 @@
+type WishlistForSubscription {
+  _id: String
+  name: String
+  category: Category
+  subCategory: SubCategory
+}
+
 type Subscription {
-  storeDetected(storeBranchId: ID!): [Wishlist]
+  storeDetected(storeBranchId: ID!): [WishlistForSubscription]
 }
