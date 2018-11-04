@@ -6,7 +6,7 @@ const subCategory = baseResolver.createResolver(async (root, args, context) => {
 
 const subCategories = baseResolver.createResolver(
   async (root, args, context) => {
-    return context.models.subCategory.getMany(args, args.limit, args.skip)
+    return context.models.subCategory.getMany(args)
   }
 )
 

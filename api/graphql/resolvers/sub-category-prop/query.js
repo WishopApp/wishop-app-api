@@ -8,7 +8,7 @@ const subCategoryProp = baseResolver.createResolver(
 
 const subCategoryProps = baseResolver.createResolver(
   async (root, args, context) => {
-    return context.models.subCategoryProp.getMany(args, args.limit, args.skip)
+    return context.models.subCategoryProp.getMany(args)
   }
 )
 
