@@ -72,7 +72,11 @@ module.exports = {
     subCategoryProps,
   },
   ProductFromSearch: {
+    store,
+    storeBranch,
     category,
     subCategory,
+    categoryProps,
+    subCategoryProps,
   },
 }
