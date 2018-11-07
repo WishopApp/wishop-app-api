@@ -6,6 +6,14 @@ const createStoreBranch = baseResolver.createResolver(
       throw new Error('Authentication is required.')
     }
 
+    const staffAccount = {
+      email: args.staffUsername,
+      password: args.staffPassword,
+      role: 'STORE_STAFF',
+    }
+
+    await context.models.user.create(staffAccount)
+
     return context.models.storeBranch.create(args)
   }
 )
