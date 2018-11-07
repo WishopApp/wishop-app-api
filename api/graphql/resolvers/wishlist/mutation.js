@@ -5,6 +5,10 @@ const {
 
 const createWishlist = baseResolver.createResolver(
   async (root, args, context) => {
+    if (!context.user) {
+      throw new Error('Authentication is required.')
+    }
+
     try {
       return await context.models.wishlist.create(args)
     } catch (error) {
@@ -15,6 +19,10 @@ const createWishlist = baseResolver.createResolver(
 
 const updateWishlist = baseResolver.createResolver(
   async (root, args, context) => {
+    if (!context.user) {
+      throw new Error('Authentication is required.')
+    }
+
     try {
       return context.models.wishlist.update(args)
     } catch (error) {
@@ -25,6 +33,10 @@ const updateWishlist = baseResolver.createResolver(
 
 const removeWishlist = baseResolver.createResolver(
   async (root, args, context) => {
+    if (!context.user) {
+      throw new Error('Authentication is required.')
+    }
+
     try {
       return context.models.wishlist.remove(args)
     } catch (error) {

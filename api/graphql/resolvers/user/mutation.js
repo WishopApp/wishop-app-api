@@ -5,6 +5,10 @@ const createUser = baseResolver.createResolver(async (root, args, context) => {
 })
 
 const updateUser = baseResolver.createResolver(async (root, args, context) => {
+  if (!context.user) {
+    throw new Error('Authentication is required.')
+  }
+
   return context.models.user.update(args)
 })
 

@@ -1,4 +1,5 @@
 const { baseResolver } = require('../../../libaries/apollo-resolver-creator')
+const isAdmin = require('../../../libaries/role-checker')
 
 const REGISTER_MESSAGE = 'Registered in system.'
 const UPDATE_TO_IDLE_MESSAGE = `Change status to "IDLE"`
@@ -11,6 +12,14 @@ const EXPIRE_TYPE = 'EXPIRE'
 
 const createBeacon = baseResolver.createResolver(
   async (root, args, context) => {
+    if (!context.user) {
+      throw new Error('Authentication is required.')
+    }
+
+    if (!isAdmin(context.user)) {
+      throw new Error('Permission Denied.')
+    }
+
     const beacon = await context.models.beacon.create(args)
     await context.models.beaconHistory.create({
       beaconId: beacon._id,
@@ -22,6 +31,14 @@ const createBeacon = baseResolver.createResolver(
 
 const assignBeaconToStore = baseResolver.createResolver(
   async (root, args, context) => {
+    if (!context.user) {
+      throw new Error('Authentication is required.')
+    }
+
+    if (!isAdmin(context.user)) {
+      throw new Error('Permission Denied.')
+    }
+
     args.status = 'INUSE'
     const beacon = await context.models.beacon.update(args)
     const store = await context.models.store.getOne({ _id: args.assignId })
@@ -36,6 +53,14 @@ const assignBeaconToStore = baseResolver.createResolver(
 
 const assignBeaconToProduct = baseResolver.createResolver(
   async (root, args, context) => {
+    if (!context.user) {
+      throw new Error('Authentication is required.')
+    }
+
+    if (!isAdmin(context.user)) {
+      throw new Error('Permission Denied.')
+    }
+
     args.status = 'INUSE'
     const beacon = await context.models.beacon.update(args)
     const product = await context.models.product.getOne({ _id: args.assignId })
@@ -49,6 +74,14 @@ const assignBeaconToProduct = baseResolver.createResolver(
 
 const updateBeacon = baseResolver.createResolver(
   async (root, args, context) => {
+    if (!context.user) {
+      throw new Error('Authentication is required.')
+    }
+
+    if (!isAdmin(context.user)) {
+      throw new Error('Permission Denied.')
+    }
+
     const beacon = await context.models.beacon.update(args)
 
     if (args.status) {
