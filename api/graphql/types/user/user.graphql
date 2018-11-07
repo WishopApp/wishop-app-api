@@ -34,6 +34,12 @@ enum UserStatuses {
   BANNED
 }
 
+enum UserRoles {
+  NORMAL
+  ADMIN
+  STORE_STAFF
+}
+
 type User {
   _id: ID
   email: String
@@ -43,6 +49,7 @@ type User {
   storeId: ID
   wishlist: [Wishlist]
   status: UserStatuses
+  role: UserRoles
   createdAt: String
 }
 
