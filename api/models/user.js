@@ -38,6 +38,12 @@ const usersSchema = mongoose.Schema(
       require: true,
       default: 'CUSTOMER',
     },
+    role: {
+      type: String,
+      enum: ['NORMAL', 'ADMIN'],
+      require: true,
+      default: 'NORMAL',
+    },
   },
   {
     timestamps: true,
