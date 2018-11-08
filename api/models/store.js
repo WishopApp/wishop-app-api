@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { omit } = require('lodash')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
@@ -67,6 +68,18 @@ class Store {
   async create(args) {
     const store = await storeModel.create(args)
     return store
+  }
+
+  async update(args) {
+    const newdata = omit(args, ['_id'])
+    const updateResult = await storeModel.findByIdAndUpdate(
+      args._id,
+      {
+        $set: newdata,
+      },
+      { new: true }
+    )
+    return updateResult
   }
 }
 

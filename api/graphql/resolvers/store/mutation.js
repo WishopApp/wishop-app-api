@@ -18,8 +18,17 @@ const createStore = baseResolver.createResolver(async (root, args, context) => {
   return store
 })
 
+const updateStore = baseResolver.createResolver(async (root, args, context) => {
+  if (!context.user) {
+    throw new Error('Authentication is required.')
+  }
+
+  return context.models.store.update(args)
+})
+
 module.exports = {
   Mutation: {
     createStore,
+    updateStore,
   },
 }

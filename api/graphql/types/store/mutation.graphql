@@ -1,7 +1,15 @@
 type Mutation {
-  createStore (
+  createStore(
     ownerId: ID!
     name: String!
+    coverUrl: String
+    avatarUrl: String
+    description: String
+  ): Store
+
+  updateStore(
+    _id: ID!
+    name: String
     coverUrl: String
     avatarUrl: String
     description: String
