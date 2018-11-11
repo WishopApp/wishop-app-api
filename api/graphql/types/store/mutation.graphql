@@ -13,5 +13,6 @@ type Mutation {
     coverUrl: String
     avatarUrl: String
     description: String
+    promotions: [String]
   ): Store
 }

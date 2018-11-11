@@ -11,6 +11,7 @@ const storesSchema = mongoose.Schema(
     avatarUrl: String,
     description: String,
     storeBranchIds: [{ type: ObjectId, ref: 'store_branches', require: true }],
+    promotions: [{ type: String }],
     status: {
       type: String,
       enum: ['OPEN', 'CLOSED', 'BANNED'],

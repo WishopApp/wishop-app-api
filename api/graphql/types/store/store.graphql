@@ -15,6 +15,7 @@ type Store {
   beacons: [Beacon]
   products: [Product]
   branchs: [StoreBranch]
+  promotions: [String]
   status: StoreStatuses
   createdAt: String
 }
