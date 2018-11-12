@@ -8,10 +8,7 @@ const storeBranchesSchema = mongoose.Schema(
     name: { type: String, require: true },
     telNo: { type: String },
     productIds: [{ type: ObjectId, ref: 'products' }],
-    staffAccount: {
-      username: { type: String },
-      password: { type: String },
-    },
+    staffUsername: { type: String },
     status: {
       type: String,
       enum: ['OPEN', 'CLOSED', 'BANNED'],

@@ -9,6 +9,7 @@ type StoreBranch {
   storeId: ID
   name: String
   telNo: String
+  staffUsername: String
   productIds: [ID]
   products: [Product]
   status: STORE_BRANCH_STATUSES
