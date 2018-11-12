@@ -15,6 +15,7 @@ type ProductSubCategoryProp {
 enum PRODUCT_STATUSES {
   AVAILABLE
   OUT_OF_STOCK
+  DELETE
 }
 
 type Product {

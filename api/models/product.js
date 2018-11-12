@@ -26,7 +26,7 @@ const productSchema = mongoose.Schema(
     price: { type: Number, require: true },
     status: {
       type: String,
-      enum: ['AVAILABLE', 'OUT_OF_STOCK'],
+      enum: ['AVAILABLE', 'OUT_OF_STOCK', 'DELETE'],
       default: 'AVAILABLE',
       require: true,
     },
@@ -40,9 +40,17 @@ const productSchema = mongoose.Schema(
 const productModel = mongoose.model('ProductModel', productSchema)
 
 class Product {
-  async getMany(args) {
+  async getManyWithDelete(args) {
     const products = await productModel.find(args)
     return products
+  }
+
+  async getManyNoDelete(args) {
+    const products = await productModel.find(args)
+    const productsNoDeleteStatus = products.filter(
+      product => product.status !== 'DELETE'
+    )
+    return productsNoDeleteStatus
   }
 
   async getStoreProducts(storeId) {

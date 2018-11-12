@@ -9,7 +9,7 @@ const beacons = baseResolver.createResolver(async (store, args, context) => {
 })
 
 const products = baseResolver.createResolver(async (store, args, context) => {
-  return context.models.product.getMany({ storeId: store._id })
+  return context.models.product.getManyNoDelete({ storeId: store._id })
 })
 
 const branchs = baseResolver.createResolver(async (store, args, context) => {

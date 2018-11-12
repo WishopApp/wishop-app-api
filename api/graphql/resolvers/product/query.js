@@ -2,6 +2,7 @@ const { baseResolver } = require('../../../libaries/apollo-resolver-creator')
 const {
   productWithRecommendation,
 } = require('../../../libaries/wishlist-matched-percentage')
+const isAdmin = require('../../../libaries/role-checker')
 
 const product = baseResolver.createResolver(async (root, args, context) => {
   let product = await context.models.product.getOne(args)
@@ -9,7 +10,13 @@ const product = baseResolver.createResolver(async (root, args, context) => {
 })
 
 const products = baseResolver.createResolver(async (root, args, context) => {
-  return context.models.product.getMany(args)
+  if (context.user) {
+    if (isAdmin(context.user)) {
+      return context.models.product.getManyWithDelete(args)
+    }
+  }
+
+  return context.models.product.getManyNoDelete(args)
 })
 
 const searchByKeyword = baseResolver.createResolver(
