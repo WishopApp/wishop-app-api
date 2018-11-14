@@ -1,0 +1,16 @@
+type ReachCount {
+  date: String
+  hours: [Int]
+}
+
+type CategoryRanking {
+  categoryId: ID
+  count: Int
+}
+
+type StoreStatistic {
+  _id: ID
+  storeBranchId: ID
+  reachCount: [ReachCount]
+  categoryRanking: [CategoryRanking]
+}

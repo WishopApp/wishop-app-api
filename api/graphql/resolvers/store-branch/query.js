@@ -49,6 +49,20 @@ const searchStoreBranchFromBeacon = baseResolver.createResolver(
       }
 
       pubsub.publish('storeDetected', payload)
+
+      const oldStatistic = await context.models.storeStatistic.getOne({
+        storeBranchId: storeBranch._id,
+      })
+
+      if (!oldStatistic) {
+        const newStatistic = await context.models.storeStatistic.create({
+          storeBranchId: storeBranch._id,
+        })
+
+        await context.models.storeStatistic.update(newStatistic._id, wishlists)
+      }
+
+      await context.models.storeStatistic.update(oldStatistic._id, wishlists)
     }
 
     return storeBranch
