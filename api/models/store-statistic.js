@@ -58,9 +58,9 @@ class StoreStatistic {
     return store
   }
 
-  async update(branchId, wishlists) {
+  async update(statisticId, wishlists) {
     const statistic = await storesStatisticModel.findOne({
-      storeBranchId: branchId,
+      _id: statisticId,
     })
 
     let oldRanking = statistic.categoryRanking
@@ -97,20 +97,33 @@ class StoreStatistic {
       date: dateKey,
     })
 
-    if (!todayReachCountIndex) {
-      statistic.reachCount[todayReachCountIndex] = {
+    if (todayReachCountIndex < 0) {
+      statistic.reachCount.push({
         date: dateKey,
         hours: Array(24).fill(0),
-      }
+      })
+
+      statistic.reachCount[0].hours[hourIndex] = 1
+    } else {
+      const oldReachCount =
+        statistic.reachCount[todayReachCountIndex].hours[hourIndex]
+
+      statistic.reachCount[todayReachCountIndex].hours[hourIndex] =
+        oldReachCount + 1
     }
 
-    statistic.reachCount[todayReachCountIndex].hours[hourIndex] = 1
-
-    return storesStatisticModel.findOneAndUpdate({
-      storeBranchId: branchId,
+    const newdata = {
       reachCount: statistic.reachCount,
       categoryRanking: oldRanking,
-    })
+    }
+
+    return storesStatisticModel.findByIdAndUpdate(
+      statisticId,
+      {
+        $set: newdata,
+      },
+      { new: true }
+    )
   }
 }
 
