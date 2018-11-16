@@ -6,9 +6,10 @@ type ReachCount {
 type CategoryRanking {
   categoryId: ID
   count: Int
+  category: Category
 }
 
-type StoreStatistic {
+type StoreBranchStatistic {
   _id: ID
   storeBranchId: ID
   reachCount: [ReachCount]
