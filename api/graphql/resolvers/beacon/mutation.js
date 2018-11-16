@@ -41,10 +41,15 @@ const assignBeaconToStore = baseResolver.createResolver(
 
     args.status = 'INUSE'
     const beacon = await context.models.beacon.update(args)
-    const store = await context.models.store.getOne({ _id: args.assignId })
+    const storeBranch = await context.models.storeBranch.getOne({
+      _id: args.assignId,
+    })
+    const store = await context.models.store.getOne({
+      _id: storeBranch.storeId,
+    })
     await context.models.beaconHistory.create({
       beaconId: args._id,
-      title: `${ASSIGN_TO_STORE_MESSAGE}"${store.name}"`,
+      title: `${ASSIGN_TO_STORE_MESSAGE}"${store.name}:${storeBranch.name}"`,
       type: ASSIGN_TYPE,
     })
     return beacon
