@@ -123,6 +123,19 @@ class User {
     const token = createUserToken(user)
     return token
   }
+
+  async adminLogin({ email, password }) {
+    const user = await this.getOne({ email })
+
+    const pass = compareBcrypt(password, user.password)
+
+    if (!pass || user.role !== 'ADMIN') {
+      throw new Error('Authorization failed.')
+    }
+
+    const token = createUserToken(user)
+    return token
+  }
 }
 
 module.exports = User

@@ -5,13 +5,7 @@ const login = baseResolver.createResolver(async (root, args, context) => {
 })
 
 const adminLogin = baseResolver.createResolver(async (root, args, context) => {
-  const user = await context.models.user.login(args)
-
-  if (user.role !== 'ADMIN') {
-    throw new Error('Authentication failed.')
-  }
-
-  return user
+  return context.models.user.adminLogin(args)
 })
 
 module.exports = {
