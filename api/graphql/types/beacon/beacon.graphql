@@ -1,0 +1,74 @@
+enum BEACON_STATUSES {
+  IDLE
+  INUSE
+  EXPIRE
+}
+
+enum BEACON_HISTORY_STATUSES {
+  IDLE
+  ASSIGN
+  EXPIRE
+}
+
+enum BEACON_TYPES {
+  INDOOR
+  STICKER
+}
+
+type BeaconHistory {
+  title: String
+  type: BEACON_HISTORY_STATUSES
+  createdAt: String
+}
+
+type Beacon {
+  _id: ID
+  name: String
+  type: BEACON_TYPES
+  status: BEACON_STATUSES
+  locationX: Int
+  locationY: Int
+  identifier: String
+  uuid: String
+  major: Int
+  minor: Int
+  assignId: ID
+  history: [BeaconHistory]
+  createdAt: String
+}
+
+type BeaconStatistic {
+  idle: Int
+  inuse: Int
+  expire: Int
+  total: Int
+}
+
+enum BEACON_TICKET_TYPES {
+  NEW
+  MORE
+}
+
+enum BEACON_TICKET_STATUSES {
+  NEW
+  COMPLETE
+  REJECTED
+}
+
+type BeaconTicket {
+  _id: ID
+  storeId: ID
+  telNo: String
+  type: BEACON_TICKET_TYPES
+  status: BEACON_TICKET_STATUSES
+  createdAt: String
+
+  store: Store
+}
+
+type BeaconTicketStatistic {
+  new: Int
+  complete: Int
+  reject: Int
+  total: Int
+}

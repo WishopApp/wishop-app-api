@@ -1,0 +1,72 @@
+type ProductCategoryProp {
+  _id: ID
+  propId: ID
+  name: String
+  value: String
+}
+
+type ProductSubCategoryProp {
+  _id: ID
+  propId: ID
+  name: String
+  value: String
+}
+
+enum PRODUCT_STATUSES {
+  AVAILABLE
+  OUT_OF_STOCK
+  DELETE
+}
+
+type Product {
+  _id: ID
+  storeId: ID
+  store: Store
+  storeBranchId: ID
+  storeBranch: StoreBranch
+  categoryId: ID
+  category: Category
+  subCategoryId: ID
+  subCategory: SubCategory
+  categoryProps: [ProductCategoryProp]
+  subCategoryProps: [ProductSubCategoryProp]
+  name: String
+  price: Float
+  photoUrlList: [String]
+  status: PRODUCT_STATUSES
+  createdAt: String
+}
+
+input ProductCategoryPropInput {
+  propId: ID
+  value: String
+}
+
+input ProductSubCategoryPropInput {
+  propId: ID
+  value: String
+}
+
+type ProductFromSearch {
+  _id: ID
+  storeId: ID
+  store: Store
+  storeBranchId: ID
+  storeBranch: StoreBranch
+  categoryId: ID
+  category: Category
+  subCategoryId: ID
+  subCategory: SubCategory
+  categoryProps: [ProductCategoryProp]
+  subCategoryProps: [ProductSubCategoryProp]
+  name: String
+  price: Float
+  matchedPercentage: Float
+  recommended: Boolean
+}
+
+type ProductStatistic {
+  available: Int
+  outOfStock: Int
+  total: Int
+}

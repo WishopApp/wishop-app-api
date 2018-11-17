@@ -1,0 +1,7 @@
+type Query {
+  storeBranch(_id: ID, beaconToken: ID): StoreBranch
+
+  storeBranches(storeId: ID): [StoreBranch]
+
+  searchStoreBranchFromBeacon(uuid: String, userId: ID): StoreBranch
+}

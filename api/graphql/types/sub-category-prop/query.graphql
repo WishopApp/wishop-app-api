@@ -1,0 +1,10 @@
+type Query {
+  subCategoryProp (
+    _id: ID
+    subCategoryId: ID!
+  ): SubCategoryProp
+
+  subCategoryProps (
+    subCategoryId: ID
+  ): [SubCategoryProp]
+}

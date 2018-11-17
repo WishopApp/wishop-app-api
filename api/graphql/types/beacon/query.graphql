@@ -1,0 +1,21 @@
+type Query {
+  beacon(
+    _id: ID
+    assignId: ID
+    uuid: String
+    status: BEACON_STATUSES
+    type: BEACON_TYPES
+  ): Beacon
+
+  beacons(assignId: ID, type: BEACON_TYPES, status: BEACON_STATUSES): [Beacon]
+
+  beaconStatistic: BeaconStatistic
+
+  beaconRequestTickets(
+    storeId: ID
+    type: BEACON_TICKET_TYPES
+    status: BEACON_TICKET_STATUSES
+  ): [BeaconTicket]
+
+  beaconTicketStatistic: BeaconTicketStatistic
+}

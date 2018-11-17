@@ -1,0 +1,28 @@
+enum StoreStatuses {
+  OPEN
+  CLOSED
+  BANNED
+}
+
+type Store {
+  _id: ID
+  ownerId: ID
+  name: String
+  coverUrl: String
+  avatarUrl: String
+  description: String
+  owner: User
+  beacons: [Beacon]
+  products: [Product]
+  branchs: [StoreBranch]
+  promotions: [String]
+  status: StoreStatuses
+  createdAt: String
+}
+
+type StoreStatistic {
+  open: Int
+  closed: Int
+  banned: Int
+  total: Int
+}

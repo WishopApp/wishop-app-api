@@ -1,4 +1,4 @@
-FROM node:8.9.4-alpine
+FROM node:8.4.0
 
 # linux path
 ENV workspace=/usr/share/wishop/wishop-app-api
@@ -6,11 +6,11 @@ ENV workspace=/usr/share/wishop/wishop-app-api
 #ENV workspace=/e/wishop/wishop-app-api
 
 WORKDIR ${workspace}
- 
-COPY . ./ 
 
-RUN npm install
+COPY . ./
+
+RUN npm install -g yarn && yarn install --production
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]

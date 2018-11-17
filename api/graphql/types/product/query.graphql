@@ -1,0 +1,11 @@
+type Query {
+  product(_id: ID!, name: String): Product
+
+  products(storeId: ID, storeBranchId: ID, categoryId: ID, subCategoryId: ID): [Product]
+
+  searchByKeyword(keyword: String!): [Product]
+
+  searchByWishlist(wishlist: WishlistInput!): [ProductFromSearch]
+
+  productStatistic(storeId: ID): ProductStatistic
+}

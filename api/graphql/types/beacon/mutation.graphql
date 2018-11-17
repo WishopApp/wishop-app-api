@@ -1,0 +1,40 @@
+type Mutation {
+  createBeacon(
+    name: String!
+    type: BEACON_TYPES
+    status: BEACON_STATUSES
+    locationX: Int
+    locationY: Int
+    identifier: String
+    uuid: String!
+    major: Int!
+    minor: Int!
+    assignId: ID
+  ): Beacon
+
+  assignBeaconToStore(_id: ID!, assignId: ID!): Beacon
+
+  assignBeaconToProduct(_id: ID!, assignId: ID!): Beacon
+
+  updateBeacon(
+    _id: ID!
+    name: String
+    type: BEACON_TYPES
+    status: BEACON_STATUSES
+    locationX: Int
+    locationY: Int
+    identifier: String
+    uuid: String
+    major: Int
+    minor: Int
+    assignId: ID
+  ): Beacon
+
+  createBeaconTicket(
+    storeId: ID!
+    telNo: String!
+    type: BEACON_TICKET_TYPES
+  ): BeaconTicket
+
+  updateBeaconTicket(_id: ID!, status: BEACON_TICKET_STATUSES): BeaconTicket
+}

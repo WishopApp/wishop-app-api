@@ -1,0 +1,5 @@
+type Query {
+  category(_id: ID, name: String!): Category
+
+  categories(limit: Int, skip: Int): [Category]
+}

@@ -1,0 +1,13 @@
+type Mutation {
+  createSubCategoryProp(
+    subCategoryId: ID!
+    name: String!
+    values: [String]
+  ): SubCategoryProp
+
+  updateSubCategoryProp(
+    _id: ID!
+    name: String!
+    values: [String]!
+  ): SubCategoryProp
+}
