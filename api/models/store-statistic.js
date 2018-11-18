@@ -91,11 +91,8 @@ class StoreStatistic {
     }
 
     const dateKey = moment.tz(new Date(), 'Asia/Bangkok').format('DD-MM-YY')
-    let hourIndex = moment.tz(new Date(), 'Asia/Bangkok').format('HH')
-
-    if (hourIndex < 1) {
-      hourIndex = 0
-    }
+    const hour = moment.tz(new Date(), 'Asia/Bangkok').format('HH')
+    const hourIndex = hour.substring(1, 2)
 
     const todayReachCountIndex = findIndex(statistic.reachCount, {
       date: dateKey,
@@ -112,12 +109,8 @@ class StoreStatistic {
       const oldReachCount =
         statistic.reachCount[todayReachCountIndex].hours[hourIndex]
 
-      console.log('old reach count', oldReachCount)
-
       statistic.reachCount[todayReachCountIndex].hours[hourIndex] =
         oldReachCount + 1
-
-      console.log('new ', statistic.reachCount[todayReachCountIndex])
     }
 
     const newdata = {
