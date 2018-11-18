@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const moment = require('moment')
+const moment = require('moment-timezone')
 const { findIndex } = require('lodash')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
@@ -90,8 +90,12 @@ class StoreStatistic {
       })
     }
 
-    const dateKey = moment().format('DD-MM-YY')
-    const hourIndex = moment().format('HH')
+    const dateKey = moment.tz(new Date(), 'Asia/Bangkok').format('DD-MM-YY')
+    let hourIndex = moment.tz(new Date(), 'Asia/Bangkok').format('HH')
+
+    if (hourIndex < 1) {
+      hourIndex = 0
+    }
 
     const todayReachCountIndex = findIndex(statistic.reachCount, {
       date: dateKey,
@@ -108,8 +112,12 @@ class StoreStatistic {
       const oldReachCount =
         statistic.reachCount[todayReachCountIndex].hours[hourIndex]
 
+      console.log('old reach count', oldReachCount)
+
       statistic.reachCount[todayReachCountIndex].hours[hourIndex] =
         oldReachCount + 1
+
+      console.log('new ', statistic.reachCount[todayReachCountIndex])
     }
 
     const newdata = {
