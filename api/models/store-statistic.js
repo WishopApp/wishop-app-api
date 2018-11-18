@@ -76,22 +76,22 @@ class StoreStatistic {
           categoryId: w.categoryId,
         })
 
-        if (cateRankIndex >= 0) {
+        if (cateRankIndex !== -1) {
           oldRanking[cateRankIndex] = {
             categoryId: oldRanking[cateRankIndex].categoryId,
             count: oldRanking[cateRankIndex].count + 1,
           }
+        } else {
+          oldRanking.push({
+            categoryId: w.categoryId,
+            count: 1,
+          })
         }
-
-        oldRanking.push({
-          categoryId: w.categoryId,
-          count: 1,
-        })
       })
     }
 
-    const dateKey = moment(new Date()).format('DD-MM-YY')
-    const hourIndex = moment(new Date()).format('HH')
+    const dateKey = moment().format('DD-MM-YY')
+    const hourIndex = moment().format('HH')
 
     const todayReachCountIndex = findIndex(statistic.reachCount, {
       date: dateKey,
