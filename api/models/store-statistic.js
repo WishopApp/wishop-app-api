@@ -94,7 +94,7 @@ class StoreStatistic {
     const hour = moment.tz(new Date(), 'Asia/Bangkok').format('HH')
 
     let hourIndex = hour
-    if (parseInt(hour) > 9) {
+    if (parseInt(hour) < 10) {
       hourIndex = hour.substring(1, 2)
     }
 
