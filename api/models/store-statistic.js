@@ -92,7 +92,11 @@ class StoreStatistic {
 
     const dateKey = moment.tz(new Date(), 'Asia/Bangkok').format('DD-MM-YY')
     const hour = moment.tz(new Date(), 'Asia/Bangkok').format('HH')
-    const hourIndex = hour.substring(1, 2)
+
+    let hourIndex = hour
+    if (parseInt(hour) > 9) {
+      hourIndex = hour.substring(1, 2)
+    }
 
     const todayReachCountIndex = findIndex(statistic.reachCount, {
       date: dateKey,
