@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const moment = require('moment')
+const moment = require('moment-timezone')
 const { findIndex } = require('lodash')
 
 const ObjectId = mongoose.Schema.Types.ObjectId
@@ -76,22 +76,27 @@ class StoreStatistic {
           categoryId: w.categoryId,
         })
 
-        if (cateRankIndex >= 0) {
+        if (cateRankIndex !== -1) {
           oldRanking[cateRankIndex] = {
             categoryId: oldRanking[cateRankIndex].categoryId,
             count: oldRanking[cateRankIndex].count + 1,
           }
+        } else {
+          oldRanking.push({
+            categoryId: w.categoryId,
+            count: 1,
+          })
         }
-
-        oldRanking.push({
-          categoryId: w.categoryId,
-          count: 1,
-        })
       })
     }
 
-    const dateKey = moment(new Date()).format('DD-MM-YY')
-    const hourIndex = moment(new Date()).format('HH')
+    const dateKey = moment.tz(new Date(), 'Asia/Bangkok').format('DD-MM-YY')
+    const hour = moment.tz(new Date(), 'Asia/Bangkok').format('HH')
+
+    let hourIndex = hour
+    if (parseInt(hour) < 10) {
+      hourIndex = hour.substring(1, 2)
+    }
 
     const todayReachCountIndex = findIndex(statistic.reachCount, {
       date: dateKey,
